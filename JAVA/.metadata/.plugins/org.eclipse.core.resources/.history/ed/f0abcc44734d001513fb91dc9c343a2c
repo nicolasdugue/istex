@@ -1,0 +1,13 @@
+package io.reader;
+
+import model.matrix.LabelStore;
+
+public class LabelReader {
+	private LabelStore ls;
+	private String fileName;
+	public LabelReader(String fileName) {
+		super();
+		this.fileName = fileName;
+	}
+	
+}

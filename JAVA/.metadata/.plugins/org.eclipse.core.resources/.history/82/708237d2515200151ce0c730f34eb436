@@ -1,0 +1,7 @@
+package model.util;
+
+import java.util.Comparator;
+
+public class WeightComparator implements Comparator<T> {
+
+}

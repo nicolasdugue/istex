@@ -1,0 +1,84 @@
+package model.diachronism.clustermatching;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import com.google.gson.annotations.SerializedName;
+
+import model.util.PairFWeighted;
+
+public class ClusterMatching {
+	@SerializedName("Cluster Source")
+	private ClusterLabelled cl;
+	
+	@SerializedName("Cluster Targets")
+	private ArrayList<ClusterLabelled> targets = new ArrayList<ClusterLabelled>();
+	
+	
+	public ClusterMatching(ClusterLabelled s) {
+		super();
+		this.cl=s;
+	}
+
+
+
+
+
+
+
+
+
+	/**
+	 * @return
+	 * @see model.diachronism.clustermatching.ClusterLabelled#getName()
+	 */
+	public String getName() {
+		return cl.getName();
+	}
+
+
+	/**
+	 * @param name
+	 * @see model.diachronism.clustermatching.ClusterLabelled#setName(java.lang.String)
+	 */
+	public void setName(String name) {
+		cl.setName(name);
+	}
+
+
+	/**
+	 * @param e
+	 * @return
+	 * @see model.diachronism.clustermatching.ClusterLabelled#add(model.util.PairFWeighted)
+	 */
+	public boolean add(PairFWeighted e) {
+		return cl.add(e);
+	}
+
+
+	/**
+	 * @param e
+	 * @return
+	 * @see java.util.ArrayList#add(java.lang.Object)
+	 */
+	public boolean add(ClusterLabelled e) {
+		return targets.add(e);
+	}
+
+
+	public ArrayList<PairFWeighted> getLabels() {
+		return cl.getLabels();
+	}
+
+
+	public void setLabels(ArrayList<PairFWeighted> labels) {
+		cl.setLabels(labels);
+	}
+	
+	
+	
+}

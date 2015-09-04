@@ -1,0 +1,9 @@
+package model.facade;
+
+import model.cluster.Clustering;
+import model.matrix.CsrMatrix;
+
+public class Facade {
+	private Clustering clusters;
+	private CsrMatrix matrix;
+}

@@ -1,0 +1,19 @@
+G0-0	70	6	Light emitting devices	0.195314	4270J	0.040188	Optical polymers	0.040165	Photoluminescence	0.037240	Chemical structure	0.030568	Molecular configurations	0.027358	
+G1-0	64	6	Organic semiconductors	0.075284	Conducting polymers	0.052025	7350P	0.034231	7280L	0.031050	Photovoltaic effect	0.030697	7240	0.027209	
+G2-0	51	10	Infrared detector	0.074078	Photodetectors	0.070869	0757K	0.052720	8560G	0.051818	8535B	0.042399	Theoretical study	0.036254	Quantum well devices	0.029069	Semiconductor quantum dots	0.027979	Photoconductivity	0.027299	Dark conductivity	0.025342	
+G3-0	58	1	Gallium arsenides	0.088455	
+G4-0	72	5	Electroluminescent device	0.123465	Organic compounds	0.061479	Luminescent material	0.040343	Thin film device	0.031659	Thin film	0.028335	
+G5-0	80	12	Semiconductor laser	0.121262	4255P	0.089976	Surface emitting laser	0.084470	Vertical cavity laser	0.057205	Laser diodes	0.044468	Diodes	0.035294	VCSEL	0.033892	Quantum well lasers	0.027245	Frequency response	0.026531	Optical interconnection	0.026134	Modeling	0.025478	Optical telecommunication	0.025143	
+G6-0	73	4	Semiconductor materials	0.078014	Inorganic compound	0.054560	Semiconductor materials	0.037217	Radiation detector	0.025325	
+G7-0	34	28	Contact resistance	0.112911	Palladium	0.080181	Ohmic contact	0.079254	Silver	0.074649	7340C	0.059858	Gold	0.054350	X-ray reflection	0.051144	Grazing incidence	0.050803	Platinum	0.048061	Flip-chip	0.047767	Pulsed lasers	0.047058	Crystallization	0.046552	Thick films	0.044654	Nickel	0.044457	Titanium	0.041395	7960	0.040895	6865A	0.040425	Solid solutions	0.040249	Annealing	0.037722	Crystalline structure	0.034751	Oxidation	0.034464	Multiple layer	0.030605	6172C	0.029333	X ray diffraction	0.027571	Chemical interdiffusion	0.026481	Light transmission	0.025795	Electric resistivity	0.025193	6835F	0.025190	
+G8-0	90	15	Bolometer	0.113433	8525P	0.077747	Superconducting device noise	0.052384	Hot carrier	0.042285	Superconducting microwave devices	0.040352	High temperature superconductor	0.040064	Niobium	0.038970	Superconducting junction devices	0.036893	Submillimeter wave detectors	0.031909	8525C	0.027279	Focal plane	0.026928	Superconductor device	0.026563	Superconducting microbridges	0.026235	8430Q	0.026162	Microsensors	0.025571	
+G9-0	75	5	Optoelectronic device	0.132530	8560	0.078352	8560B	0.043667	0787	0.031569	4279Q	0.028239	
+G10-0	89	5	Performance evaluation	0.052467	Ternary compound	0.040516	Quantum well	0.035067	Binary compound	0.033731	Gallium nitride	0.032007	
+G12-0	59	5	Silicon	0.095913	Elemental semiconductors	0.091511	7866D	0.034669	8105C	0.028966	Germanium	0.027618	
+G13-0	61	8	7866Q	0.068260	7361P	0.046639	Phosphorescence	0.030211	8105L	0.029273	Brightness	0.028281	Charge injection	0.027153	Exciton	0.025987	7135	0.025050	
+G14-0	68	7	Cadmium compound	0.088098	II-VI semiconductors	0.076344	Mercury compound	0.075043	Photodiodes	0.052409	8560D	0.039263	Zinc compound	0.033397	7866H	0.030531	
+G15-0	69	10	CCD image sensors	0.084262	Pixel	0.070347	Integrated optoelectronics	0.060992	CCD camera	0.039996	CMOS image sensors	0.036037	Chip	0.034514	Digital image	0.029866	Image reconstruction	0.027206	High sensitivity	0.026939	Color filter	0.025950	
+G16-0	52	10	Gallium compound	0.096647	III-V semiconductors	0.067131	Wide band gap semiconductors	0.066868	Indium compound	0.049092	7866F	0.046148	Aluminium compound	0.042936	Nitrogen compounds	0.040170	Semiconductor quantum wells	0.040042	MOCVD	0.030651	8115G	0.030536	
+G17-0	38	6	Electroluminescence	0.093476	7860F	0.084211	Light emitting diode	0.065247	8560J	0.047321	Polymer films	0.042753	7855K	0.040083	
+G18-0	93	8	Infrared imaging	0.131706	4279P	0.070423	0707D	0.056064	Image sensors	0.054910	4230S	0.042829	8440U	0.029851	4230V	0.029850	Remote sensing	0.025730	
+G19-0	96	2	Instrumentation	0.081868	Measurement method	0.047063	

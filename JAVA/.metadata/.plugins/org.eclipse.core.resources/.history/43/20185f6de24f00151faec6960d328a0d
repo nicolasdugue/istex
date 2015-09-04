@@ -1,0 +1,46 @@
+package model.featureselection;
+
+import java.util.ArrayList;
+
+public class LabelSelectionFromFile implements ILabelSelection {
+
+	private ArrayList<ArrayList<Integer>> labels = new ArrayList<ArrayList<Integer>>();
+	private ArrayList<Float> featuresWeights;
+	private LabelStore ls;
+	@Override
+	public ArrayList<Integer> getPrevalentFeatureSet(int cluster) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<String> getLabelSet(int cluster) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getNbCluster() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getLabelOfCol(int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getIndexOfColLabel(String label) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public float getFeatureFMeanValue(int f) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

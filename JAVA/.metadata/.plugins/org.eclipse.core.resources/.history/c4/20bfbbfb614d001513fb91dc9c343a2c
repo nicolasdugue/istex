@@ -1,0 +1,72 @@
+package model.featureselection;
+
+import model.matrix.CsrMatrix;
+
+public class FeaturesSelection {
+	private CsrMatrix matrix;
+	private float[][] featuresMatrix;
+	private float[] meanFMeasure;
+	private float globalMeanFMeasure;
+	public FeaturesSelection(CsrMatrix matrix) {
+		super();
+		this.matrix = matrix;
+		featuresMatrix = new float[matrix.getNbColumns()][matrix.getNbCluster()];
+		meanFMeasure = new float[matrix.getNbColumns()];
+		fillFromCsrMatrix();
+	}
+	private void fillFromCsrMatrix() {
+		float local_sum;
+		float global_sum=0;
+		for (int j=0; j < matrix.getNbColumns(); j++) {
+			local_sum=0;
+			for (int k=0; k < matrix.getNbCluster(); k++) {
+				featuresMatrix[j][k]=matrix.ff(j, k);
+				local_sum+=featuresMatrix[j][k];
+			}
+			meanFMeasure[j]=local_sum/matrix.getNbCluster();	
+			global_sum +=local_sum;
+		}
+		globalMeanFMeasure=global_sum/(matrix.getNbCluster() * matrix.getNbColumns());
+	}
+	
+	//Computes the feature recall
+		private float fr(int column, int cluster) {
+			//System.out.println("FR = " + getSumColInCluster(column, cluster)+ " / " + getSumCol(column));
+			return (float)getSumColInCluster(column, cluster) / getSumCol(column);
+		}
+		
+		// Computes the feature precision
+		private float fp(int column, int cluster) {
+			//System.out.println("FP = " + getSumColInCluster(column, cluster)+ " / " + getSumCluster(cluster));
+			return (float)getSumColInCluster(column, cluster) / getSumCluster(cluster);
+		}
+		/**
+		 * @param column the feature you are interested in as its column id
+		 * @param cluster the cluster you are interested in as its id
+		 * @return the feature F-measure of feature "column" in cluster "cluster"
+		 */
+		public float ff(int column, int cluster) {
+			float fr=fr(column, cluster);
+			float fp = fp(column, cluster);
+			return (2*fr*fp/(fr+fp));
+		}
+	
+	public float getGlobalMeanFMeasure() {
+		return globalMeanFMeasure;
+	}
+	public float getFeatureFMeanFMeasure(int f) {
+		return meanFMeasure[f];
+	}
+	public float getFeatureFMeasure(int f, int cluster) {
+		return featuresMatrix[f][cluster];
+	}
+	public int getNbCluster() {
+		return matrix.getNbCluster();
+	}
+	public int getNbColumns() {
+		return matrix.getNbColumns();
+	}
+	
+	
+	
+}

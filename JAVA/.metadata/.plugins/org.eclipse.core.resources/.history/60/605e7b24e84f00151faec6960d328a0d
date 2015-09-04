@@ -1,0 +1,22 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import model.featureselection.LabelSelectionFromFile;
+
+public class TestLabelSelectionFromFile {
+
+	private LabelSelectionFromFile ls;
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

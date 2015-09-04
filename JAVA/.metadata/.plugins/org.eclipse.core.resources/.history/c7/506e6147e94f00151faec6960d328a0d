@@ -1,0 +1,44 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class TestLabelSelectionFF {
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@Test
+	public void testGetPrevalentFeatureSet() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetLabelSet() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetNbCluster() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetLabelOfCol() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetIndexOfColLabel() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetFeatureFMeanValue() {
+		fail("Not yet implemented");
+	}
+
+}

@@ -1,0 +1,56 @@
+package model.diachronism;
+
+import java.util.ArrayList;
+
+import model.featureselection.LabelSelection;
+
+/**
+ * 
+ * Allows to compare two clustering
+ * 
+ * @author dugue
+ *
+ */
+public class Diachronism {
+	/**
+	 * Both the set of labels of each cluster for each clustering made at time t0 and at time t1
+	 */
+	private LabelSelection ls_t0;
+	private LabelSelection ls_t1;
+	
+	private float[][] p_t_acts;
+	
+	private float[] pA_s;
+	
+	private float a_s;
+
+	public Diachronism(LabelSelection ls_t0, LabelSelection ls_t1) {
+		this.ls_t0 = ls_t0;
+		this.ls_t1 = ls_t1;
+		
+	}
+	private void computeP_t_acts() {
+		int env;
+		float p_t_acts_sum;
+		ArrayList<Integer> ls_s;
+		ArrayList<Integer> ls_t;
+		for (int s=0; s < ls_t0.getNbCluster(); s++) {
+			for (int t=0; t < ls_t1.getNbCluster(); t++) {
+				ls_s=ls_t0.getLabelSet(s);
+				ls_t=ls_t1.getLabelSet(t);
+				intersection(ls_s, ls_t);
+			}
+		}
+	}
+	private <T> ArrayList<T> intersection(ArrayList<T> al1, ArrayList<T> al2) {
+		ArrayList<T> intersection = new ArrayList<T>();
+		for (T label : al1) {
+			if (al2.contains(al1)) {
+				intersection.add(label);
+			}
+		}
+		return intersection;
+	}
+	
+	
+}

@@ -1,0 +1,44 @@
+package model.matrix.decorator;
+
+
+import model.PairI;
+
+public interface IMatrixClustered {
+	public int getCumulativeRows(int i);
+	public int getCumulativeColumns(int i);
+	
+	public PairI getIinRows(int i);
+	public PairI getIinColumns(int i);
+	
+	public int getNbElements();
+	public int getNbRows();
+	public int getNbColumns();
+	
+	/**
+	 * @param i the row you need to get the sum
+	 * @return sum over the i-th row of the matrix
+	 */
+	public int getSumRow(int i);
+	
+	/**
+	 * @param i the column you need to get the sum
+	 * @return sum over the i-th column of the matrix
+	 */
+	public int getSumCol(int i);
+	
+	
+	public int getNbCluster();
+
+	/**
+	 * @param i the column you need to get the sum
+	 * @param k the cluster the rows have to belong to
+	 * @return sum over the i-th column of the matrix for each objet that belongs to cluster k
+	 */
+	public int getSumColInCluster(int i, int k);
+
+	/**
+	 * @param k the cluster you want to get the whole sum
+	 * @return the sum over all the a_ij that belongs to the cluster
+	 */
+	public int getSumCluster(int k);
+}

@@ -1,0 +1,5 @@
+package model.featureselection;
+
+public interface IFeatureSelection {
+
+}

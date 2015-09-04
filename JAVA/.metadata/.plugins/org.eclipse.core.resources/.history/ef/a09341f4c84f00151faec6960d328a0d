@@ -1,0 +1,48 @@
+package model.featureselection;
+
+import java.util.ArrayList;
+
+public class FeatureSelectionFromFile implements IFeaturesSelection{
+
+	private ArrayList<ArrayList<Float> > featuresMatrix;
+	private ArrayList<Float> meanFMeasure;
+	private float globalMeanFMeasure;
+	@Override
+	public float getGlobalMeanFeatureValue() {
+		return globalMeanFMeasure;
+	}
+
+	@Override
+	public float getFeatureFMeanValue(int f) {
+		return meanFMeasure.get(f);
+	}
+
+	@Override
+	public float getFeatureValue(int f, int cluster) {
+		return featuresMatrix.get(f).get(cluster);
+	}
+
+	@Override
+	public int getNbCluster() {
+		return featuresMatrix.size();
+	}
+
+	@Override
+	public int getNbFeatureSelected() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getLabelOfCol(int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getIndexOfColLabel(String label) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

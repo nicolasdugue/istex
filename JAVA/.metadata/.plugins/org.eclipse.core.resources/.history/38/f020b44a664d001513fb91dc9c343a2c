@@ -1,0 +1,55 @@
+package model.featureselection;
+
+import java.util.ArrayList;
+
+/**
+ * Allows to store the feature considered as labels for each cluster
+ * 
+ * @author dugue
+ *
+ */
+public class LabelSelection {
+	/**
+	 * Pour chaque cluster, on a une liste de labels Ainsi labels.get(i)
+	 * retourne une ArrayList d'entier correspondant au numéro de colonnes des
+	 * features sélectionnées comme label pour le cluster i.
+	 */
+	private ArrayList<ArrayList<Integer>> labels = new ArrayList<ArrayList<Integer>>();
+	private FeaturesSelection fs;
+	public LabelSelection(FeaturesSelection fs) {
+		this.fs=fs;
+		// POur chaque cluster, on prépare une liste de labels qui, au départ,
+		// est vide
+		for (int i = 0; i < fs.getNbCluster(); i++) {
+			labels.add(new ArrayList<Integer>());
+		}
+		float valueMax;
+		int clusterWithValueMax;
+		for (int j = 0; j < fs.getNbColumns(); j++) {
+			valueMax=-1;
+			clusterWithValueMax=-1;
+			for (int k = 0; k < fs.getNbCluster(); k++) {
+				if (fs.getFeatureFMeasure(j, k) > valueMax) {
+					valueMax =fs.getFeatureFMeasure(j, k);
+					clusterWithValueMax=k;
+				}
+			}
+			//The feature f is added to the set of cluster labels of the cluster that maximizes the Feature F-Measure of f
+			labels.get(clusterWithValueMax).add(j);
+		}
+	}
+	
+	/**
+	 * @param cluster the cluster one wants to get the prevalent labels
+	 * @return a set of Integer representing the prevalent features for the cluster 
+	 */
+	public ArrayList<Integer> getLabelSet(int cluster) {
+		return labels.get(cluster);
+	}
+	
+	public int getNbCluster() {
+		return fs.getNbCluster();
+	}
+	
+
+}

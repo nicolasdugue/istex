@@ -1,0 +1,278 @@
+source cluster: 0	[61/8]	target cluster: 3	[58/1]
+f_avg: 0.084914    var: 0.000025    Gallium arsenides
+
+Non-Common labels in source cluster
+f1: 0.056464[ 0]    f2: 0.042936[15]    Aluminium compound
+f1: 0.055847[ 0]    f2: 0.040042[15]    Semiconductor quantum wells
+f1: 0.043766[ 0]    f2: 0.074078[ 2]    Infrared detector
+f1: 0.041660[ 0]    f2: 0.000000[-1]    8530V
+
+Non-Common labels in target cluster
+
+source cluster: 1	[99/6]	target cluster: 6	[73/4]
+f_avg: 0.040526    var: 0.000022    Semiconductor materials
+
+Non-Common labels in source cluster
+f1: 0.036884[ 1]    f2: 0.035067[10]    Quantum well
+f1: 0.032296[ 1]    f2: 0.000000[-1]    III-V compound
+f1: 0.032015[ 1]    f2: 0.000000[-1]    Microelectronic fabrication
+f1: 0.026586[ 1]    f2: 0.000000[-1]    Optical properties
+
+Non-Common labels in target cluster
+f1: 0.000000[-1]    f2: 0.054560[ 6]    Inorganic compound
+f1: 0.000000[-1]    f2: 0.025325[ 6]    Radiation detector
+
+source cluster: 2	[66/3]	target cluster: 2	[51/10]
+f_avg: 0.064058    var: 0.000093    Photodetectors
+f_avg: 0.045886    var: 0.000070    8560G
+f_avg: 0.033480    var: 0.000015    Theoretical study
+
+Non-Common labels in source cluster
+
+Non-Common labels in target cluster
+f1: 0.043766[ 0]    f2: 0.074078[ 2]    Infrared detector
+f1: 0.037831[12]    f2: 0.052720[ 2]    0757K
+f1: 0.000000[-1]    f2: 0.042399[ 2]    8535B
+f1: 0.000000[-1]    f2: 0.029069[ 2]    Quantum well devices
+
+source cluster: 4	[53/1]	target cluster: 18	[96/2]
+f_avg: 0.084742    var: 0.000017    Instrumentation
+
+Non-Common labels in source cluster
+
+Non-Common labels in target cluster
+f1: 0.102325[15]    f2: 0.047063[18]    Measurement method
+
+source cluster: 5	[81/6]	target cluster: 11	[59/5]
+f_avg: 0.095450    var: 0.000000    Silicon
+f_avg: 0.093249    var: 0.000006    Elemental semiconductors
+f_avg: 0.030037    var: 0.000043    7866D
+
+Non-Common labels in source cluster
+f1: 0.026527[ 5]    f2: 0.039263[13]    8560D
+f1: 0.026120[ 5]    f2: 0.000000[-1]    Erbium
+f1: 0.025218[ 5]    f2: 0.000000[-1]    7361C
+
+Non-Common labels in target cluster
+f1: 0.000000[-1]    f2: 0.028966[11]    8105C
+f1: 0.000000[-1]    f2: 0.027618[11]    Germanium
+
+source cluster: 6	[82/2]	target cluster: 14	[69/10]
+f_avg: 0.099034    var: 0.000436    CCD image sensors
+
+Non-Common labels in source cluster
+f1: 0.026153[ 6]    f2: 0.000000[-1]    0705P
+
+Non-Common labels in target cluster
+f1: 0.000000[-1]    f2: 0.070347[14]    Pixel
+f1: 0.116774[ 2]    f2: 0.060992[14]    Integrated optoelectronics
+f1: 0.000000[-1]    f2: 0.039996[14]    CCD camera
+f1: 0.000000[-1]    f2: 0.036037[14]    CMOS image sensors
+
+source cluster: 7	[66/8]	target cluster: 15	[52/10]
+f_avg: 0.099332    var: 0.000014    Gallium compound
+f_avg: 0.069646    var: 0.000013    III-V semiconductors
+f_avg: 0.054620    var: 0.000300    Wide band gap semiconductors
+f_avg: 0.054210    var: 0.000052    Indium compound
+f_avg: 0.042324    var: 0.000029    7866F
+
+Non-Common labels in source cluster
+f1: 0.039769[ 7]    f2: 0.000000[-1]    8105E
+f1: 0.030961[ 7]    f2: 0.000000[-1]    Semiconductor growth
+f1: 0.027920[ 7]    f2: 0.000000[-1]    7855C
+
+Non-Common labels in target cluster
+f1: 0.056464[ 0]    f2: 0.042936[15]    Aluminium compound
+f1: 0.000000[-1]    f2: 0.040170[15]    Nitrogen compounds
+f1: 0.055847[ 0]    f2: 0.040042[15]    Semiconductor quantum wells
+f1: 0.000000[-1]    f2: 0.030651[15]    MOCVD
+
+source cluster: 9	[79/10]	target cluster: 5	[80/12]
+f_avg: 0.102431    var: 0.000709    Semiconductor laser
+f_avg: 0.073170    var: 0.000565    4255P
+f_avg: 0.053635    var: 0.000168    Laser diodes
+
+Non-Common labels in source cluster
+f1: 0.046296[ 9]    f2: 0.000000[-1]    Tunable laser
+f1: 0.046212[ 9]    f2: 0.000000[-1]    Injection laser
+f1: 0.041324[ 9]    f2: 0.000000[-1]    Frequency division multiplexing
+f1: 0.037854[ 9]    f2: 0.000000[-1]    Application
+
+Non-Common labels in target cluster
+f1: 0.000000[-1]    f2: 0.084470[ 5]    Surface emitting laser
+f1: 0.000000[-1]    f2: 0.057205[ 5]    Vertical cavity laser
+f1: 0.000000[-1]    f2: 0.035294[ 5]    Diodes
+f1: 0.000000[-1]    f2: 0.033892[ 5]    VCSEL
+
+source cluster: 10	[77/22]	target cluster: 8	[90/15]
+f_avg: 0.095202    var: 0.000665    Bolometer
+f_avg: 0.081938    var: 0.000035    8525P
+f_avg: 0.062648    var: 0.000211    Superconducting device noise
+f_avg: 0.055846    var: 0.000480    Superconducting microwave devices
+f_avg: 0.046680    var: 0.000088    High temperature superconductor
+f_avg: 0.043795    var: 0.000005    Hot carrier
+f_avg: 0.041497    var: 0.000470    8430Q
+f_avg: 0.036035    var: 0.000017    Niobium
+f_avg: 0.028942    var: 0.000006    8525C
+f_avg: 0.026776    var: 0.000000    Superconductor device
+f_avg: 0.026639    var: 0.000000    Superconducting microbridges
+
+Non-Common labels in source cluster
+f1: 0.053621[10]    f2: 0.000000[-1]    Barium compound
+f1: 0.047269[10]    f2: 0.000000[-1]    Yttrium compound
+f1: 0.042694[10]    f2: 0.000000[-1]    Submillimeter wave mixers
+f1: 0.038718[10]    f2: 0.000000[-1]    7472B
+
+Non-Common labels in target cluster
+f1: 0.000000[-1]    f2: 0.036893[ 8]    Superconducting junction devices
+f1: 0.026292[11]    f2: 0.031909[ 8]    Submillimeter wave detectors
+f1: 0.000000[-1]    f2: 0.026928[ 8]    Focal plane
+f1: 0.000000[-1]    f2: 0.025571[ 8]    Microsensors
+
+source cluster: 12	[62/9]	target cluster: 17	[93/8]
+f_avg: 0.128437    var: 0.000021    Infrared imaging
+f_avg: 0.071130    var: 0.000001    4279P
+f_avg: 0.063728    var: 0.000156    Image sensors
+f_avg: 0.061478    var: 0.000059    0707D
+f_avg: 0.029848    var: 0.000034    Remote sensing
+f_avg: 0.027877    var: 0.000008    4230V
+
+Non-Common labels in source cluster
+f1: 0.037831[12]    f2: 0.052720[ 2]    0757K
+f1: 0.027597[12]    f2: 0.000000[-1]    Military systems
+f1: 0.027054[12]    f2: 0.000000[-1]    Radiometer
+
+Non-Common labels in target cluster
+f1: 0.000000[-1]    f2: 0.042829[17]    4230S
+f1: 0.000000[-1]    f2: 0.029851[17]    8440U
+
+source cluster: 13	[106/8]	target cluster: 4	[72/5]
+f_avg: 0.117121    var: 0.000080    Electroluminescent device
+f_avg: 0.055799    var: 0.000065    Organic compounds
+f_avg: 0.033790    var: 0.000086    Luminescent material
+
+Non-Common labels in source cluster
+f1: 0.059896[13]    f2: 0.084211[16]    7860F
+f1: 0.049715[13]    f2: 0.093476[16]    Electroluminescence
+f1: 0.038436[13]    f2: 0.195314[ 0]    Light emitting devices
+f1: 0.028052[13]    f2: 0.037240[ 0]    Photoluminescence
+
+Non-Common labels in target cluster
+f1: 0.000000[-1]    f2: 0.031659[ 4]    Thin film device
+f1: 0.000000[-1]    f2: 0.028335[ 4]    Thin film
+
+source cluster: 14	[61/3]	target cluster: 9	[75/5]
+f_avg: 0.129226    var: 0.000022    Optoelectronic device
+f_avg: 0.076212    var: 0.000009    8560
+
+Non-Common labels in source cluster
+f1: 0.032826[14]    f2: 0.000000[-1]    Magazine article
+
+Non-Common labels in target cluster
+f1: 0.044565[11]    f2: 0.043667[ 9]    8560B
+f1: 0.000000[-1]    f2: 0.031569[ 9]    0787
+f1: 0.000000[-1]    f2: 0.028239[ 9]    4279Q
+
+source cluster: 15	[76/9]	target cluster: 1	[64/6]
+f_avg: 0.057772    var: 0.000613    Organic semiconductors
+f_avg: 0.040672    var: 0.000258    Conducting polymers
+
+Non-Common labels in source cluster
+f1: 0.075408[15]    f2: 0.065247[16]    Light emitting diode
+f1: 0.061906[15]    f2: 0.047321[16]    8560J
+f1: 0.042865[15]    f2: 0.068260[12]    7866Q
+f1: 0.040508[15]    f2: 0.040165[ 0]    Optical polymers
+
+Non-Common labels in target cluster
+f1: 0.000000[-1]    f2: 0.034231[ 1]    7350P
+f1: 0.000000[-1]    f2: 0.031050[ 1]    7280L
+f1: 0.000000[-1]    f2: 0.030697[ 1]    Photovoltaic effect
+f1: 0.000000[-1]    f2: 0.027209[ 1]    7240
+
+source cluster: 15	[76/9]	target cluster: 12	[61/8]
+f_avg: 0.055562    var: 0.000322    7866Q
+f_avg: 0.040522    var: 0.000075    7361P
+
+Non-Common labels in source cluster
+f1: 0.075408[15]    f2: 0.065247[16]    Light emitting diode
+f1: 0.061906[15]    f2: 0.047321[16]    8560J
+f1: 0.040508[15]    f2: 0.040165[ 0]    Optical polymers
+f1: 0.040260[15]    f2: 0.075284[ 1]    Organic semiconductors
+
+Non-Common labels in target cluster
+f1: 0.000000[-1]    f2: 0.030211[12]    Phosphorescence
+f1: 0.000000[-1]    f2: 0.029273[12]    8105L
+f1: 0.000000[-1]    f2: 0.028281[12]    Brightness
+f1: 0.000000[-1]    f2: 0.027153[12]    Charge injection
+
+source cluster: 15	[76/9]	target cluster: 16	[38/6]
+f_avg: 0.070328    var: 0.000052    Light emitting diode
+f_avg: 0.054614    var: 0.000106    8560J
+f_avg: 0.034400    var: 0.000140    Polymer films
+
+Non-Common labels in source cluster
+f1: 0.042865[15]    f2: 0.068260[12]    7866Q
+f1: 0.040508[15]    f2: 0.040165[ 0]    Optical polymers
+f1: 0.040260[15]    f2: 0.075284[ 1]    Organic semiconductors
+f1: 0.038155[15]    f2: 0.040188[ 0]    4270J
+
+Non-Common labels in target cluster
+f1: 0.049715[13]    f2: 0.093476[16]    Electroluminescence
+f1: 0.059896[13]    f2: 0.084211[16]    7860F
+f1: 0.026800[13]    f2: 0.040083[16]    7855K
+
+source cluster: 16	[72/1]	target cluster: 18	[96/2]
+f_avg: 0.074694    var: 0.001527    Measurement method
+
+Non-Common labels in source cluster
+
+Non-Common labels in target cluster
+f1: 0.087615[ 3]    f2: 0.081868[18]    Instrumentation
+
+source cluster 3 is vanishing
+f1: 0.116774[ 3]    f2: 0.060992[14]    Integrated optoelectronics
+f1: 0.104777[ 3]    f2: 0.026134[ 5]    Optical interconnection
+f1: 0.088780[ 3]    f2: 0.000000[-1]    4282D
+f1: 0.088502[ 3]    f2: 0.000000[-1]    4279T
+
+source cluster 8 is vanishing
+f1: 0.156809[ 8]    f2: 0.000000[-1]    High-speed optical techniques
+f1: 0.095893[ 8]    f2: 0.000000[-1]    4265R
+f1: 0.069631[ 8]    f2: 0.000000[-1]    0660J
+f1: 0.045631[ 8]    f2: 0.000000[-1]    Photomultipliers
+
+source cluster 11 is vanishing
+f1: 0.063941[11]    f2: 0.000000[-1]    Photoconducting device
+f1: 0.046523[11]    f2: 0.000000[-1]    Nematic crystals
+f1: 0.044565[11]    f2: 0.043667[ 9]    8560B
+f1: 0.032548[11]    f2: 0.000000[-1]    Electrooptical device
+
+
+target cluster 0 is appearing
+f1: 0.038436[13]    f2: 0.195314[ 0]    Light emitting devices
+f1: 0.038155[15]    f2: 0.040188[ 0]    4270J
+f1: 0.040508[15]    f2: 0.040165[ 0]    Optical polymers
+f1: 0.028052[13]    f2: 0.037240[ 0]    Photoluminescence
+
+target cluster 7 is appearing
+f1: 0.000000[-1]    f2: 0.112911[ 7]    Contact resistance
+f1: 0.000000[-1]    f2: 0.080181[ 7]    Palladium
+f1: 0.000000[-1]    f2: 0.079254[ 7]    Ohmic contact
+f1: 0.000000[-1]    f2: 0.074649[ 7]    Silver
+
+target cluster 10 is appearing
+f1: 0.000000[-1]    f2: 0.052467[10]    Performance evaluation
+f1: 0.000000[-1]    f2: 0.040516[10]    Ternary compound
+f1: 0.036884[ 1]    f2: 0.035067[10]    Quantum well
+f1: 0.000000[-1]    f2: 0.033731[10]    Binary compound
+
+target cluster 13 is appearing
+f1: 0.000000[-1]    f2: 0.088098[13]    Cadmium compound
+f1: 0.000000[-1]    f2: 0.076344[13]    II-VI semiconductors
+f1: 0.000000[-1]    f2: 0.075043[13]    Mercury compound
+f1: 0.025530[ 1]    f2: 0.052409[13]    Photodiodes
+
+
+source cluster 15 is a potential split into     target cluster1     target cluster12     target cluster16
+
+target cluster 18 is a potential merge from    source cluster4    source cluster16

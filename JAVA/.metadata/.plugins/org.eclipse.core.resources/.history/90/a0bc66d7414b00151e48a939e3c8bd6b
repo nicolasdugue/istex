@@ -1,0 +1,34 @@
+package model.featureselection;
+
+import model.matrix.CsrMatrix;
+
+public class FeaturesSelection {
+	private CsrMatrix matrix;
+	private float[][] featuresMatrix;
+	private float[] meanFMeasure;
+	private float globalMeanFMeasure;
+	public FeaturesSelection(CsrMatrix matrix) {
+		super();
+		this.matrix = matrix;
+		featuresMatrix = new float[matrix.getNbColumns()][matrix.getNbCluster()];
+		meanFMeasure = new float[matrix.getNbColumns()];
+		fillFromCsrMatrix();
+	}
+	private void fillFromCsrMatrix() {
+		float local_sum;
+		float global_sum=0;
+		for (int j=0; j < matrix.getNbColumns(); j++) {
+			local_sum=0;
+			for (int k=0; k < matrix.getNbCluster(); k++) {
+				featuresMatrix[j][k]=matrix.ff(j, k);
+				local_sum+=featuresMatrix[j][k];
+			}
+			meanFMeasure[j]=local_sum/matrix.getNbCluster();	
+			global_sum +=local_sum;
+		}
+		globalMeanFMeasure=global_sum/(matrix.getNbCluster() * matrix.getNbCluster());
+	}
+	
+	
+	
+}

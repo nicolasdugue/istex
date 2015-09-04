@@ -1,0 +1,13 @@
+package model.factory;
+
+import model.diachronism.LabelDiachronism;
+import model.featureselection.ILabelSelection;
+
+public class Factory {
+	public static LabelDiachronism matchingFromLabelFiles(String fileNameSrc, String FileNameTarget) {
+		ILabelSelection ls_t0;
+		ILabelSelection ls_t1;
+		LabelDiachronism ld = new LabelDiachronism(ls_t0, ls_t1);
+		return ld;
+	}
+}

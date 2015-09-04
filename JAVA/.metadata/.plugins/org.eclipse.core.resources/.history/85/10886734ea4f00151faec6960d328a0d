@@ -1,0 +1,52 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import model.featureselection.LabelSelectionFromFile;
+
+public class TestLabelSelectionFromFile {
+
+	LabelSelectionFromFile ls;
+	@Before
+	public void setUp() throws Exception {
+		ls = new LabelSelectionFromFile("00-0350gnge-tn-DD-ENL.fmgs");
+	}
+
+	@Test
+	public void testGetPrevalentFeatureSet() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetLabelSet() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetNbCluster() {
+		assertEquals(50, ls.getNbCluster());
+	}
+
+	@Test
+	public void testGetLabelOfCol() {
+		assertEquals("Electroluminescent device", ls.getLabelOfCol(2));
+		assertSame("Substrate", ls.getLabelOfCol(8));
+		assertSame("Brightness", ls.getLabelOfCol(12));
+		assertSame("Optical polymers", ls.getLabelOfCol(48));
+		assertSame("X-ray detection", ls.getLabelOfCol(79));
+	}
+
+	@Test
+	public void testGetIndexOfColLabel() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetFeatureFMeanValue() {
+		fail("Not yet implemented");
+	}
+
+}

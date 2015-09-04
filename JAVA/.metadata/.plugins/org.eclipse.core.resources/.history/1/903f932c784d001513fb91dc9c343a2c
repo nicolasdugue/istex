@@ -1,0 +1,10 @@
+package model.matrix.decorator;
+
+public class MatrixObjectLabel extends MatrixDecorator {
+
+	public MatrixObjectLabel(IMatrix m) {
+		super(m);
+		// TODO Auto-generated constructor stub
+	}
+
+}

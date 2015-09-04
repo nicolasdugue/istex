@@ -1,0 +1,10 @@
+package model.diachronism.clustermatching;
+
+import java.util.ArrayList;
+
+import model.util.PairFWeighted;
+
+public class ClusterLabelled {
+	private String name;
+	private ArrayList<PairFWeighted> labels;
+}

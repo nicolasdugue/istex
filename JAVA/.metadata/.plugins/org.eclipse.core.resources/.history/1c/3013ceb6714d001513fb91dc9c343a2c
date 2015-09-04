@@ -1,0 +1,34 @@
+package model.matrix;
+
+import java.util.Collection;
+import java.util.HashMap;
+
+/**
+ * Allows to preserve a matching Integer <-> String that can be used to store labels for features (columns of a matrix) or objects (rows)
+ * 
+ * @author dugue
+ *
+ */
+public class FeatureLabels {
+	private HashMap<Integer, String> labels = new HashMap<Integer,String>();
+	public FeatureLabels(String fileName) {
+		super();
+	}
+	/**
+	 * @param key
+	 * @return
+	 */
+	public String getLabel(Integer key) {
+		return labels.get(key);
+	}
+	public String putLabel(Integer key, String value) {
+		return labels.put(key, value);
+	}
+	public boolean containsLabel(String value) {
+		return labels.containsValue(value);
+	}
+	public Collection<String> getLabels() {
+		return labels.values();
+	}
+	
+}

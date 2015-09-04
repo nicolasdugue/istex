@@ -1,0 +1,8 @@
+package model.diachronism.clustermatching;
+
+import java.util.ArrayList;
+
+public class ClusterMatching {
+	private ClusterLabelled s;
+	private ArrayList<ClusterLabelled> targets;
+}

@@ -1,0 +1,22 @@
+package io.reader;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+import model.cluster.Clustering;
+
+public class ClusteringReader {
+	private Clustering clusters;
+	private String fileName;
+	public ClusteringReader(String fileName) {
+		super();
+		clusters=new Clustering();
+		this.fileName = fileName;
+		readAndFillModel();
+	}
+	private void readAndFillModel() throws FileNotFoundException {
+		Scanner sc = new Scanner(new File(fileName));
+	}
+	
+}

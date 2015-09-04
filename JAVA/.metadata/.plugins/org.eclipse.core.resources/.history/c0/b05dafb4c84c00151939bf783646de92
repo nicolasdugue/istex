@@ -1,0 +1,36 @@
+package model.facade;
+
+import java.util.ArrayList;
+
+import model.cluster.Clustering;
+import model.featureselection.FeaturesSelection;
+import model.featureselection.LabelSelection;
+import model.matrix.CsrMatrix;
+
+/**
+ * 
+ * Façade : classe à utiliser pour la construction des algos. Contient toutes les classes du modèle utiles à la sélection de variable et au labelling de cluster.
+ * Délègue l'appel des méthodes utile aux algos à ces classes du modèle.
+ * 
+ * @author dugue
+ *
+ */
+public class Facade {
+	private Clustering clusters;
+	private CsrMatrix matrix;
+	private FeaturesSelection fs;
+	private LabelSelection ls;
+	
+	public int nbCluster() {
+		return clusters.size();
+	}
+	public Integer getClusterOfObjectI(int index) {
+		return clusters.getClusterOfObjectI(index);
+	}
+	public ArrayList<Integer> getObjectsInCk(int cluster) {
+		return clusters.getObjectsInCk(cluster);
+	}
+	
+	
+	
+}

@@ -1,0 +1,18 @@
+INDEX VERSION 1.127+/home/nicolas/Dropbox/LORIA/JAVA/.metadata/.plugins/org.eclipse.jdt.core
+3304642501.index
+3483877148.index
+3719146981.index
+1604351940.index
+3553704201.index
+3767705585.index
+2748267835.index
+2575642524.index
+2094774038.index
+104687156.index
+3208277410.index
+4043171294.index
+1772621.index
+3779900400.index
+3407615292.index
+92972134.index
+350301258.index

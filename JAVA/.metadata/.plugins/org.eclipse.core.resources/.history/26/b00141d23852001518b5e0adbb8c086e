@@ -1,0 +1,32 @@
+package model.factory;
+
+import java.io.FileNotFoundException;
+
+import io.reader.MatrixReader;
+import model.diachronism.LabelDiachronism;
+import model.featureselection.FeaturesSelection;
+import model.featureselection.ILabelSelection;
+import model.featureselection.LabelSelection;
+import model.featureselection.LabelSelectionFromFile;
+import model.matrix.CsrMatrix;
+import model.matrix.CsrMatrixClustered;
+
+public class Factory {
+	public static LabelDiachronism matchingFromLabelFiles(String fileNameSrc, String fileNameTarget) throws FileNotFoundException {
+		ILabelSelection ls_t0 = new LabelSelectionFromFile(fileNameSrc);
+		ILabelSelection ls_t1= new LabelSelectionFromFile(fileNameTarget);
+		LabelDiachronism ld = new LabelDiachronism(ls_t0, ls_t1);
+		return ld;
+	}
+	
+	public static LabelDiachronism matchingFromMatrixClusterFiles(String matrix1, String matrix2, String cluster1, String cluster2) {
+		ILabelSelection ls_t0 = new LabelSelection(new FeaturesSelection(new CsrMatrixClustered(new CsrMatrix(new Matrix), clusters)))
+	}
+	public static LabelDiachronism matchingFromMatrixAndClusterFiles(String matrix1, String matrix2, String cluster1, String cluster2, String label1, String label2) {
+		
+	}
+	public static ILabelSelection getLabelsFromMatrixClusters(String matrix,  String cluster) {
+		ILabelSelection ls_t0 = new LabelSelection(new FeaturesSelection(new CsrMatrixClustered(new CsrMatrix(new MatrixReader(matrix)), clusters)));
+		return ls_t0;
+	}
+}

@@ -1,0 +1,73 @@
+package model.matrix.decorator;
+
+import model.PairI;
+
+public abstract class MatrixDecorator implements IMatrix {
+	protected IMatrix m;
+	@Override
+	public int getCumulativeRows(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getCumulativeColumns(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public PairI getIinRows(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PairI getIinColumns(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getNbElements() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getNbRows() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getNbColumns() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSumRow(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSumCol(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getLabelOfCol(int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getLabelOfRow(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

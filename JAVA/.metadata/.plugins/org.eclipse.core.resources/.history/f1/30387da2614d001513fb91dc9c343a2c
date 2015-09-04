@@ -1,0 +1,49 @@
+package model.matrix;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import model.PairI;
+import model.cluster.Clustering;
+
+public class CsrMatrixClustered extends CsrMatrix {
+
+	private Clustering clusters;
+	
+	/**
+	 * @param k the cluster you want to get the whole sum
+	 * @return the sum over all the a_ij that belongs to the cluster
+	 */
+	public int getSumColInCluster(int i, int k) {
+		ArrayList< PairI > rows_or_col;
+		rows_or_col=this.columns;
+		
+		int start;
+		int end;
+		if (i == 0) {
+			start=0;
+		}
+		else {
+			start=this.cumulative_columns.get(i-1);
+		}
+		end =this.cumulative_columns.get(i);
+		int sum=0;
+		for (int j=start; j < end; j++) {
+			if ((k==-1) || (facade.getClusterOfObjectI(this.columns.get(j).getLeft()) == k))
+				sum +=rows_or_col.get(j).getRight();
+		}
+		return sum;
+	}
+
+	public int getSumCluster(int k) {
+		ArrayList<Integer> row_lists=clusters.getObjectsInCk(k);
+		Iterator<Integer> it = row_lists.iterator();
+		int sum=0;
+		while (it.hasNext()) {
+			sum+=getSumRow(it.next());
+		}
+		return sum;
+	}
+	
+
+}

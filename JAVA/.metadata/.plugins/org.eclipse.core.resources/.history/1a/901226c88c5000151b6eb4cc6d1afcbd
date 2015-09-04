@@ -1,0 +1,5 @@
+package model.diachronism.clustermatching;
+
+public class ClusterLabelled {
+
+}

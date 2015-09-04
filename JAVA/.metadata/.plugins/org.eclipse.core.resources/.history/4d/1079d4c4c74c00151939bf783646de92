@@ -1,0 +1,5 @@
+package model.facade;
+
+public class Facade {
+
+}

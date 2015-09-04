@@ -1,0 +1,38 @@
+package model.matrix.decorator;
+
+
+import model.PairI;
+
+public interface IMatrixClustered {
+	public int getCumulativeRows(int i);
+	public int getCumulativeColumns(int i);
+	
+	public PairI getIinRows(int i);
+	public PairI getIinColumns(int i);
+	
+	public int getNbElements();
+	public int getNbRows();
+	public int getNbColumns();
+	
+	/**
+	 * @param i the row you need to get the sum
+	 * @return sum over the i-th row of the matrix
+	 */
+	public int getSumRow(int i);
+	
+	/**
+	 * @param i the column you need to get the sum
+	 * @return sum over the i-th column of the matrix
+	 */
+	public int getSumCol(int i);
+	
+	
+	/**
+	 * @param j - the index of column corresponding to the feature one want to obtain the label
+	 * @return the label matching with the j-th matrix column
+	 */
+	public String getLabelOfCol(int j);
+	public String getLabelOfRow(int i);
+
+
+}

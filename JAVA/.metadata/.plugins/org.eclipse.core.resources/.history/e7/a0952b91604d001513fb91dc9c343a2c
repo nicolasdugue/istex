@@ -1,0 +1,49 @@
+package model.matrix;
+
+import java.util.ArrayList;
+
+import model.PairI;
+
+public class CsrMatrixClustered extends CsrMatrix {
+
+	@Override
+	public int getSumColInCluster(int i, int k) {
+		// TODO Auto-generated method stub
+		return super.getSumColInCluster(i, k);
+	}
+
+	@Override
+	public int getSumCluster(int k) {
+		// TODO Auto-generated method stub
+		return super.getSumCluster(k);
+	}
+	
+	private int getSum(int i, boolean is_on_row, int k) {
+		ArrayList< PairI > rows_or_col;
+		ArrayList<Integer> cumulative_rows_or_col;
+		if (is_on_row) {
+			rows_or_col=this.rows;
+			cumulative_rows_or_col=this.cumulative_rows;
+		}
+		else {
+			rows_or_col=this.columns;
+			cumulative_rows_or_col=this.cumulative_columns;
+		}
+		int start;
+		int end;
+		if (i == 0) {
+			start=0;
+		}
+		else {
+			start=cumulative_rows_or_col.get(i-1);
+		}
+		end =cumulative_rows_or_col.get(i);
+		int sum=0;
+		for (int j=start; j < end; j++) {
+			if ((k==-1) || (is_on_row) || (facade.getClusterOfObjectI(rows_or_col.get(j).getLeft()) == k))
+				sum +=rows_or_col.get(j).getRight();
+		}
+		return sum;
+	}
+
+}

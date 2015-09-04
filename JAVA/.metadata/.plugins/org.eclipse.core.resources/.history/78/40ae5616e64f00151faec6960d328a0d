@@ -1,0 +1,85 @@
+package model.featureselection;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import model.LabelStore;
+
+public class LabelSelectionFromFile implements ILabelSelection {
+
+	private ArrayList<ArrayList<Integer>> labels = new ArrayList<ArrayList<Integer>>();
+	private ArrayList<Float> featuresWeights;
+	private LabelStore ls;
+	private String fileName;
+	
+	
+	
+	public LabelSelectionFromFile(String fileName) throws FileNotFoundException {
+		super();
+		this.fileName = fileName;
+		featuresWeights = new ArrayList<Float>();
+		labels = new ArrayList<ArrayList<Integer>>();
+		ls = new LabelStore();
+		readAndFill();
+	}
+	private void readAndFill() throws FileNotFoundException {
+		Scanner sc = new Scanner(new File(fileName));
+		String line;
+		boolean first = true;
+		int i=0;
+		ArrayList<Integer> labelRed = new ArrayList<Integer>();
+		while (sc.hasNextLine()) {
+			line = sc.nextLine();
+			//If this, then the line describes a new cluster
+			if (line.startsWith("G")) {
+				if (first) {
+					first=false;
+				}
+				else {
+					labels.add(labelsRed)
+					labelRed = new ArrayList<Integer>();
+				}
+			}
+		}
+		labels.add(labelsRed)
+	}
+
+	@Override
+	public ArrayList<Integer> getPrevalentFeatureSet(int cluster) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<String> getLabelSet(int cluster) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getNbCluster() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getLabelOfCol(int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getIndexOfColLabel(String label) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public float getFeatureFMeanValue(int f) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

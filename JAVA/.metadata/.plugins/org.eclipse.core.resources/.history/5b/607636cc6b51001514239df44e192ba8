@@ -1,0 +1,47 @@
+package model.diachronism.clustermatching;
+
+import java.util.ArrayList;
+
+import com.google.gson.annotations.SerializedName;
+
+import model.util.PairFWeighted;
+
+public class ClusterLabelled {
+	@SerializedName("Name")
+	private String name;
+	private ArrayList<PairFWeighted> labels = new ArrayList<PairFWeighted>();
+	
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ClusterLabelled [name=" + name + ", labels=" + labels + "]";
+	}
+	/**
+	 * @param e
+	 * @return
+	 * @see java.util.ArrayList#add(java.lang.Object)
+	 */
+	public boolean add(PairFWeighted e) {
+		return labels.add(e);
+	}
+	public ArrayList<PairFWeighted> getLabels() {
+		return labels;
+	}
+	public void setLabels(ArrayList<PairFWeighted> labels) {
+		this.labels = labels;
+	}
+}

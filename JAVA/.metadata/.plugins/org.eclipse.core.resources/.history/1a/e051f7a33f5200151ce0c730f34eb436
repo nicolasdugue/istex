@@ -1,0 +1,16 @@
+package controller;
+
+import java.io.FileNotFoundException;
+
+import view.View;
+
+public class Main {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		View v = new View();
+		Controller c = new Controller(v);
+		String[] params = {"", "","","","","",""};
+		c.doRunStuff(params);
+	}
+
+}

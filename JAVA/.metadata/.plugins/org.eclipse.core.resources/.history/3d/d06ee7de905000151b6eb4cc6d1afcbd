@@ -1,0 +1,44 @@
+package controller;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import model.diachronism.LabelDiachronism;
+import model.diachronism.clustermatching.ClusterLabelled;
+import model.factory.Factory;
+
+public class Controller {
+
+	
+	
+	public static void main(String[] args) {
+		LabelDiachronism ld;
+		try {
+			ld=Factory.matchingFromLabelFiles("00-0350gnge-tn-DD-ENL.fmgs", "96-99-F43gnge-tn-DD-ENL.fmgs");
+			ArrayList<Integer> clusterMatching;
+			Iterator<Integer> it;
+			final GsonBuilder builder = new GsonBuilder();
+		    final Gson gson = builder.create();
+		    ClusterLabelled cs = new ClusterLabelled();
+		    ArrayList<Integer> targets;
+			for (int s =0; s < ld.getNbClusterSource(); s++) {
+				cs.setName("G-"+s);
+				clusterMatching = ld.getTargetClusterMatching(s);
+				it=clusterMatching.iterator();
+				while (it.hasNext()) {
+					targets;ld.getLabelsClusterTarget(it.next());
+					
+				}
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}

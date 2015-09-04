@@ -1,0 +1,33 @@
+package io.reader;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import model.cluster.Clustering;
+import model.matrix.CsrMatrix;
+import model.matrix.CsrMatrixClustered;
+
+public class TestCsrMatrixClustered {
+	private CsrMatrix cm;
+	private CsrMatrixClustered cm_c;
+	@Before
+	public void setUp() throws Exception {
+		MatrixReader mr = new MatrixReader("matrix");
+		Clustering c = new Clustering();
+		c.add(0);
+		c.add(0);
+		c.add(1);
+		c.add(1);
+		cm = new CsrMatrix(mr);
+		
+		cm_c = new CsrMatrixClustered(cm, c);
+	}
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

@@ -1,0 +1,20 @@
+package io.reader;
+
+import java.util.Scanner;
+
+import model.cluster.Clustering;
+
+public class ClusteringReader {
+	private Clustering clusters;
+	private String fileName;
+	public ClusteringReader(String fileName) {
+		super();
+		clusters=new Clustering();
+		this.fileName = fileName;
+		readAndFillModel();
+	}
+	private void readAndFillModel() {
+		Scanner sc = new Scanner(new File(fileName));
+	}
+	
+}

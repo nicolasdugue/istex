@@ -1,0 +1,85 @@
+package model.diachronism;
+
+import java.util.ArrayList;
+
+import model.featureselection.LabelSelection;
+
+/**
+ * 
+ * Allows to compare two clustering by comparing their label
+ * 
+ * @author dugue
+ *
+ */
+public class LabelDiachronism {
+	/**
+	 * Both the set of labels of each cluster for each clustering made at time t0 and at time t1
+	 */
+	private LabelSelection ls_s;
+	private LabelSelection ls_t;
+	/**
+	 * 		t0	t1	t2	...	tn
+	 * s0
+	 * s1
+	 * s2
+	 * .
+	 * .
+	 * .
+	 * sn
+	 * 
+	 */
+	private float[][] p_t_acts;
+	
+	private float[] pA_s;
+	
+	private float a_s;
+
+	public LabelDiachronism(LabelSelection ls_t0, LabelSelection ls_t1) {
+		this.ls_s = ls_t0;
+		this.ls_t = ls_t1;
+		p_t_acts = new float[ls_s.getNbCluster()][ls_t.getNbCluster()];
+		pA_s=new float[ls_s.getNbCluster()];
+		
+	}
+	private void computeP_t_acts() {
+		int env;
+		float p_t_acts_sum;
+		float a_s_tmp;
+		ArrayList<String> labels_s;
+		ArrayList<String> labels_t;
+		ArrayList<String> labels_s_and_t;
+		float numerateur;
+		float denominateur;
+		for (int s=0; s < ls_s.getNbCluster(); s++) {
+			env=0;
+			p_t_acts_sum=0;
+			for (int t=0; t < ls_t.getNbCluster(); t++) {
+				denominateur=0;
+				labels_t=ls_t.getLabelSet(t);
+				for (String label : labels_t) {
+					denominateur+=ls_t.getFeatureFMeanFMeasure(ls_t.getIndexOfColLabel(label));
+				}
+				labels_s=ls_s.getLabelSet(s);
+				numerateur=0;
+				labels_s_and_t=intersection(labels_s, labels_t);
+				for (String label : labels_s_and_t) {
+					numerateur+=ls_t.getFeatureFMeanFMeasure(ls_t.getIndexOfColLabel(label));
+				}
+				p_t_acts[s][t]=numerateur/denominateur;
+				p_t_acts_sum+=p_t_acts[s][t]
+			}
+			pA_S[s]=p_t_acts_sum/env;
+		}
+	}
+	private <T> ArrayList<T> intersection(ArrayList<T> al1, ArrayList<T> al2) {
+		ArrayList<T> intersection = new ArrayList<T>();
+		for (T label : al1) {
+			if (al2.contains(al1)) {
+				intersection.add(label);
+			}
+		}
+		return intersection;
+	}
+	
+	
+}

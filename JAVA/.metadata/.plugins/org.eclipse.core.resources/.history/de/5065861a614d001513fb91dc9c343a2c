@@ -1,0 +1,75 @@
+package model.matrix;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import model.PairI;
+import model.cluster.Clustering;
+
+public class CsrMatrixClustered extends CsrMatrix {
+
+	private Clustering clusters;
+	
+	@Override
+	public int getSumColInCluster(int i, int k) {
+		ArrayList< PairI > rows_or_col;
+		ArrayList<Integer> cumulative_rows_or_col;
+		rows_or_col=this.columns;
+		cumulative_rows_or_col=this.cumulative_columns;
+		
+		int start;
+		int end;
+		if (i == 0) {
+			start=0;
+		}
+		else {
+			start=cumulative_rows_or_col.get(i-1);
+		}
+		end =cumulative_rows_or_col.get(i);
+		int sum=0;
+		for (int j=start; j < end; j++) {
+			if ((k==-1) || (is_on_row) || (facade.getClusterOfObjectI(rows_or_col.get(j).getLeft()) == k))
+				sum +=rows_or_col.get(j).getRight();
+		}
+		return sum;
+	}
+
+	public int getSumCluster(int k) {
+		ArrayList<Integer> row_lists=clusters.getObjectsInCk(k);
+		Iterator<Integer> it = row_lists.iterator();
+		int sum=0;
+		while (it.hasNext()) {
+			sum+=getSumRow(it.next());
+		}
+		return sum;
+	}
+	
+	private int getSum(int i, boolean is_on_row, int k) {
+		ArrayList< PairI > rows_or_col;
+		ArrayList<Integer> cumulative_rows_or_col;
+		if (is_on_row) {
+			rows_or_col=this.rows;
+			cumulative_rows_or_col=this.cumulative_rows;
+		}
+		else {
+			rows_or_col=this.columns;
+			cumulative_rows_or_col=this.cumulative_columns;
+		}
+		int start;
+		int end;
+		if (i == 0) {
+			start=0;
+		}
+		else {
+			start=cumulative_rows_or_col.get(i-1);
+		}
+		end =cumulative_rows_or_col.get(i);
+		int sum=0;
+		for (int j=start; j < end; j++) {
+			if ((k==-1) || (is_on_row) || (facade.getClusterOfObjectI(rows_or_col.get(j).getLeft()) == k))
+				sum +=rows_or_col.get(j).getRight();
+		}
+		return sum;
+	}
+
+}

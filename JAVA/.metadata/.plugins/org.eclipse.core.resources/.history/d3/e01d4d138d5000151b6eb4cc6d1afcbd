@@ -1,0 +1,13 @@
+package model.util;
+
+public class PairFWeighted extends Pair<String, Float>{
+	public PairPairFWeighted() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public PairPairFWeighted(Integer left, Integer right) {
+		super(left, right);
+		// TODO Auto-generated constructor stub
+	}
+}

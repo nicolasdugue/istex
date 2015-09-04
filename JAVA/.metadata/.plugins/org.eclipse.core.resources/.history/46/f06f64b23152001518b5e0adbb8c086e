@@ -1,0 +1,63 @@
+package io.reader;
+
+import java.util.ArrayList;
+
+import model.util.PairI;
+
+public class ArcsReader implements IMatrixReader {
+	private String filename;
+	private ArrayList<ArrayList<PairI > > matrix_rows = new ArrayList<ArrayList<PairI >>();
+	private ArrayList<ArrayList<PairI > > matrix_columns= new ArrayList<ArrayList<PairI >>();
+	private int nb_rows;
+	private int nb_columns;
+	private int nb_elmt;
+	
+	
+	
+	public ArcsReader(String filename) {
+		super();
+		this.filename = filename;
+		this.matrix_rows
+	}
+
+	@Override
+	public String getFileName() {
+		return filename;
+	}
+
+	@Override
+	public void setFileName(String fileName) {
+		this.filename=fileName;		
+	}
+
+	@Override
+	public ArrayList<ArrayList<PairI>> getMatrix_rows() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<ArrayList<PairI>> getMatrix_columns() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getNb_rows() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getNb_columns() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getNb_elmt() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

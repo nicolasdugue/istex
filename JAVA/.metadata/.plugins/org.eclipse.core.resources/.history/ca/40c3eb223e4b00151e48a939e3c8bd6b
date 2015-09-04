@@ -1,0 +1,8 @@
+package model.featureselection;
+
+import model.matrix.CsrMatrix;
+
+public class FeaturesSelection {
+	CsrMatrix matrix;
+	
+}

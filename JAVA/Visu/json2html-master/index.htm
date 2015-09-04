@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>JSON 2 HTML</title>
+<link rel="StyleSheet" type="text/css" href="style.css" />
+<script type="text/javascript" src="scripts/json-min.js"></script>
+<script type="text/javascript" src="scripts/BubbleTooltips.js"></script>
+<script type="text/javascript" src="scripts/parse.js"></script>
+<!--[if lt IE 7]>
+<script defer type="text/javascript" src="scripts/pngfix.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body id="body" onmouseover="stopFocus();">
+<a name="_top" class="noa"></a>
+
+
+<div class="mainbody">
+
+
+   <form onsubmit="doParse(); return false;">
+      <div id="inputcontainer"><textarea id="text" rows="12"></textarea></div>
+      <div class="clear"></div>
+      <div class="lfloat"><input type="submit" id="submit" value="json 2 html" onclick="doParse(); return false;" /> <input type="button" id="reset" value="reset" onclick="clearPage();" /></div>
+      <hr />
+      <a name="_output" class="noa"></a>
+      <div id="output" class="output"></div>
+   </form>
+</body>
+</html>
