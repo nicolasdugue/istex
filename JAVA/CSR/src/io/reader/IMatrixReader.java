@@ -2,7 +2,7 @@ package io.reader;
 
 import java.util.ArrayList;
 
-import model.util.PairI;
+import model.util.nuplet.PairI;
 
 public interface IMatrixReader {
 

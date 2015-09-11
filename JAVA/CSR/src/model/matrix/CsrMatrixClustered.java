@@ -5,18 +5,19 @@ import java.util.Iterator;
 import java.util.List;
 
 import model.cluster.Clustering;
+import model.cluster.decorator.IClustering;
 import model.matrix.decorator.IMatrix;
-import model.util.PairI;
+import model.util.nuplet.PairI;
 
 public class CsrMatrixClustered {
 	private IMatrix matrix;
-	private Clustering clusters;
+	private IClustering clusters;
 	
 	public CsrMatrixClustered() {
 		super();
 	}
 
-	public CsrMatrixClustered(IMatrix m, Clustering clusters) {
+	public CsrMatrixClustered(IMatrix m, IClustering clusters) {
 		this.matrix=m;
 		this.clusters = clusters;
 	}
@@ -105,6 +106,28 @@ public class CsrMatrixClustered {
 	public int getIndexOfColLabel(String label) {
 		return matrix.getIndexOfColLabel(label);
 	}
+
+	public Integer getClusterOfObjectI(int index) {
+		return clusters.getClusterOfObjectI(index);
+	}
+
+	public ArrayList<Integer> getObjectsInCk(int cluster) {
+		return clusters.getObjectsInCk(cluster);
+	}
+
+	public int getSizeCk(int cluster) {
+		return clusters.getSizeCk(cluster);
+	}
+
+	public String getLabelOfCluster(int cluster) {
+		return clusters.getLabelOfCluster(cluster);
+	}
+
+	public int getClusterOfLabel(String s) {
+		return clusters.getClusterOfLabel(s);
+	}
+	
+	
 	
 
 }

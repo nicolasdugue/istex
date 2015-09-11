@@ -10,7 +10,7 @@ import io.reader.IMatrixReader;
 import model.cluster.Clustering;
 import model.matrix.CsrMatrix;
 import model.matrix.CsrMatrixClustered;
-import model.util.PairI;
+import model.util.nuplet.PairI;
 
 public class TestCsrMatrix {
 

@@ -3,7 +3,7 @@ package model.matrix.decorator;
 
 import java.util.List;
 
-import model.util.PairI;
+import model.util.nuplet.PairI;
 
 public interface IMatrix {
 	/*public int getCumulativeRows(int i);

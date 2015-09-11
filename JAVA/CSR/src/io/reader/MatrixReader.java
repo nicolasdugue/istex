@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import model.util.Pair;
-import model.util.PairI;
+import model.util.nuplet.Pair;
+import model.util.nuplet.PairI;
 
 /**
  * Allows to Read a Matrix and to store it in a temporary manner.

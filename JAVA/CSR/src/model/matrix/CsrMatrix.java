@@ -6,7 +6,7 @@ import java.util.List;
 
 import io.reader.IMatrixReader;
 import model.matrix.decorator.IMatrix;
-import model.util.PairI;
+import model.util.nuplet.PairI;
 
 
 /**

@@ -3,6 +3,8 @@ package model.cluster;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import model.cluster.decorator.IClustering;
+
 
 /**
  * Allows to represent a Clustering.
@@ -11,7 +13,7 @@ import java.util.Iterator;
  * 
  *
  */
-public class Clustering {
+public class Clustering implements IClustering{
 	// Correspond pour tout i de la liste clusters vers le cluster de l'objet i
 	/**
 	 * An array that stores for each object (matrix row) i, the cluster j it belongs to.
@@ -88,5 +90,19 @@ public class Clustering {
 
 	public ArrayList<Integer> getObjectsInCk(int cluster) {
 		return clustersList.get(cluster);
+	}
+	
+	public int getSizeCk(int cluster) {
+		return clustersList.get(cluster).size();
+	}
+
+	@Override
+	public String getLabelOfCluster(int cluster) {
+		return ""+cluster;
+	}
+
+	@Override
+	public int getClusterOfLabel(String s) {
+		return Integer.parseInt(s);
 	}
 }

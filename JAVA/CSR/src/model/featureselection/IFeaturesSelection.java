@@ -1,5 +1,7 @@
 package model.featureselection;
 
+import java.util.Set;
+
 public interface IFeaturesSelection {
 	
 	/**
@@ -23,14 +25,16 @@ public interface IFeaturesSelection {
 	 * @return the number of clusters obtained
 	 */
 	public int getNbCluster();
-	
+	public String getLabelOfCluster(int cluster);
+	public int getClusterOfLabel(String s);
 	
 	/**
 	 * @return the number of features
 	 */
 	public int getNbFeatureSelected();
 	
-	//public List<Integer> getFeaturesSelected();
+	public Set<Integer> getFeaturesSelected(int cluster);
+	public Set<String> getFeaturesAsStringSelected(int cluster);
 	
 	/**
 	 * @return the number of features

@@ -20,6 +20,8 @@ public interface ILabelSelection {
 	 * @return the number of clusters for the matrix studied
 	 */
 	public int getNbCluster();
+	public String getLabelOfCluster(int cluster);
+	public int getClusterOfLabel(String s);
 
 	public String getLabelOfCol(int j);
 

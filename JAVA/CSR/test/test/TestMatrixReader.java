@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import io.reader.MatrixReader;
-import model.util.PairI;
+import model.util.nuplet.PairI;
 
 public class TestMatrixReader {
 

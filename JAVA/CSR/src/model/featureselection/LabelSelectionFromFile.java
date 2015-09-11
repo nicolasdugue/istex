@@ -13,12 +13,14 @@ public class LabelSelectionFromFile implements ILabelSelection {
 	private ArrayList<Float> featuresWeights;
 	private LabelStore ls;
 	private String fileName;
+	private LabelStore clusterLabels;
 	
 	
 	
 	public LabelSelectionFromFile(String fileName) throws FileNotFoundException {
 		super();
 		this.fileName = fileName;
+		this.clusterLabels = new LabelStore();
 		featuresWeights = new ArrayList<Float>();
 		labels = new ArrayList<ArrayList<Integer>>();
 		ls = new LabelStore();
@@ -35,6 +37,7 @@ public class LabelSelectionFromFile implements ILabelSelection {
 			line = sc.nextLine();
 			//If this, then the line describes a new cluster
 			if (line.startsWith("G")) {
+				clusterLabels.addLabel(line);
 				if (first) {
 					first=false;
 				}
@@ -90,6 +93,14 @@ public class LabelSelectionFromFile implements ILabelSelection {
 	@Override
 	public float getFeatureFMeanValue(int f) {
 		return featuresWeights.get(f);
+	}
+	@Override
+	public String getLabelOfCluster(int cluster) {
+		return clusterLabels.getLabel(cluster);
+	}
+	@Override
+	public int getClusterOfLabel(String s) {
+		return clusterLabels.getIndexOfLabel(s);
 	}
 
 }

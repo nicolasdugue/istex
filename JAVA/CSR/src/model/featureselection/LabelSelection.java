@@ -26,7 +26,7 @@ public class LabelSelection implements ILabelSelection {
 		}
 		float valueMax;
 		int clusterWithValueMax;
-		//List<Integer> featureSelected 
+
 		for (int j = 0; j < fs.getNbFeatureSelected(); j++) {
 			valueMax=-1;
 			clusterWithValueMax=-1;
@@ -81,6 +81,14 @@ public class LabelSelection implements ILabelSelection {
 	@Override
 	public float getFeatureFMeanValue(int f) {
 		return fs.getFeatureFMeanValue(f);
+	}
+
+	public String getLabelOfCluster(int cluster) {
+		return fs.getLabelOfCluster(cluster);
+	}
+
+	public int getClusterOfLabel(String s) {
+		return fs.getClusterOfLabel(s);
 	}
 	
 

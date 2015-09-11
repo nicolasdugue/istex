@@ -1,7 +1,8 @@
 package model.featureselection;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import model.matrix.CsrMatrixClustered;
 
@@ -13,6 +14,12 @@ import model.matrix.CsrMatrixClustered;
  */
 public class FeaturesSelection implements IFeaturesSelection {
 	private CsrMatrixClustered matrix;
+	public CsrMatrixClustered getMatrix() {
+		return matrix;
+	}
+	public void setMatrix(CsrMatrixClustered matrix) {
+		this.matrix = matrix;
+	}
 	private float[][] featuresMatrix;
 	private float[] meanFMeasure;
 	private float globalMeanFMeasure;
@@ -24,31 +31,37 @@ public class FeaturesSelection implements IFeaturesSelection {
 		fillFromCsrMatrix();
 	}
 	/*
-	 * -----------------PRIVATE ---- DO NOT USE OUTSIDE THIS FILE
+	 * -----------------PRIVATE ---- DO NOT USE OUTSIDE THESE METHODS
 	 */
 	private void fillFromCsrMatrix() {
 		float local_sum;
 		float global_sum=0;
+		int not_null;
 		for (int j=0; j < matrix.getNbColumns(); j++) {
 			local_sum=0;
+			not_null=0;
 			for (int k=0; k < matrix.getNbCluster(); k++) {
 				featuresMatrix[j][k]=this.ff(j, k);
-				local_sum+=featuresMatrix[j][k];
+				if (featuresMatrix[j][k] > 0) {
+					local_sum+=featuresMatrix[j][k];
+					not_null++;
+				}
 			}
-			meanFMeasure[j]=local_sum/matrix.getNbCluster();	
+			//La moyenne est faite uniquement sur les cluster dans laquelle la feature f est présente
+			meanFMeasure[j]=local_sum/ not_null;//matrix.getNbCluster();	
 			global_sum +=local_sum;
 		}
 		globalMeanFMeasure=global_sum/(matrix.getNbCluster() * matrix.getNbColumns());
 	}
 	
 	//Computes the feature recall
-	private float fr(int column, int cluster) {
+	public float fr(int column, int cluster) {
 		//System.out.println("FR = " + getSumColInCluster(column, cluster)+ " / " + getSumCol(column));
 		return (float)matrix.getSumColInCluster(column, cluster) / matrix.getSumCol(column);
 	}
 	
 	// Computes the feature precision
-	private float fp(int column, int cluster) {
+	public float fp(int column, int cluster) {
 		//System.out.println("FP = " + getSumColInCluster(column, cluster)+ " / " + getSumCluster(cluster));
 		float num = matrix.getSumColInCluster(column, cluster);
 		float den = matrix.getSumCluster(cluster);
@@ -106,14 +119,45 @@ public class FeaturesSelection implements IFeaturesSelection {
 		return matrix.getNbColumns();
 	}
 	
-	public List<Integer> getFeaturesSelected(int cluster) {
-		List<Integer> l = new ArrayList<Integer>();
+	public Set<Integer> getFeaturesSelected(int cluster) {
+		Set<Integer> l = new HashSet<Integer>();
 		for (int i=0; i < matrix.getNbColumns(); i++) {
-			//TODO Ajouter l'autre règle de sélection de features liée au cluster
-			if (meanFMeasure[i] > this.globalMeanFMeasure)
+			if ((this.featuresMatrix[i][cluster] > this.meanFMeasure[i]) && (this.featuresMatrix[i][cluster] > this.globalMeanFMeasure))
 				l.add(i);
 		}
 		return l;
+	}
+	public Set<String> getFeaturesAsStringSelected(int cluster) {
+		Set<String> l = new HashSet<String>();
+		for (int i=0; i < matrix.getNbColumns(); i++) {
+			if ((this.featuresMatrix[i][cluster] > this.meanFMeasure[i]) && (this.featuresMatrix[i][cluster] > this.globalMeanFMeasure))
+				l.add(this.getLabelOfCol(i));
+		}
+		return l;
+	}
+	
+	public Set<Integer> getFeaturesSelected() {
+		Set<Integer> all= new HashSet<Integer>();
+		Set<Integer> tmp;
+		for (int k=0; k < this.getNbCluster(); k++) {
+			tmp=this.getFeaturesSelected(k);
+			for (Iterator<Integer> it=tmp.iterator(); it.hasNext();) {
+				all.add(it.next());
+			}
+		}
+		return all;
+	}
+	
+	public Set<String> getFeaturesAsStringSelected() {
+		Set<String> all= new HashSet<String>();
+		Set<String> tmp;
+		for (int k=0; k < this.getNbCluster(); k++) {
+			tmp=this.getFeaturesAsStringSelected(k);
+			for (Iterator<String> it=tmp.iterator(); it.hasNext();) {
+				all.add(it.next());
+			}
+		}
+		return all;
 	}
 	
 	
@@ -150,6 +194,18 @@ public class FeaturesSelection implements IFeaturesSelection {
 	 */
 	public float getFeatureValue(int f, int cluster) {
 		return getFeatureFMeasure(f, cluster);
+	}
+	public int getNbRows() {
+		return matrix.getNbRows();
+	}
+	public Integer getClusterOfObjectI(int index) {
+		return matrix.getClusterOfObjectI(index);
+	}
+	public String getLabelOfCluster(int cluster) {
+		return matrix.getLabelOfCluster(cluster);
+	}
+	public int getClusterOfLabel(String s) {
+		return matrix.getClusterOfLabel(s);
 	}
 	
 	
