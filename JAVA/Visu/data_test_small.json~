@@ -1,4 +1,0 @@
-[
-{"s":{"name":"G-0","labels":[{"left":"Organic compounds","right":0.209689},{"left":"Color","right":0.041118}]},"targets":[]},
-{"s":{"name":"G-1","labels":[{"left":"Electroluminescent device","right":0.181381},{"left":"Europium compound","right":0.092414},{"left":"Electrical properties","right":0.036248},{"left":"Materials preparation","right":0.035552},{"left":"Hole traps","right":0.032202},{"left":"Europium complex","right":0.028188},{"left":"Substrate","right":0.025664}]},"targets":[{"name":"G-9","labels":[{"left":"Electroluminescence","right":0.130515},{"left":"Electroluminescent device","right":0.122187},{"left":"Photoluminescence","right":0.085208},{"left":"Brightness","right":0.041151}]}]}
-]
