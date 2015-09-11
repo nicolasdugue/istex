@@ -1,9 +1,0 @@
-package model.factory;
-
-import model.diachronism.LabelDiachronism;
-
-public class Factory {
-	public static LabelDiachronism matchingFromLabelFiles(String fileNameSrc, String FileNameTarget) {
-		
-	}
-}

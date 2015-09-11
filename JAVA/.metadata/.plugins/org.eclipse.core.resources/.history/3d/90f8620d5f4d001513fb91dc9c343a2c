@@ -1,5 +1,0 @@
-package model.matrix;
-
-public class CsrMatrixClustered extends CsrMatrix {
-
-}

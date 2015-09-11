@@ -1,5 +1,0 @@
-package model.featureselection;
-
-public class FeatureSelectionFromFile implements IFeaturesSelection{
-
-}

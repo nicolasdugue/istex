@@ -1,5 +1,0 @@
-package model.matrix.decorator;
-
-public class MatrixObjectLabel extends MatrixDecorator {
-
-}

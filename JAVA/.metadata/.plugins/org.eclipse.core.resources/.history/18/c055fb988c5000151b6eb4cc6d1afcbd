@@ -1,7 +1,0 @@
-package model.diachronism;
-
-import java.io.Serializable;
-
-public class ClusterMatching implements Serializable{
-
-}

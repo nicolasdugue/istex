@@ -1,6 +1,0 @@
-package model.diachronism.clustermatching;
-
-public class ClusterMatching extends ClusterLabelled {
-	private String name;
-	private ArrayList<>
-}

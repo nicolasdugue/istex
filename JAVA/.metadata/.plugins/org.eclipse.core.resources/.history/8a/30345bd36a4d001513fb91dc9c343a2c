@@ -1,9 +1,0 @@
-package io.reader;
-
-import model.cluster.Clustering;
-
-public class ClusteringReader {
-	private Clustering clusters;
-	private String fileName;
-	
-}

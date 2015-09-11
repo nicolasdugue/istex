@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy>
-<typeInfo handle="=CSR/src&lt;io.reader{MatrixReader.java[MatrixReader" modifiers="1" timestamp="1441280534000"/>
-<typeInfo handle="=CSR/src&lt;model.matrix{CsrMatrix.java[CsrMatrix" modifiers="1" timestamp="1441280935000"/>
-<typeInfo handle="=CSR/src&lt;model.cluster{Clustering.java[Clustering" modifiers="1" timestamp="1440773834000"/>
-<typeInfo handle="=CSR/src&lt;io.reader{ArcsReader.java[ArcsReader" modifiers="1" timestamp="1441282894000"/>
-</typeInfoHistroy>
