@@ -58,8 +58,8 @@ public class FunctionalCartography {
 		return matrix.getClusterOfObjectI(node);
 	}
 	/**
-	 * Returns the community that node belongs to
-	 * @param node
+	 * Returns all the nodes belonging to the community com
+	 * @param com - an integer id of the community
 	 * @return
 	 */
 	public ArrayList<Integer> getObjectsInCommunity(int com) {

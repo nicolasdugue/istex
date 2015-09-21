@@ -61,14 +61,14 @@ public interface IMatrix {
 	public String getLabelOfRow(int i);
 	
 	/**
-	 * @param j - the index of column corresponding to the feature one wants to obtain the label
-	 * @return the label matching with the j-th matrix column
+	 * @param label - the label ones wants to get the id
+	 * @return the i-th row matching with the label
 	 */
 	public int getIndexOfRowLabel(String label);
 	
 	/**
-	 * @param i - the index of row corresponding to the object one wants to obtain the label
-	 * @return the label matching with the i-th matrix row
+	 * @param label - the label ones wants to get the id
+	 * @return the j-th column matching with the label
 	 */
 	public int getIndexOfColLabel(String label);
 
