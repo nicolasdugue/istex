@@ -4,12 +4,12 @@ import java.io.FileNotFoundException;
 
 import model.featureselection.FeaturesSelection;
 import model.roles.FunctionalCartography;
-import model.util.factory.FactoryFeatureSelection;
+import model.util.factory.GraphFactory;
 
 public class MainFeatureSelection {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		FeaturesSelection fs = (FeaturesSelection) FactoryFeatureSelection.getFeatureSelecter("Guimera_matrix1000",
+		FeaturesSelection fs = (FeaturesSelection) new GraphFactory().getFeatureSelecter("Guimera_matrix1000",
 				"Guimera_community1000");
 		FunctionalCartography fc = new FunctionalCartography(fs.getMatrix());
 		fc.doZScore();

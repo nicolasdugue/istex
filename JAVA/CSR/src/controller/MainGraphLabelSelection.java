@@ -3,16 +3,15 @@ package controller;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.Set;
 
 import model.featureselection.FeaturesSelection;
 import model.featureselection.LabelSelection;
-import model.util.factory.FactoryFeatureSelection;
+import model.util.factory.GraphFactory;
 
 public class MainGraphLabelSelection {
 
 	public static void main(String[] args) throws IOException {
-		FeaturesSelection fs = (FeaturesSelection) FactoryFeatureSelection.getGraphFeatureSelecter("/home/dugue/Dropbox/LORIA/DATA/Vieillissement/graph_int","/home/dugue/Dropbox/LORIA/DATA/Vieillissement/graph_int_oslo_files/tp.clst","/home/dugue/Dropbox/LORIA/DATA/Vieillissement/labels");
+		FeaturesSelection fs = (FeaturesSelection) new GraphFactory().getGraphFeatureSelecter("/home/dugue/Dropbox/LORIA/DATA/Vieillissement/graph_int","/home/dugue/Dropbox/LORIA/DATA/Vieillissement/graph_int_oslo_files/tp.clst","/home/dugue/Dropbox/LORIA/DATA/Vieillissement/labels");
 		LabelSelection ls = new LabelSelection(fs);
 		int f;
 		float ff;

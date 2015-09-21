@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import model.cluster.Clustering;
 import model.cluster.decorator.IClustering;
 import model.matrix.decorator.IMatrix;
 import model.util.nuplet.PairI;

@@ -3,7 +3,6 @@ package model.diachronism;
 import java.util.ArrayList;
 
 import model.featureselection.ILabelSelection;
-import model.util.nuplet.PairFWeighted;
 import model.util.nuplet.TripletLabel;
 
 /**

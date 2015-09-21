@@ -6,13 +6,13 @@ import java.io.IOException;
 
 import model.featureselection.FeaturesSelection;
 import model.roles.FunctionalCartography;
-import model.util.factory.FactoryFeatureSelection;
+import model.util.factory.GraphFactory;
 
 public class MainGuimera {
 
 	public static void main(String[] args) throws IOException {
 		System.out.println(args.length);
-		FeaturesSelection fs = (FeaturesSelection) FactoryFeatureSelection.getFeatureSelecter("../Guimera/"+args[0],
+		FeaturesSelection fs = (FeaturesSelection) new GraphFactory().getFeatureSelecter("../Guimera/"+args[0],
 				"../Guimera/"+args[1]);
 		FunctionalCartography fc = new FunctionalCartography(fs.getMatrix());
 		

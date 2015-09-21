@@ -7,32 +7,33 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import model.diachronism.LabelDiachronism;
-import model.util.factory.FactoryDiachronism;
-import model.util.nuplet.PairFWeighted;
+import model.util.factory.AFactory;
 import view.View;
 
 public class Controller {
 	
 	private LabelDiachronism ld;
 	private View v;
+	AFactory adf;
 	
 	
 	
-	public Controller(View v) {
+	public Controller(View v, AFactory f) {
 		super();
 		this.v = v;
+		this.adf=f;
 	}
 
 
 	public void doRunStuff(String[] params) throws FileNotFoundException {
 		if (params.length == 2 ) {
-			ld=FactoryDiachronism.matchingFromLabel(params[0], params[1]);
+			ld=adf.matchingFromLabel(params[0], params[1]);
 		}
 		else if (params.length == 4 ) {
-			ld=FactoryDiachronism.matchingFromMatrixCluster(params[0], params[1], params[2], params[3]);
+			ld=adf.matchingFromMatrixCluster(params[0], params[1], params[2], params[3]);
 		}
 		else if (params.length == 6) {
-			ld=FactoryDiachronism.matchingFromMatrixClusterLabels(params[0], params[1], params[2], params[3], params[4], params[5]);
+			ld=adf.matchingFromMatrixClusterLabels(params[0], params[1], params[2], params[3], params[4], params[5]);
 		}
 		else {
 			//TODO -- DESIGNS EXCEPTIONS AND USER MANUAL FOR THE CLI
@@ -42,11 +43,9 @@ public class Controller {
 	}
 	
 	public String getJson() {
-		Iterator<String> itLabels;
 		Iterator<Integer> itClusters;
 		final GsonBuilder builder = new GsonBuilder();
 	    final Gson gson = builder.create();
-	    String label;
 	    int target;
 	    String json="[";
 	    boolean[] targets=new boolean[ld.getNbClusterTarget()];
