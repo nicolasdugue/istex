@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import io.reader.ArcsReader;
 import io.reader.ClusteringReader;
-import io.reader.MatrixReader;
 import model.matrix.CsrMatrix;
 import model.matrix.CsrMatrixClustered;
 import model.roles.FunctionalCartography;
