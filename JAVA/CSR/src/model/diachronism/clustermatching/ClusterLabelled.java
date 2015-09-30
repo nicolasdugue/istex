@@ -5,8 +5,8 @@ import java.util.TreeSet;
 
 import com.google.gson.annotations.SerializedName;
 
-import model.util.PairFWeighted;
-import model.util.WeightComparator;
+import model.util.nuplet.PairFWeighted;
+import model.util.nuplet.comparator.WeightComparator;
 
 public class ClusterLabelled {
 	@SerializedName("Name")

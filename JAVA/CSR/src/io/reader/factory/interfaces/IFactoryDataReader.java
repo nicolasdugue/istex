@@ -1,9 +1,9 @@
-package io.reader.factory;
+package io.reader.factory.interfaces;
 
 import java.io.FileNotFoundException;
 
-import io.reader.IMatrixReader;
+import io.reader.interfaces.IMatrixReader;
 
-public interface FactoryReader {
+public interface IFactoryDataReader {
 	public IMatrixReader getReader(String fileName) throws FileNotFoundException;
 }

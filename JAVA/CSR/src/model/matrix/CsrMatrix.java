@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import io.reader.IMatrixReader;
+import io.reader.interfaces.IMatrixReader;
 import model.matrix.decorator.IMatrix;
-import model.util.nuplet.PairI;
+import model.util.nuplet.PairF;
 
 
 /**
@@ -43,18 +43,18 @@ import model.util.nuplet.PairI;
  */
 public class CsrMatrix implements IMatrix {
 
-	protected ArrayList< PairI > rows;
+	protected ArrayList< PairF > rows;
 	protected ArrayList<Integer> cumulative_rows;
 	
-	protected ArrayList<PairI> columns;
+	protected ArrayList<PairF> columns;
 	protected ArrayList<Integer> cumulative_columns;
 	
 	
 	public CsrMatrix(IMatrixReader mr) {
 		cumulative_rows=new ArrayList<Integer>(mr.getNb_rows());
-		rows = new ArrayList<PairI>(mr.getNb_elmt());
-		Iterator<ArrayList<PairI>> it_rows = mr.getMatrix_rows().iterator();
-		Iterator<PairI> it_row;
+		rows = new ArrayList<PairF>(mr.getNb_elmt());
+		Iterator<ArrayList<PairF>> it_rows = mr.getMatrix_rows().iterator();
+		Iterator<PairF> it_row;
 		int elmt_i=0;
 		while (it_rows.hasNext()) {
 			it_row=it_rows.next().iterator();
@@ -66,9 +66,9 @@ public class CsrMatrix implements IMatrix {
 		}
 		
 		cumulative_columns=new ArrayList<Integer>(mr.getNb_columns());
-		columns = new ArrayList<PairI>(mr.getNb_elmt());
-		Iterator<ArrayList<PairI>> it_columns = mr.getMatrix_columns().iterator();
-		Iterator<PairI> it_column;
+		columns = new ArrayList<PairF>(mr.getNb_elmt());
+		Iterator<ArrayList<PairF>> it_columns = mr.getMatrix_columns().iterator();
+		Iterator<PairF> it_column;
 		elmt_i=0;
 		while (it_columns.hasNext()) {
 			it_column=it_columns.next().iterator();
@@ -91,10 +91,10 @@ public class CsrMatrix implements IMatrix {
 		return cumulative_columns.get(i);
 	}
 	
-	public PairI getIinRows(int i) {
+	public PairF getIinRows(int i) {
 		return rows.get(i);
 	}
-	public PairI getIinColumns(int i) {
+	public PairF getIinColumns(int i) {
 		return columns.get(i);
 	}
 	
@@ -112,7 +112,7 @@ public class CsrMatrix implements IMatrix {
 	 * @param i the row you need to get the sum
 	 * @return sum over the i-th row of the matrix
 	 */
-	public int getSumRow(int i) {
+	public float getSumRow(int i) {
 		return getSum(i, true);		
 	}
 	
@@ -120,12 +120,12 @@ public class CsrMatrix implements IMatrix {
 	 * @param i the column you need to get the sum
 	 * @return sum over the i-th column of the matrix
 	 */
-	public int getSumCol(int i) {
+	public float getSumCol(int i) {
 		return getSum(i, false);
 	}
 	
-	private int getSum(int i, boolean is_on_row) {
-		ArrayList< PairI > rows_or_col;
+	private float getSum(int i, boolean is_on_row) {
+		ArrayList< PairF > rows_or_col;
 		ArrayList<Integer> cumulative_rows_or_col;
 		if (is_on_row) {
 			rows_or_col=this.rows;
@@ -144,7 +144,7 @@ public class CsrMatrix implements IMatrix {
 			start=cumulative_rows_or_col.get(i-1);
 		}
 		end =cumulative_rows_or_col.get(i);
-		int sum=0;
+		float sum=0f;
 		for (int j=start; j < end; j++) {
 			sum +=rows_or_col.get(j).getRight();
 		}
@@ -165,7 +165,7 @@ public class CsrMatrix implements IMatrix {
 
 
 	@Override
-	public List<PairI> getRow(int i) {
+	public List<PairF> getRow(int i) {
 		int start;
 		int end;
 		if (i == 0) {
@@ -180,7 +180,7 @@ public class CsrMatrix implements IMatrix {
 
 
 	@Override
-	public List<PairI> getColumn(int j) {
+	public List<PairF> getColumn(int j) {
 		int start;
 		int end;
 		if (j == 0) {

@@ -4,9 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import io.reader.interfaces.ILabelReader;
 import model.util.LabelStore;
 
-public class LabelReader {
+public class LabelReader implements ILabelReader {
 	private LabelStore ls;
 	private String fileName;
 	public LabelReader(String fileName) throws FileNotFoundException {

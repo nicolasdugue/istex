@@ -1,8 +1,8 @@
-package io.reader;
+package io.reader.interfaces;
 
 import java.util.ArrayList;
 
-import model.util.nuplet.PairI;
+import model.util.nuplet.PairF;
 
 public interface IMatrixReader {
 
@@ -10,9 +10,9 @@ public interface IMatrixReader {
 
 	public void setFileName(String fileName);
 	
-	public ArrayList<ArrayList<PairI>> getMatrix_rows();
+	public ArrayList<ArrayList<PairF>> getMatrix_rows();
 
-	public ArrayList<ArrayList<PairI>> getMatrix_columns();
+	public ArrayList<ArrayList<PairF>> getMatrix_columns();
 
 	public int getNb_rows();
 

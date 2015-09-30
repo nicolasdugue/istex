@@ -6,7 +6,7 @@ import java.util.List;
 
 import model.cluster.decorator.IClustering;
 import model.matrix.decorator.IMatrix;
-import model.util.nuplet.PairI;
+import model.util.nuplet.PairF;
 
 public class CsrMatrixClustered {
 	private IMatrix matrix;
@@ -30,10 +30,10 @@ public class CsrMatrixClustered {
 	 * @param k the cluster the rows have to belong to
 	 * @return sum over the i-th column of the matrix for each objet that belongs to cluster k
 	 */
-	public int getSumColInCluster(int i, int k) {
-		List<PairI> column = matrix.getColumn(i);
-		int sum=0;
-		for (PairI p : column) {
+	public float getSumColInCluster(int i, int k) {
+		List<PairF> column = matrix.getColumn(i);
+		float sum=0;
+		for (PairF p : column) {
 			if (clusters.getClusterOfObjectI(p.getLeft()) == k)
 				sum +=p.getRight();
 		}
@@ -44,10 +44,10 @@ public class CsrMatrixClustered {
 	 * @param k the cluster you want to get the whole sum
 	 * @return the sum over all the a_ij that belongs to the cluster
 	 */
-	public int getSumCluster(int k) {
+	public float getSumCluster(int k) {
 		ArrayList<Integer> row_lists=clusters.getObjectsInCk(k);
 		Iterator<Integer> it = row_lists.iterator();
-		int sum=0;
+		float sum=0;
 		while (it.hasNext()) {
 			sum+=matrix.getSumRow(it.next());
 		}
@@ -82,11 +82,11 @@ public class CsrMatrixClustered {
 		return matrix.getNbColumns();
 	}
 
-	public int getSumRow(int i) {
+	public float getSumRow(int i) {
 		return matrix.getSumRow(i);
 	}
 
-	public int getSumCol(int i) {
+	public float getSumCol(int i) {
 		return matrix.getSumCol(i);
 	}
 

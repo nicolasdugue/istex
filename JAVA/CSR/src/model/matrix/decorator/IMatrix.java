@@ -3,7 +3,7 @@ package model.matrix.decorator;
 
 import java.util.List;
 
-import model.util.nuplet.PairI;
+import model.util.nuplet.PairF;
 
 public interface IMatrix {
 	/*public int getCumulativeRows(int i);
@@ -15,12 +15,12 @@ public interface IMatrix {
 	 * @param i the row index
 	 * @return A list of integer pairs describing the i-th matrix row such as (j, w) where j is the column of the i-th row element and w its weight
 	 */
-	public List<PairI> getRow(int i);
+	public List<PairF> getRow(int i);
 	/**
 	 * @param j the column index
 	 * @return A list of integer pairs describing the j-th matrix column such as (i, w) where i is the row of the j-th column element and w its weight
 	 */
-	public List<PairI> getColumn(int j);
+	public List<PairF> getColumn(int j);
 	
 	/**
 	 * @return the number of non-null x_ij in the Matrix, basically less than to {@link #getNbRows()} * {@link #getNbColumns()}
@@ -39,13 +39,13 @@ public interface IMatrix {
 	 * @param i the row you need to get the sum
 	 * @return sum over the i-th row of the matrix
 	 */
-	public int getSumRow(int i);
+	public float getSumRow(int i);
 	
 	/**
 	 * @param i the column you need to get the sum
 	 * @return sum over the i-th column of the matrix
 	 */
-	public int getSumCol(int i);
+	public float getSumCol(int i);
 	
 	
 	/**

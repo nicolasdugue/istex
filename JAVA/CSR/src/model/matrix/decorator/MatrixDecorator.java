@@ -2,7 +2,7 @@ package model.matrix.decorator;
 
 import java.util.List;
 
-import model.util.nuplet.PairI;
+import model.util.nuplet.PairF;
 
 public abstract class MatrixDecorator implements IMatrix {
 	protected IMatrix m;
@@ -42,11 +42,11 @@ public abstract class MatrixDecorator implements IMatrix {
 		return m.getNbRows();
 	}
 
-	public List<PairI> getRow(int i) {
+	public List<PairF> getRow(int i) {
 		return m.getRow(i);
 	}
 
-	public List<PairI> getColumn(int j) {
+	public List<PairF> getColumn(int j) {
 		return m.getColumn(j);
 	}
 
@@ -56,12 +56,12 @@ public abstract class MatrixDecorator implements IMatrix {
 	}
 
 	@Override
-	public int getSumRow(int i) {
+	public float getSumRow(int i) {
 		return m.getSumRow(i);
 	}
 
 	@Override
-	public int getSumCol(int i) {
+	public float getSumCol(int i) {
 		return m.getSumCol(i);
 	}
 

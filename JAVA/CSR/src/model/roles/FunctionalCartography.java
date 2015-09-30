@@ -28,7 +28,7 @@ public class FunctionalCartography {
 	 */
 	public int getInternalDegree(int node) {
 		int com = this.getCommunity(node);
-		return matrix.getSumColInCluster(node, com);
+		return (int)matrix.getSumColInCluster(node, com);
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class FunctionalCartography {
 	 * @return 
 	 */
 	public int getDegreeInCom(int node, int com) {
-		return matrix.getSumColInCluster(node, com);
+		return (int)matrix.getSumColInCluster(node, com);
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class FunctionalCartography {
 	 * @return 
 	 */
 	public int getDegree(int node) {
-		return matrix.getSumRow(node);
+		return (int)matrix.getSumRow(node);
 	}
 	
 	/**

@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.google.gson.annotations.SerializedName;
 
-import model.util.PairFWeighted;
+import model.util.nuplet.PairFWeighted;
 
 public class ClusterMatching {
 	@SerializedName("Cluster Source")

@@ -1,11 +1,11 @@
 package model.util.factory;
 
-import io.reader.factory.FactoryMatrixReader;
+import io.reader.factory.FactorySimpleMatrixReader;
 
 public class MatrixFactory extends AFactory {
 
 	public MatrixFactory() {
-		super(new FactoryMatrixReader());
+		super(new FactorySimpleMatrixReader());
 	}
 
 }

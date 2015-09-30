@@ -7,17 +7,10 @@ import java.util.Scanner;
 import io.reader.interfaces.IClusteringReader;
 import model.cluster.Clustering;
 
-/**
- * Allows to read Clustering file descriptor written as follows : each line i contains and integer k that indicates that object i from the matrix (line) belongs to clusters k
- * 
- * @author dugue
- *
- */
-public class ClusteringReader implements IClusteringReader {
+public class ElmReader  implements IClusteringReader{
 	private Clustering clusters;
 	private String fileName;
-	public ClusteringReader(String fileName) throws FileNotFoundException {
-		super();
+	public ElmReader(String fileName) throws FileNotFoundException {
 		clusters=new Clustering();
 		this.fileName = fileName;
 		readAndFillModel();
@@ -25,10 +18,15 @@ public class ClusteringReader implements IClusteringReader {
 	private void readAndFillModel() throws FileNotFoundException {
 		Scanner sc = new Scanner(new File(fileName));
 		int cluster;
+		boolean debut=true;
 		while (sc.hasNextLine()) {
 			//each line 
-			cluster=Integer.parseInt(sc.nextLine());
-			clusters.add(cluster);
+			cluster=Integer.parseInt(sc.nextLine().split(" ")[0]);
+			if (debut) {
+				debut=false;
+			}
+			else
+				clusters.add(cluster);
 		}
 		sc.close();
 	}
@@ -38,5 +36,4 @@ public class ClusteringReader implements IClusteringReader {
 	public void setClusters(Clustering clusters) {
 		this.clusters = clusters;
 	}
-	
 }

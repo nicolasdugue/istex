@@ -6,30 +6,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import io.reader.interfaces.IMatrixReader;
-import model.util.nuplet.Pair;
 import model.util.nuplet.PairF;
 
-/**
- * Allows to Read a Matrix and to store it in a temporary manner.
- * <br>CsrMatrix Object is able to use this temporary storage in order to build a new, actual CSR/CSC matrix
- * <br>File is supposed to by organised this way :
- * <br>-one matrix row per line of the file
- * <br>-matrix weights can be separated with space or tabs
- * 
- * @author dugue
- * 
- *
- */
-public class MatrixReader implements IMatrixReader {
+public class NrmReader implements IMatrixReader {
 
-	
 	private String fileName;
 	private ArrayList<ArrayList<PairF > > matrix_rows = new ArrayList<ArrayList<PairF >>();
 	private ArrayList<ArrayList<PairF > > matrix_columns= new ArrayList<ArrayList<PairF >>();
 	private int nb_rows;
 	private int nb_columns;
 	private int nb_elmt;
-	public MatrixReader(String fileName) throws FileNotFoundException {
+	public NrmReader(String fileName) throws FileNotFoundException {
 		super();
 		this.nb_elmt=0;
 		this.fileName = fileName;
@@ -52,27 +39,33 @@ public class MatrixReader implements IMatrixReader {
 		int row_i=0;
 		int col_i=0;
 		ArrayList<PairF > row;
+		boolean first =true;
 		while (sc.hasNextLine()) {
 			line=sc.nextLine();
-			lineReader= new Scanner(line);
-			row = new ArrayList<PairF >();
-			col_i=0;
-			while (lineReader.hasNextFloat()) {
-				xij=lineReader.nextFloat();
-				if (row_i == 0) { // Première ligne
-					matrix_columns.add(new ArrayList<PairF >());
+			if (!first) {
+				lineReader= new Scanner(line);
+				row = new ArrayList<PairF >();
+				col_i=0;
+				while (col_i < nb_columns) {
+					xij=lineReader.nextFloat();
+					if (row_i == 0) { // Première ligne
+						matrix_columns.add(new ArrayList<PairF >());
+					}
+					if (xij != 0) {
+						row.add(new PairF(col_i, xij));
+						matrix_columns.get(col_i).add(new PairF(row_i, xij));
+						this.nb_elmt++;
+					}
+					col_i++;
 				}
-				if (xij != 0) {
-					row.add(new PairF(col_i, xij));
-					matrix_columns.get(col_i).add(new PairF(row_i, xij));
-					this.nb_elmt++;
-				}
-				col_i++;
+				row_i++;
+				matrix_rows.add(row);
+				lineReader.close();
 			}
-			lineReader.close();
-			nb_columns=col_i;
-			row_i++;
-			matrix_rows.add(row);
+			else {
+				first=false;
+				nb_columns=Integer.parseInt(line);
+			}
 		}
 		nb_rows=row_i;
 		sc.close();
