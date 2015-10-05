@@ -68,7 +68,7 @@ public class MainDiachronic {
 		opt = OptionBuilder.create("l");
 		options.addOption(opt);
 
-		args = new String[] { "-c", "caca", "pue" };
+		args = new String[] { "-c", "t", "test" };
 
 		HelpFormatter formatter = new HelpFormatter();
 

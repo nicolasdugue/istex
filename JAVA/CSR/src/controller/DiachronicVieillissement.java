@@ -23,6 +23,7 @@ public class DiachronicVieillissement {
 //		  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P1.idd",
 //		  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P2.idd" };
 		
+		
 		String[] params = {
 				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P1.nrm",
 				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.nrm",
