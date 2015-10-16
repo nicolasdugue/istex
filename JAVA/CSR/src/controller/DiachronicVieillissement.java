@@ -41,6 +41,6 @@ public class DiachronicVieillissement {
 //				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.idd" };
 		 
 		
-		c.doRunStuff(params);
+		c.doRunStuff(params[0], params[1], params[2], params[3], params[4], params[5]);
 	}
 }

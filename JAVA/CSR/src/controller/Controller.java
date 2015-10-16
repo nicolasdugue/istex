@@ -25,21 +25,22 @@ public class Controller {
 	}
 
 
-	public void doRunStuff(String[] params) throws FileNotFoundException {
-		if (params.length == 2 ) {
-			ld=adf.matchingFromLabel(params[0], params[1]);
-		}
-		else if (params.length == 4 ) {
-			ld=adf.matchingFromMatrixCluster(params[0], params[1], params[2], params[3]);
-		}
-		else if (params.length == 6) {
-			ld=adf.matchingFromMatrixClusterLabels(params[0], params[1], params[2], params[3], params[4], params[5]);
-		}
-		else {
-			//TODO -- DESIGNS EXCEPTIONS AND USER MANUAL FOR THE CLI
-			ld=null;
-		}
+	public void doRunStuff(String f1, String f2) throws FileNotFoundException {
+		ld=adf.matchingFromLabel(f1, f2);
 		v.print(this.getJson());
+	}
+	public void doRunStuff(String m1, String m2, String c1, String c2) throws FileNotFoundException {
+		ld=adf.matchingFromMatrixCluster(m1,m2,c1,c2);
+		v.print(this.getJson());
+	}
+	
+	public void doRunStuff(String m1, String m2, String c1, String c2, String l1, String l2) throws FileNotFoundException {
+		if (l1 == null || l2 == null)
+			this.doRunStuff(m1, m2, c1, c2);
+		else {
+			ld=adf.matchingFromMatrixClusterLabels(m1,m2,c1,c2,l1,l2);
+			v.print(this.getJson());
+		}
 	}
 	
 	public String getJson() {

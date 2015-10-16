@@ -68,19 +68,20 @@ public class MainDiachronic {
 		opt = OptionBuilder.create("l");
 		options.addOption(opt);
 
-		args = new String[] { "-c", "t", "test" };
+		//args = new String[] { "-c", "t", "test" };
 
 		HelpFormatter formatter = new HelpFormatter();
 
 		AFactory factory = new MatrixFactory();
-		String m1, m2;
-		String c1, c2;
+		String m1=null, m2=null;
+		String c1=null, c2=null;
 		String fl1, fl2;
-		String l1, l2;
+		String l1=null, l2=null;
 		try {
 			// parse the command line arguments
 			CommandLine line = parser.parse(options, args);
 			boolean process = check(line, options);
+			int nbParam=0;
 			if (process) {
 				if (line.hasOption("log")) {
 					// TODO logger
@@ -89,10 +90,10 @@ public class MainDiachronic {
 					formatter.printHelp("MainDiachronic", options);
 				}
 				if (line.hasOption("v")) {
-					// TODO verbose
+					// TODO verbose - Set log to verbose
 				}
-				if (line.hasOption("v")) {
-					// TODO quiet
+				if (line.hasOption("q")) {
+					// TODO quiet - Set log to quiet
 				}
 	
 				if (line.hasOption("e")) {
@@ -107,20 +108,19 @@ public class MainDiachronic {
 					m2 = line.getOptionValues("m")[1];
 					c1 = line.getOptionValues("c")[0];
 					c2 = line.getOptionValues("c")[1];
-					
+					nbParam+=4;
 				}
 				if (line.hasOption("l")) {
 					l1 = line.getOptionValues("l")[0];
 					l2 = line.getOptionValues("l")[1];
+					nbParam+=2;
 				}
-				// TODO use commons cli to get properly the params
-				String[] params = { "00-0350gnge-tn-DD-ENL.fmgs", "96-99-F43gnge-tn-DD-ENL.fmgs" };
 
 				View v = new View();
 
 				Controller c = new Controller(v, factory);
 
-				c.doRunStuff(params);
+				c.doRunStuff(m1,m2,c1,c2,l1,l2);
 			}
 
 		} catch (ParseException exp) {
