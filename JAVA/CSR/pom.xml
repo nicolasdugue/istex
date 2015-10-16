@@ -2,21 +2,46 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>loria</groupId>
   <artifactId>csr</artifactId>
+  <packaging>jar</packaging>
   <version>0.0.1-SNAPSHOT</version>
+  
   <build>
     <sourceDirectory>src</sourceDirectory>
     <testSourceDirectory>test</testSourceDirectory>
+    
     <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.3</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
+		<plugin>
+		  <artifactId>maven-compiler-plugin</artifactId>
+		  <version>3.3</version>
+		  <configuration>
+		    <source>1.8</source>
+		    <target>1.8</target>
+		  </configuration>
+		</plugin>
+		<!-- Make this jar executable -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<configuration>
+			  <!-- DO NOT include tests -->
+			  <excludes>
+				<exclude>/test</exclude>
+				<exclude>/doc</exclude>
+				<exclude>/bin</exclude>
+			  </excludes>
+			  <archive>
+				<manifest>
+					<!-- Jar file entry point -->
+					<mainClass>com.mkyong.core.utils.App</mainClass>
+				</manifest>
+			  </archive>
+			</configuration>
+		</plugin>
+
     </plugins>
+    
   </build>
+  
   <dependencies>
   	<dependency>
 		<groupId>com.google.code.gson</groupId>
@@ -28,8 +53,5 @@
 		<artifactId>commons-cli</artifactId>
 		<version>1.3.1</version>
 	</dependency>
-
-	
-
-  </dependencies>
+  </dependencies>  
 </project>
