@@ -11,6 +11,7 @@ import model.util.LabelStore;
 public class MatrixFeatureLabels extends MatrixDecorator{
 
 	private LabelStore featuresLabels;
+
 	public MatrixFeatureLabels(IMatrix m) {
 		super(m);
 	}

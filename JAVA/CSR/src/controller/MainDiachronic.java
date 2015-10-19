@@ -32,12 +32,11 @@ public class MainDiachronic {
 	 * "/home/dugue/Dropbox/LORIA/JAVA/dataset/adjnoun/adjnoun.net_labels",
 	 * "/home/dugue/Dropbox/LORIA/JAVA/dataset/adjnoun/adjnoun.net_labels" };
 	 */
-
+	private static HelpFormatter formatter = new HelpFormatter();
+	private static CommandLineParser parser = new DefaultParser();
+	private static Options options = new Options();
 	public static void main(String[] args) throws FileNotFoundException {
-		CommandLineParser parser = new DefaultParser();
-
 		// create the Options
-		Options options = new Options();
 		options.addOption("h", "help", false, "print this message");
 		options.addOption("q", "quiet", false, "be extra quiet");
 		options.addOption("v", "verbose", false, "be extra verbose");
@@ -47,19 +46,19 @@ public class MainDiachronic {
 		OptionBuilder.hasArgs(2);
 		OptionBuilder.withArgName("matrixSource> <matrixTarget");
 		OptionBuilder.withDescription(
-				"Matrices source and target. One row per line. Element separated with spaces or tabs.");
+				"Source and targetMatrices. One row per line. Element separated with spaces or tabs.");
 		Option opt = OptionBuilder.create("m");
 		options.addOption(opt);
 		OptionBuilder.hasArgs(2);
 		OptionBuilder.withArgName("clusteringSource> <clusteringTarget");
 		OptionBuilder.withDescription(
-				"Clustering source and target. One integer per line indicated the belonging cluster of each row.");
+				"Source and target clustering. One integer per line indicated the belonging cluster of each row.");
 		opt = OptionBuilder.create("c");
 		options.addOption(opt);
 		OptionBuilder.hasArgs(2);
 		OptionBuilder.withArgName("featuresLabelSource> <featuresLabelTarget");
 		OptionBuilder.withDescription(
-				"Features labels source and target. One String per line indicated the corresponding label of each feature.");
+				"Source and target features labels. One String per line indicated the corresponding label of each feature.");
 		opt = OptionBuilder.create("fl");
 		options.addOption(opt);
 		OptionBuilder.hasArgs(2);
@@ -70,7 +69,7 @@ public class MainDiachronic {
 
 		//args = new String[] { "-c", "t", "test" };
 
-		HelpFormatter formatter = new HelpFormatter();
+		
 
 		AFactory factory = new MatrixFactory();
 		String m1=null, m2=null;
@@ -87,7 +86,7 @@ public class MainDiachronic {
 					// TODO logger
 				}
 				if (line.hasOption("h")) {
-					formatter.printHelp("MainDiachronic", options);
+					printHelp();
 				}
 				if (line.hasOption("v")) {
 					// TODO verbose - Set log to verbose
@@ -115,6 +114,7 @@ public class MainDiachronic {
 					l2 = line.getOptionValues("l")[1];
 					nbParam+=2;
 				}
+				//TODO ADD fileLabels Diachronism
 
 				View v = new View();
 
@@ -133,7 +133,7 @@ public class MainDiachronic {
 	public static boolean check(CommandLine line, Options options) {
 		HelpFormatter formatter = new HelpFormatter();
 		boolean okay=true;
-		if (line.hasOption("g") || line.hasOption("v") || line.hasOption("q") || line.hasOption("log") ) {
+		if (line.hasOption("g") || line.hasOption("m")) {
 			if (!line.hasOption("m")) {
 				System.out.println("You need to provide matrix files with -m option");
 				okay=false;
@@ -150,25 +150,30 @@ public class MainDiachronic {
 				System.out.println("You need to provide TWO clustering files with -c option");
 				okay=false;
 			}
+			if (line.hasOption("l") && (line.getOptionValues("l").length <2)) {
+				System.out.println("You need to provide TWO label files with -c option");
+				okay=false;
+			}
 			
 		}
-		else if (line.hasOption("m")) {
-			if (line.getOptionValues("m").length <2) {
-				System.out.println("You need to provide TWO matrix files with -m option");
-			}
-			if (!line.hasOption("c")) {
-				System.out.println("You need to provide clustering files with -c option");
-				okay=false;
-			}
-			else if (line.getOptionValues("c").length <2) {
-				System.out.println("You need to provide TWO clustering files with -c option");
+		else if (line.hasOption("fl")) {
+			if (line.getOptionValues("fl").length <2) {
+				System.out.println("You need to provide TWO feature label files with -fl option");
 				okay=false;
 			}
 		}
+		else {
+			printHelp();
+			return false;
+		}
 		if (!okay)
-			formatter.printHelp("MainDiachronic", options);
+			printHelp();
 		return okay;
 
+	}
+	
+	public static void printHelp() {
+		formatter.printHelp("MainDiachronic, Diachronism toolbox", options);
 	}
 
 }

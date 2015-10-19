@@ -10,6 +10,8 @@ import model.diachronism.LabelDiachronism;
 import model.util.factory.AFactory;
 import view.View;
 
+//TODO - ADD File Labels Diachronism
+//TODO - Move to a responsability chain design pattern !
 public class Controller {
 	
 	private LabelDiachronism ld;
