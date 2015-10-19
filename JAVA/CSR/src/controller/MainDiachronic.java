@@ -120,7 +120,7 @@ public class MainDiachronic {
 
 				Controller c = new Controller(v, factory);
 
-				c.doRunStuff(m1,m2,c1,c2,l1,l2);
+				c.doRunDiachronism(m1,m2,c1,c2,l1,l2);
 			}
 
 		} catch (ParseException exp) {
@@ -151,7 +151,7 @@ public class MainDiachronic {
 				okay=false;
 			}
 			if (line.hasOption("l") && (line.getOptionValues("l").length <2)) {
-				System.out.println("You need to provide TWO label files with -c option");
+				System.out.println("You need to provide TWO label files with -c option. If you don't want to use labels, don't use the -l option.");
 				okay=false;
 			}
 			

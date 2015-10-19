@@ -17,7 +17,7 @@ public class MainGraphLabelSelection {
 		String graph_file="/home/dugue/Dropbox/LORIA/DATA/Vieillissement/graph_6_int";
 		String clustering_file="/home/dugue/Dropbox/LORIA/DATA/Vieillissement/graph_6_int_oslo_files/tp.clst";
 		String label_file="/home/dugue/Dropbox/LORIA/DATA/Vieillissement/labels";
-		FeaturesSelection fs = (FeaturesSelection) new GraphFactory().getGraphFeatureSelecter(graph_file,clustering_file,label_file);
+		FeaturesSelection fs = (FeaturesSelection) new GraphFactory().getFeatureSelecter(graph_file,clustering_file,label_file);
 		LabelSelection ls = new LabelSelection(fs);
 		int f;
 		float ff;

@@ -23,50 +23,82 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+
 			<!-- Make this jar executable -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<!-- DO NOT include tests -->
-					<excludes>
-						<exclude>/test</exclude>
-						<exclude>/doc</exclude>
-						<exclude>/bin</exclude>
-					</excludes>
-					<archive>
-						<manifest>
-							<!-- Jar file entry point -->
-							<mainClass>controller.MainDiachronic</mainClass>
-						</manifest>
-					</archive>
-					<skipTests>true</skipTests>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>Diachronism</id>
 						<phase>package</phase>
 						<goals>
-							<goal>single</goal>
+							<goal>jar</goal>
 						</goals>
+						<configuration>
+							<skipTests>true</skipTests>
+							<classifier>Diachronism</classifier>
+							<descriptorRefs>
+								<descriptorRef>Diachronism</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifest>
+									<!-- Jar file entry point -->
+									<addClasspath>true</addClasspath>
+									<classpathPrefix>lib/</classpathPrefix>
+									<mainClass>controller.MainDiachronic</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
+					</execution>
+					<execution>
+						<id>FeatureSelection</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<skipTests>true</skipTests>
+							<classifier>FeatureSelection</classifier>
+							<descriptorRefs>
+								<descriptorRef>FeatureProperties</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifest>
+									<!-- Jar file entry point -->
+									<addClasspath>true</addClasspath>
+									<classpathPrefix>lib/</classpathPrefix>
+									<mainClass>controller.MainFeatureSelection</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-					<archive>
-						<manifest>
-							<!-- Jar file entry point -->
-							<mainClass>controller.MainDiachronic</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
 			</plugin>
-
 		</plugins>
+
 
 	</build>
 
@@ -87,14 +119,14 @@
 			<version>4.10</version>
 		</dependency>
 
-	</dependencies>  
-  <organization>
-  	<name>ISTEX</name>
-  	<url>http://www.istex.fr/</url>
-  </organization>
-  <name>ISTEX JAVA LIBRARY</name>
-  <url>https://github.com/nicolasdugue/istex</url>
-  <description>This project is a JAVA driven library used to deal with documents corpora such as the ISTEX one.
+	</dependencies>
+	<organization>
+		<name>ISTEX</name>
+		<url>http://www.istex.fr/</url>
+	</organization>
+	<name>ISTEX JAVA LIBRARY</name>
+	<url>https://github.com/nicolasdugue/istex</url>
+	<description>This project is a JAVA driven library used to deal with documents corpora such as the ISTEX one.
 
 This library allows to handle large sparse matrices by using CSR and CSC formats. It allows to analyse diachronically two different clustering of a same corpora but at different time steps using several methods. Furthermore, this tool is also adapted to deal with large weighted graphs to study the collaboration networks of authors of the corpus .</description>
 </project>

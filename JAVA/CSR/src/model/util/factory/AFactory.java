@@ -79,7 +79,7 @@ public abstract class AFactory {
 	public  IFeaturesSelection getFeatureSelecter(String matrix, String cluster) throws FileNotFoundException {
 		return new FeaturesSelection(new CsrMatrixClustered(new CsrMatrix(fr.getReader(matrix)), new ClusteringReader(cluster).getClusters()));
 	}
-	public  IFeaturesSelection getGraphFeatureSelecter(String matrix, String cluster, String labels) throws FileNotFoundException {
+	public  IFeaturesSelection getFeatureSelecter(String matrix, String cluster, String labels) throws FileNotFoundException {
 		return new FeaturesSelection(new CsrMatrixClustered(new MatrixFeatureLabels(new CsrMatrix(fr.getReader(matrix)), lr.getReader(labels).getLs()), cr.getReader(cluster).getClusters()));
 	}
 

@@ -27,18 +27,18 @@ public class Controller {
 	}
 
 
-	public void doRunStuff(String f1, String f2) throws FileNotFoundException {
+	public void doRunDiachronism(String f1, String f2) throws FileNotFoundException {
 		ld=adf.matchingFromLabel(f1, f2);
 		v.print(this.getJson());
 	}
-	public void doRunStuff(String m1, String m2, String c1, String c2) throws FileNotFoundException {
+	public void doRunDiachronism(String m1, String m2, String c1, String c2) throws FileNotFoundException {
 		ld=adf.matchingFromMatrixCluster(m1,m2,c1,c2);
 		v.print(this.getJson());
 	}
 	
-	public void doRunStuff(String m1, String m2, String c1, String c2, String l1, String l2) throws FileNotFoundException {
+	public void doRunDiachronism(String m1, String m2, String c1, String c2, String l1, String l2) throws FileNotFoundException {
 		if (l1 == null || l2 == null)
-			this.doRunStuff(m1, m2, c1, c2);
+			this.doRunDiachronism(m1, m2, c1, c2);
 		else {
 			ld=adf.matchingFromMatrixClusterLabels(m1,m2,c1,c2,l1,l2);
 			v.print(this.getJson());
