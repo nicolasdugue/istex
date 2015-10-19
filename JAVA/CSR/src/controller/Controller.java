@@ -73,6 +73,9 @@ public class Controller {
 				json+="{\"Cluster target\":\"G-"+ld.getLabelOfClusterTarget(t)+"\", \"state\" : \"appeared\"},";
 			}
 		}
+		if (json.length() > 0 && json.charAt(json.length()-1)==',') {
+			json = json.substring(0, json.length()-1);
+		}
 		return json + "]";
 	}
 
