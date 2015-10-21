@@ -90,11 +90,13 @@ public class MainFeatureSelection {
 				if (line.hasOption("r")) {
 					FunctionalCartography fc = new FunctionalCartography(fs.getMatrix());
 					fc.doZScore();
+					System.out.println("#node zscore coefp");
 					for (int i = 0; i < fs.getNbRows(); i++) {
 						System.out.println(i + " " + fc.getZScore(i) + " "+fc.getParticipationCoefficient(i));
 					}
 				}
 				else {
+					System.out.println("#node fp fr ff");
 					for (int i = 0; i < fs.getNbRows(); i++) {
 						System.out.println(i + " " + fs.fp(i, fs.getClusterOfObjectI(i)) + " " + fs.fr(i, fs.getClusterOfObjectI(i)) + " " + fs.getFeatureValue(i, fs.getClusterOfObjectI(i)));
 					}
