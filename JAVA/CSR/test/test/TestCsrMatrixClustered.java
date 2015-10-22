@@ -29,22 +29,21 @@ public class TestCsrMatrixClustered {
 	
 	@Test
 	public void testSumCluster() {
-		assertEquals(13, cm_c.getSumCluster(0));
-		assertEquals(12, cm_c.getSumCluster(1));
+		assertEquals(13, cm_c.getSumCluster(0),0.001);
+		assertEquals(12, cm_c.getSumCluster(1),0.001);
 	}
 	
 	
 	
 	@Test
 	public void testCsrSumColCluster() {
-		assertEquals(3, cm_c.getSumColInCluster(0, 0));
-		assertEquals(0, cm_c.getSumColInCluster(0, 1));
-		assertEquals(3, cm_c.getSumColInCluster(1, 0));
-		assertEquals(0, cm_c.getSumColInCluster(1, 1));
-		assertEquals(0, cm_c.getSumColInCluster(2, 0));
-		assertEquals(4, cm_c.getSumColInCluster(2, 1));
-		assertEquals(7, cm_c.getSumColInCluster(3, 0));
-		assertEquals(8, cm_c.getSumColInCluster(3, 1));
+		assertEquals(3, cm_c.getSumColInCluster(0, 0),0.001);
+		assertEquals(0, cm_c.getSumColInCluster(0, 1),0.001);
+		assertEquals(3, cm_c.getSumColInCluster(1, 0),0.001);
+		assertEquals(0, cm_c.getSumColInCluster(2, 0),0.001);
+		assertEquals(4, cm_c.getSumColInCluster(2, 1),0.001);
+		assertEquals(7, cm_c.getSumColInCluster(3, 0),0.001);
+		assertEquals(8, cm_c.getSumColInCluster(3, 1),0.001);
 	}
 
 

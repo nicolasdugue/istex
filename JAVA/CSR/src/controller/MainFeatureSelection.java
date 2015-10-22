@@ -90,9 +90,9 @@ public class MainFeatureSelection {
 				if (line.hasOption("r")) {
 					FunctionalCartography fc = new FunctionalCartography(fs.getMatrix());
 					fc.doZScore();
-					System.out.println("#node zscore coefp");
+					System.out.println("#node zscore coefp sizecom degree");
 					for (int i = 0; i < fs.getNbRows(); i++) {
-						System.out.println(i + " " + fc.getZScore(i) + " "+fc.getParticipationCoefficient(i));
+						System.out.println(i + " " + fc.getZScore(i) + " "+fc.getParticipationCoefficient(i)+ " "+fc.getSizeCommunity(fc.getCommunity(i))+ " "+fc.getDegree(i));
 					}
 				}
 				else {
