@@ -80,6 +80,9 @@ public class FeaturesSelection implements IFeaturesSelection {
 		return (2*fr*fp/(fr+fp));
 	}
 	
+	public int getNbColumns() {
+		return matrix.getNbColumns();
+	}
 	/**
 	 * @return the average Feature F Measure over all clusters and all features
 	 */

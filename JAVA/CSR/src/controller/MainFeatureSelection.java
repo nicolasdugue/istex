@@ -141,7 +141,7 @@ public class MainFeatureSelection {
 				}
 				else {
 					System.out.println("#node fp fr ff");
-					for (int i = 0; i < fs.getNbRows(); i++) {
+					for (int i = 0; i < fs.getNbColumns(); i++) {
 						System.out.println(i + " " + fs.fp(i, fs.getClusterOfObjectI(i)) + " " + fs.fr(i, fs.getClusterOfObjectI(i)) + " " + fs.getFeatureValue(i, fs.getClusterOfObjectI(i)));
 					}
 				}
@@ -158,9 +158,10 @@ public class MainFeatureSelection {
 	public static String createTempExemple(String s) {
 		File file=null;
 		 try {
+			 	
 			 	MainDiachronic m = new MainDiachronic();
 	            InputStream input = m.getClass().getClassLoader().getResourceAsStream(s);
-	            file= File.createTempFile("tempfile", ".tmp");
+	            file= new File(s+".exemple");
 	            OutputStream out = new FileOutputStream(file);
 	            int read;
 	            byte[] bytes = new byte[1024];
@@ -169,7 +170,8 @@ public class MainFeatureSelection {
 	                out.write(bytes, 0, read);
 	            }
 	            out.close();
-	            file.deleteOnExit();
+	            
+	            log.info(s+ ".exemple created");
 	        } catch (IOException ex) {
 	            log.fatal(ex);
 	        }
