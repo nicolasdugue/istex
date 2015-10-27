@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.FileNotFoundException;
+import java.net.URL;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -10,11 +11,13 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import model.util.factory.AFactory;
 import model.util.factory.GraphFactory;
 import model.util.factory.MatrixFactory;
-
+import util.SGLogger;
 import view.View;
 
 @SuppressWarnings("deprecation")
@@ -36,6 +39,7 @@ public class MainDiachronic {
 	private static CommandLineParser parser = new DefaultParser();
 	private static Options options = new Options();
 	public static void main(String[] args) throws FileNotFoundException {
+		
 		// create the Options
 		options.addOption("h", "help", false, "print this message");
 		options.addOption("q", "quiet", false, "be extra quiet");
@@ -76,6 +80,7 @@ public class MainDiachronic {
 		String c1=null, c2=null;
 		String fl1, fl2;
 		String l1=null, l2=null;
+		Logger log = SGLogger.getInstance();
 		try {
 			// parse the command line arguments
 			CommandLine line = parser.parse(options, args);
@@ -83,21 +88,20 @@ public class MainDiachronic {
 			int nbParam=0;
 			if (process) {
 				if (line.hasOption("log")) {
-					// TODO logger
+					log.setLevel(Level.INFO);
 				}
 				if (line.hasOption("h")) {
 					printHelp();
 				}
 				if (line.hasOption("v")) {
-					// TODO verbose - Set log to verbose
+					log.setLevel(Level.DEBUG);
 				}
 				if (line.hasOption("q")) {
-					// TODO quiet - Set log to quiet
+					log.setLevel(Level.FATAL);
 				}
 	
 				if (line.hasOption("e")) {
-					// TODO exemple, create exemple factory and automatic run in
-					// verbose mode
+					//TODO Diachronic Exemple
 				}
 				if (line.hasOption("g")) {
 					factory = new GraphFactory();
@@ -124,7 +128,7 @@ public class MainDiachronic {
 			}
 
 		} catch (ParseException exp) {
-			System.out.println("Unexpected exception:" + exp.getMessage());
+			log.fatal("Unexpected exception:" + exp.getMessage());
 		}
 
 		
@@ -132,33 +136,34 @@ public class MainDiachronic {
 	//TODO Responsability chain to make it cleaner and more modular
 	public static boolean check(CommandLine line, Options options) {
 		HelpFormatter formatter = new HelpFormatter();
+		Logger log=SGLogger.getInstance();
 		boolean okay=true;
 		if (line.hasOption("g") || line.hasOption("m")) {
 			if (!line.hasOption("m")) {
-				System.out.println("You need to provide matrix files with -m option");
+				log.warn("You need to provide matrix files with -m option");
 				okay=false;
 			}
 			else if (line.getOptionValues("m").length <2) {
-				System.out.println("You need to provide TWO matrix files with -m option");
+				log.warn("You need to provide TWO matrix files with -m option");
 				okay=false;
 			}
 			if (!line.hasOption("c")) {
-				System.out.println("You need to provide clustering files with -c option");
+				log.warn("You need to provide clustering files with -c option");
 				okay=false;
 			}
 			else if (line.getOptionValues("c").length <2) {
-				System.out.println("You need to provide TWO clustering files with -c option");
+				log.warn("You need to provide TWO clustering files with -c option");
 				okay=false;
 			}
 			if (line.hasOption("l") && (line.getOptionValues("l").length <2)) {
-				System.out.println("You need to provide TWO label files with -c option. If you don't want to use labels, don't use the -l option.");
+				log.warn("You need to provide TWO label files with -c option. If you don't want to use labels, don't use the -l option.");
 				okay=false;
 			}
 			
 		}
 		else if (line.hasOption("fl")) {
 			if (line.getOptionValues("fl").length <2) {
-				System.out.println("You need to provide TWO feature label files with -fl option");
+				log.warn("You need to provide TWO feature label files with -fl option");
 				okay=false;
 			}
 		}
