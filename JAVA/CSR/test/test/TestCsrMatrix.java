@@ -64,18 +64,18 @@ public class TestCsrMatrix {
 	 */
 	@Test
 	public void testCsrSumCol() {
-		assertEquals(3, cm.getSumCol(0));
-		assertEquals(3, cm.getSumCol(1));
-		assertEquals(4, cm.getSumCol(2));
-		assertEquals(15, cm.getSumCol(3));
+		assertEquals(3, cm.getSumCol(0),0.001);
+		assertEquals(3, cm.getSumCol(1),0.001);
+		assertEquals(4, cm.getSumCol(2),0.001);
+		assertEquals(15, cm.getSumCol(3),0.001);
 	}
 
 	@Test
 	public void testCsrSumRow() {
-		assertEquals(9, cm.getSumRow(0));
-		assertEquals(4, cm.getSumRow(1));
-		assertEquals(8, cm.getSumRow(2));
-		assertEquals(4, cm.getSumRow(3));
+		assertEquals(9, cm.getSumRow(0),0.001);
+		assertEquals(4, cm.getSumRow(1),0.001);
+		assertEquals(8, cm.getSumRow(2),0.001);
+		assertEquals(4, cm.getSumRow(3),0.001);
 	}
 
 	/*
