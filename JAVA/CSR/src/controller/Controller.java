@@ -12,11 +12,17 @@ import view.View;
 
 //TODO - ADD File Labels Diachronism
 //TODO - Move to a responsability chain design pattern !
+/**
+ * Gère les liens entre le modèle et la vue (affichage)
+ * 
+ * @author nicolas
+ *
+ */
 public class Controller {
 	
 	private LabelDiachronism ld;
 	private View v;
-	AFactory adf;
+	private AFactory adf;
 	
 	
 	
@@ -27,15 +33,42 @@ public class Controller {
 	}
 
 
+	/**
+	 * Run diachronism using feature fmeasures for source and target labels
+	 * 
+	 * @param f1 source features values
+	 * @param f2 target features values
+	 * @throws FileNotFoundException
+	 */
 	public void doRunDiachronism(String f1, String f2) throws FileNotFoundException {
 		ld=adf.matchingFromLabel(f1, f2);
 		v.print(this.getJson());
 	}
+	/**
+	 * Run diachronism using matrices and clusterings
+	 * 
+	 * @param m1 source matrix
+	 * @param m2 target matrix
+	 * @param c1 source clustering
+	 * @param c2 target clustering
+	 * @throws FileNotFoundException
+	 */
 	public void doRunDiachronism(String m1, String m2, String c1, String c2) throws FileNotFoundException {
 		ld=adf.matchingFromMatrixCluster(m1,m2,c1,c2);
 		v.print(this.getJson());
 	}
 	
+	/**
+	 * Run diachronism using matrices, clusterings and labels
+	 * 
+	 * @param m1 source matrix
+	 * @param m2 target matrix
+	 * @param c1 source clustering
+	 * @param c2 target clustering
+	 * @param l1 source labels
+	 * @param l2 target labels
+	 * @throws FileNotFoundException
+	 */
 	public void doRunDiachronism(String m1, String m2, String c1, String c2, String l1, String l2) throws FileNotFoundException {
 		if (l1 == null || l2 == null)
 			this.doRunDiachronism(m1, m2, c1, c2);
@@ -45,6 +78,11 @@ public class Controller {
 		}
 	}
 	
+	/**
+	 * Generate JSON result of the diachronism
+	 * 
+	 * @return
+	 */
 	public String getJson() {
 		Iterator<Integer> itClusters;
 		final GsonBuilder builder = new GsonBuilder();

@@ -142,6 +142,7 @@ public class MainFeatureSelection {
 				else {
 					System.out.println("#node fp fr ff");
 					for (int i = 0; i < fs.getNbColumns(); i++) {
+						//log.debug("Feature " + i);
 						System.out.println(i + " " + fs.fp(i, fs.getClusterOfObjectI(i)) + " " + fs.fr(i, fs.getClusterOfObjectI(i)) + " " + fs.getFeatureValue(i, fs.getClusterOfObjectI(i)));
 					}
 				}
