@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import model.cluster.decorator.IClustering;
 import model.matrix.decorator.IMatrix;
 import model.util.nuplet.PairF;
+import util.SGLogger;
 
 public class CsrMatrixClustered {
 	private IMatrix matrix;
 	private IClustering clusters;
 	private float[] sum_cluster;
+	private Logger log;
 	
 	public CsrMatrixClustered() {
 		super();
@@ -21,6 +25,8 @@ public class CsrMatrixClustered {
 		this.matrix=m;
 		this.clusters = clusters;
 		this.sum_cluster = new float[this.getNbCluster()];
+		log=SGLogger.getInstance();
+		log.debug(this.getNbCluster() + " clusters");
 	}
 
 	public int getNbCluster() {

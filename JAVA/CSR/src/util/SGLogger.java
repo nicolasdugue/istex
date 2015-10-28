@@ -27,7 +27,7 @@ public class SGLogger {
 	public static Logger getInstance() {
 		if (logger == null) {
 			StringBuilder motif = new StringBuilder();
-			motif.append("[%p %d{HH:mm:ss}] %m in %l %n");
+			motif.append("#[%p %d{HH:mm:ss}] %m in %l %n");
 
 			PatternLayout layout = new PatternLayout(motif.toString());
 			ConsoleAppender appender = new ConsoleAppender(layout);

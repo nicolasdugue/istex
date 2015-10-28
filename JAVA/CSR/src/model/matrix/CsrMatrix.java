@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import io.reader.interfaces.IMatrixReader;
 import model.matrix.decorator.IMatrix;
 import model.util.nuplet.PairF;
+import util.SGLogger;
 
 
 /**
@@ -53,6 +56,7 @@ public class CsrMatrix implements IMatrix {
 	protected float[] sum_line;
 	protected float[] sum_col;
 	
+	private Logger log;
 	
 	public CsrMatrix(IMatrixReader mr) {
 		cumulative_rows=new ArrayList<Integer>(mr.getNb_rows());
@@ -85,6 +89,13 @@ public class CsrMatrix implements IMatrix {
 		
 		sum_line = new float[this.getNbRows()];
 		sum_col = new float[this.getNbColumns()];
+		
+		log=SGLogger.getInstance();
+		log.debug(this.getNbRows() + " rows");
+		log.debug(this.getNbColumns() + " columns");
+		log.debug(this.getNbElements() + " non-null elements");
+		log.debug((100.0 - (this.getNbElements()*100.0 / ((float)this.getNbColumns() * this.getNbRows()))) + " % of sparseness");
+		
 	}
 	
 
