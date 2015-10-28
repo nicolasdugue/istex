@@ -27,6 +27,9 @@ public class CsrMatrixClustered {
 		this.sum_cluster = new float[this.getNbCluster()];
 		log=SGLogger.getInstance();
 		log.debug(this.getNbCluster() + " clusters");
+		for (int i=0; i < this.getNbCluster(); i++ ) {
+			log.debug("Cluster " + i +" : " + this.getSizeCk(i));
+		}
 	}
 
 	public int getNbCluster() {

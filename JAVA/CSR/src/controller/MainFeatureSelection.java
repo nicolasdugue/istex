@@ -3,10 +3,13 @@ package controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -20,10 +23,13 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import model.featureselection.FeaturesSelection;
+import model.featureselection.LabelSelection;
 import model.roles.FunctionalCartography;
 import model.util.factory.AFactory;
 import model.util.factory.GraphFactory;
 import model.util.factory.MatrixFactory;
+import model.util.nuplet.PairFWeighted;
+import model.util.nuplet.collection.SortedLabelSet;
 import util.SGLogger;
 import view.View;
 
@@ -34,7 +40,7 @@ public class MainFeatureSelection {
 	private static CommandLineParser parser = new DefaultParser();
 	private static Options options = new Options();
 	private static Logger log=SGLogger.getInstance();
-	@SuppressWarnings("deprecation")
+
 	public static void main(String[] args) {
 
 		options.addOption("h", "help", false, "print this message");
@@ -43,6 +49,7 @@ public class MainFeatureSelection {
 		options.addOption("log", "log", false, "log events");
 		options.addOption("v", "verbose", false, "debug or verbose mode");
 		options.addOption("e", "exemple", false, "Run exemple");
+		options.addOption("ls", "labelselection", false, "Extract labels");
 		OptionBuilder.hasArgs(1);
 		OptionBuilder.withArgName("matrix");
 		OptionBuilder.withDescription(
@@ -61,10 +68,10 @@ public class MainFeatureSelection {
 		opt = OptionBuilder.create("l");
 		options.addOption(opt);
 		OptionBuilder.hasArgs(1);
-		/*OptionBuilder.withArgName("output");
-		OptionBuilder.withDescription("Output directory");
+		OptionBuilder.withArgName("output");
+		OptionBuilder.withDescription("Output file without ext");
 		opt = OptionBuilder.create("o");
-		options.addOption(opt);*/
+		options.addOption(opt);
 
 		//args = new String[] { "-c", "t", "test" };
 
@@ -124,31 +131,70 @@ public class MainFeatureSelection {
 					}
 					
 				}
-				View v = new View();
+				//View v = new View();
 
-				Controller c = new Controller(v, factory);
+				//Controller c = new Controller(v, factory);
 				FeaturesSelection fs;
 				if (l1 == null)
 					fs = (FeaturesSelection) factory.getFeatureSelecter(m1,c1);
 				else
 					fs = (FeaturesSelection) factory.getFeatureSelecter(m1,c1,l1);
-				//String output =line.getOptionValues("o")[0];
+				String output =line.getOptionValues("o")[0];
+				
 				
 				//TODO - Make a proper controller
 				if (line.hasOption("r")) {
+					FileWriter fwr = new FileWriter(new File(output+".rl"));
 					FunctionalCartography fc = new FunctionalCartography(fs.getMatrix());
 					fc.doZScore();
-					System.out.println("#node zscore coefp sizecom degree");
+					fwr.write("#node zscore coefp sizecom degree\n");
 					for (int i = 0; i < fs.getNbRows(); i++) {
-						System.out.println(i + " " + fc.getZScore(i) + " "+fc.getParticipationCoefficient(i)+ " "+fc.getSizeCommunity(fc.getCommunity(i))+ " "+fc.getDegree(i));
+						fwr.write(i + " " + fc.getZScore(i) + " "+fc.getParticipationCoefficient(i)+ " "+fc.getSizeCommunity(fc.getCommunity(i))+ " "+fc.getDegree(i)+"\n");
 					}
+					fwr.close();
 				}
 				else {
-					System.out.println("#node fp fr ff");
-					for (int i = 0; i < fs.getNbColumns(); i++) {
-						//log.debug("Feature " + i);
-						System.out.println(i + " " + fs.fp(i, fs.getClusterOfObjectI(i)) + " " + fs.fr(i, fs.getClusterOfObjectI(i)) + " " + fs.getFeatureValue(i, fs.getClusterOfObjectI(i)));
+					FileWriter fw = new FileWriter(new File(output+".fs"));
+					fw.write("#com node ff\n");
+					ArrayList<Integer> l;
+					SortedLabelSet s = new SortedLabelSet();
+					int node;
+					log.info("Writing Feature selection results");
+					for (int cls=0; cls < fs.getNbCluster(); cls++) {
+						 l= fs.getObjectsInCk(cls);
+						 for (Iterator<Integer> it=l.iterator(); it.hasNext();) {
+							 node=it.next();
+							 s.add(new PairFWeighted(fs.getLabelOfCol(node), fs.getFeatureValue(node, cls)));
+						 }
+						 for (PairFWeighted pair : s) {
+							 fw.write(cls +" "+pair.getLeft()+" "+ pair.getRight()+"\n");
+						 }
+						 s.clear();
 					}
+					fw.close();
+					if (line.hasOption("ls")) {
+						log.info("Running label selection");
+						FileWriter fwl = new FileWriter(new File(output+".ls"));
+						LabelSelection ls = new LabelSelection(fs);
+						log.info("Writing label selection results");
+						for (int cluster =0; cluster < fs.getNbCluster(); cluster++) {
+							fwl.write("#\n------------CLUSTER "+cluster+ " ------------------+\n");
+							s.clear();
+							for (Iterator<Integer> it=ls.getPrevalentFeatureSet(cluster).iterator(); it.hasNext();) {
+								node=it.next();
+								if (fs.getClusterOfObjectI(node) == cluster) {
+									s.add(new PairFWeighted(fs.getLabelOfCol(node), fs.getFeatureValue(node, cluster)));
+								}
+							}
+							for (PairFWeighted pair : s) {
+								fwl.write(pair.getLeft()+" "+ pair.getRight()+" | ");
+							}
+						}
+						fwl.close();
+					}
+					/*for (int i = 0; i < fs.getNbColumns(); i++) {
+						System.out.println(fs.getLabelOfCol(i) + " " + fs.fp(i, fs.getClusterOfObjectI(i)) + " " + fs.fr(i, fs.getClusterOfObjectI(i)) + " " + fs.getFeatureValue(i, fs.getClusterOfObjectI(i)));
+					}*/
 				}
 				
 			}
@@ -156,6 +202,9 @@ public class MainFeatureSelection {
 		} catch (ParseException exp) {
 			log.fatal("Unexpected exception:" + exp.getMessage());
 		} catch (FileNotFoundException e) {
+			log.fatal(e);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			log.fatal(e);
 		}
 	}

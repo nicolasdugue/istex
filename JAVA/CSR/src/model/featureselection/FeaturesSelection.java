@@ -1,5 +1,6 @@
 package model.featureselection;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -232,6 +233,10 @@ public class FeaturesSelection implements IFeaturesSelection {
 	public int getClusterOfLabel(String s) {
 		return matrix.getClusterOfLabel(s);
 	}
+	public ArrayList<Integer> getObjectsInCk(int cluster) {
+		return matrix.getObjectsInCk(cluster);
+	}
+	
 	
 	
 	

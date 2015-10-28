@@ -2,6 +2,10 @@ package model.featureselection;
 
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
+import util.SGLogger;
+
 /**
  * Allows to store the feature considered as labels for each cluster
  * 
@@ -16,8 +20,10 @@ public class LabelSelection implements ILabelSelection {
 	 */
 	private ArrayList<ArrayList<Integer>> labels = new ArrayList<ArrayList<Integer>>();
 	private IFeaturesSelection fs;
+	private Logger log;
 	
 	public LabelSelection(IFeaturesSelection fs) {
+		log=SGLogger.getInstance();
 		this.fs=fs;
 		// POur chaque cluster, on prépare une liste de labels qui, au départ,
 		// est vide
@@ -28,6 +34,9 @@ public class LabelSelection implements ILabelSelection {
 		int clusterWithValueMax;
 
 		for (int j = 0; j < fs.getNbFeatureSelected(); j++) {
+			if (j % 1000 == 0) {
+				log.debug("1000 features handled");
+			}
 			valueMax=-1;
 			clusterWithValueMax=-1;
 			for (int k = 0; k < fs.getNbCluster(); k++) {
