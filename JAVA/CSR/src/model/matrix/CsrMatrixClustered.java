@@ -11,6 +11,7 @@ import model.util.nuplet.PairF;
 public class CsrMatrixClustered {
 	private IMatrix matrix;
 	private IClustering clusters;
+	private float[] sum_cluster;
 	
 	public CsrMatrixClustered() {
 		super();
@@ -19,6 +20,7 @@ public class CsrMatrixClustered {
 	public CsrMatrixClustered(IMatrix m, IClustering clusters) {
 		this.matrix=m;
 		this.clusters = clusters;
+		this.sum_cluster = new float[this.getNbCluster()];
 	}
 
 	public int getNbCluster() {
@@ -45,13 +47,16 @@ public class CsrMatrixClustered {
 	 * @return the sum over all the a_ij that belongs to the cluster
 	 */
 	public float getSumCluster(int k) {
-		ArrayList<Integer> row_lists=clusters.getObjectsInCk(k);
-		Iterator<Integer> it = row_lists.iterator();
-		float sum=0;
-		while (it.hasNext()) {
-			sum+=matrix.getSumRow(it.next());
+		if (sum_cluster[k] == 0.0) {
+			ArrayList<Integer> row_lists=clusters.getObjectsInCk(k);
+			Iterator<Integer> it = row_lists.iterator();
+			float sum=0;
+			while (it.hasNext()) {
+				sum+=matrix.getSumRow(it.next());
+			}
+			sum_cluster[k]=sum;
 		}
-		return sum;
+		return sum_cluster[k];
 	}
 
 	/*public int getCumulativeRows(int i) {

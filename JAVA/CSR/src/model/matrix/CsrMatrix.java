@@ -49,6 +49,10 @@ public class CsrMatrix implements IMatrix {
 	protected ArrayList<PairF> columns;
 	protected ArrayList<Integer> cumulative_columns;
 	
+	//Avoid computing several times the sums
+	protected float[] sum_line;
+	protected float[] sum_col;
+	
 	
 	public CsrMatrix(IMatrixReader mr) {
 		cumulative_rows=new ArrayList<Integer>(mr.getNb_rows());
@@ -78,6 +82,9 @@ public class CsrMatrix implements IMatrix {
 			}
 			cumulative_columns.add(elmt_i);
 		}
+		
+		sum_line = new float[this.getNbRows()];
+		sum_col = new float[this.getNbColumns()];
 	}
 	
 
@@ -109,19 +116,27 @@ public class CsrMatrix implements IMatrix {
 	}
 	
 	/**
+	 * If the row sum has already been computed, it returns this sum. Otherwise, it runs the computation, store the result and return it.
+	 * 
 	 * @param i the row you need to get the sum
 	 * @return sum over the i-th row of the matrix
 	 */
 	public float getSumRow(int i) {
-		return getSum(i, true);		
+		if (sum_line[i] == 0.0)
+			sum_line[i] = getSum(i, true);
+		return sum_line[i];
 	}
 	
 	/**
+	 * If the column sum has already been computed, it returns this sum. Otherwise, it runs the computation, store the result and return it.
+	 * 
 	 * @param i the column you need to get the sum
 	 * @return sum over the i-th column of the matrix
 	 */
 	public float getSumCol(int i) {
-		return getSum(i, false);
+		if (sum_col[i] == 0.0)
+			sum_col[i] = getSum(i, false);
+		return sum_col[i];
 	}
 	
 	private float getSum(int i, boolean is_on_row) {

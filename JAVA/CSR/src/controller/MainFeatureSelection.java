@@ -41,6 +41,7 @@ public class MainFeatureSelection {
 		options.addOption("g", "graph", false, "read a list of arcs instead of a matrix");
 		options.addOption("r", "roles", false, "Computes community roles");
 		options.addOption("log", "log", false, "log events");
+		options.addOption("v", "verbose", false, "debug or verbose mode");
 		options.addOption("e", "exemple", false, "Run exemple");
 		OptionBuilder.hasArgs(1);
 		OptionBuilder.withArgName("matrix");
@@ -110,6 +111,9 @@ public class MainFeatureSelection {
 						}
 						if (line.hasOption("log")) {
 							log.setLevel(Level.INFO);
+						}
+						if (line.hasOption("v")) {
+							log.setLevel(Level.DEBUG);
 						}
 						m1 = line.getOptionValues("m")[0];
 						c1 = line.getOptionValues("c")[0];

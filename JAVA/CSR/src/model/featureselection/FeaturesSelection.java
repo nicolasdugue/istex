@@ -4,7 +4,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import model.matrix.CsrMatrixClustered;
+import util.SGLogger;
 
 /**
  * Contains Feature Selection functions to obtain Feature F-Measure
@@ -14,6 +17,7 @@ import model.matrix.CsrMatrixClustered;
  */
 public class FeaturesSelection implements IFeaturesSelection {
 	private CsrMatrixClustered matrix;
+	private Logger log;
 	public CsrMatrixClustered getMatrix() {
 		return matrix;
 	}
@@ -28,6 +32,7 @@ public class FeaturesSelection implements IFeaturesSelection {
 		this.matrix = matrix;
 		featuresMatrix = new float[matrix.getNbColumns()][matrix.getNbCluster()];
 		meanFMeasure = new float[matrix.getNbColumns()];
+		log=SGLogger.getInstance();
 		fillFromCsrMatrix();
 	}
 	/*
@@ -40,6 +45,9 @@ public class FeaturesSelection implements IFeaturesSelection {
 		for (int j=0; j < matrix.getNbColumns(); j++) {
 			local_sum=0;
 			not_null=0;
+			if (j % 1000 == 0) {
+				log.debug(j + "-th feature handled");
+			}
 			for (int k=0; k < matrix.getNbCluster(); k++) {
 				featuresMatrix[j][k]=this.ff(j, k);
 				if (featuresMatrix[j][k] > 0) {
@@ -59,6 +67,11 @@ public class FeaturesSelection implements IFeaturesSelection {
 		//System.out.println("FR = " + getSumColInCluster(column, cluster)+ " / " + getSumCol(column));
 		return (float)matrix.getSumColInCluster(column, cluster) / matrix.getSumCol(column);
 	}
+	//Computes the feature recall
+	public float fr(int column, int cluster, float sumColInCluster) {
+		//System.out.println("FR = " + getSumColInCluster(column, cluster)+ " / " + getSumCol(column));
+		return sumColInCluster / matrix.getSumCol(column);
+	}
 	
 	// Computes the feature precision
 	public float fp(int column, int cluster) {
@@ -67,14 +80,23 @@ public class FeaturesSelection implements IFeaturesSelection {
 		float den = matrix.getSumCluster(cluster);
 		return (float)num / den;
 	}
+	// Computes the feature precision
+	public float fp(int column, int cluster, float sumColInCluster) {
+		//System.out.println("FP = " + getSumColInCluster(column, cluster)+ " / " + getSumCluster(cluster));
+		float num = sumColInCluster;
+		float den = matrix.getSumCluster(cluster);
+		return (float)num / den;
+	}
+	
 	/**
 	 * @param column the feature you are interested in as its column id
 	 * @param cluster the cluster you are interested in as its id
 	 * @return the feature F-measure of feature "column" in cluster "cluster"
 	 */
 	private float ff(int column, int cluster) {
-		float fr=fr(column, cluster);
-		float fp = fp(column, cluster);
+		float sumColInCluster = matrix.getSumColInCluster(column, cluster);
+		float fr=fr(column, cluster,sumColInCluster);
+		float fp = fp(column, cluster,sumColInCluster);
 		if (fp == 0)
 			return 0;
 		return (2*fr*fp/(fr+fp));
