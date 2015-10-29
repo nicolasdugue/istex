@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import io.reader.interfaces.IMatrixReader;
 import model.util.nuplet.PairF;
+import util.Memory;
 
 public class NrmReader implements IMatrixReader {
 
@@ -116,6 +117,15 @@ public class NrmReader implements IMatrixReader {
 
 	public void setNb_elmt(int nb_elmt) {
 		this.nb_elmt = nb_elmt;
+	}
+	public void clear() {
+		for (ArrayList l : matrix_rows)
+			l.clear();
+		for (ArrayList l : matrix_columns)
+			l.clear();
+		matrix_rows.clear();
+		matrix_columns.clear();
+		Memory.garbageCollector();		
 	}
 
 }

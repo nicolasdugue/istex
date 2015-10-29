@@ -2,10 +2,12 @@ package io.reader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import io.reader.interfaces.IClusteringReader;
 import model.cluster.Clustering;
+import util.LineNumber;
 
 /**
  * Allows to read Clustering file descriptor written as follows : each line i contains and integer k that indicates that object i from the matrix (line) belongs to clusters k
@@ -16,9 +18,9 @@ import model.cluster.Clustering;
 public class ClusteringReader implements IClusteringReader {
 	private Clustering clusters;
 	private String fileName;
-	public ClusteringReader(String fileName) throws FileNotFoundException {
+	public ClusteringReader(String fileName) throws IOException {
 		super();
-		clusters=new Clustering();
+		clusters=new Clustering(LineNumber.getNbLines(fileName));
 		this.fileName = fileName;
 		readAndFillModel();
 	}

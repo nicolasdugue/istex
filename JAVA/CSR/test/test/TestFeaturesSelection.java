@@ -20,7 +20,7 @@ public class TestFeaturesSelection {
 	@Before
 	public void setUp() throws Exception {
 		MatrixReader iskoMaghreb = new MatrixReader("matrix_lamirel_iskomaghreb");
-		Clustering cim = new Clustering();
+		Clustering cim = new Clustering(6);
 		cim.add(0);
 		cim.add(0);
 		cim.add(0);

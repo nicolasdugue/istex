@@ -2,10 +2,12 @@ package model.featureselection;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import model.util.LabelStore;
+import util.LineNumber;
 
 public class LabelSelectionFromFile implements ILabelSelection {
 
@@ -17,13 +19,13 @@ public class LabelSelectionFromFile implements ILabelSelection {
 	
 	
 	
-	public LabelSelectionFromFile(String fileName) throws FileNotFoundException {
+	public LabelSelectionFromFile(String fileName) throws IOException {
 		super();
 		this.fileName = fileName;
-		this.clusterLabels = new LabelStore();
+		this.clusterLabels = new LabelStore(LineNumber.getNbLines(fileName));
 		featuresWeights = new ArrayList<Float>();
 		labels = new ArrayList<ArrayList<Integer>>();
-		ls = new LabelStore();
+		ls = new LabelStore(this.clusterLabels.getSize());
 		readAndFill();
 	}
 	private void readAndFill() throws FileNotFoundException {

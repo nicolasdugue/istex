@@ -1,6 +1,7 @@
 package model.util.factory;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import io.reader.ClusteringReader;
 import io.reader.LabelReader;
@@ -40,7 +41,7 @@ public abstract class AFactory {
 		this.lr=lr;
 	}
 
-	public LabelDiachronism matchingFromLabel(String fileNameSrc, String fileNameTarget) throws FileNotFoundException {
+	public LabelDiachronism matchingFromLabel(String fileNameSrc, String fileNameTarget) throws IOException {
 		ILabelSelection ls_t0 = new LabelSelectionFromFile(fileNameSrc);
 		ILabelSelection ls_t1 = new LabelSelectionFromFile(fileNameTarget);
 		LabelDiachronism ld = new LabelDiachronism(ls_t0, ls_t1);
@@ -48,7 +49,7 @@ public abstract class AFactory {
 	}
 
 	public LabelDiachronism matchingFromMatrixCluster(String matrix1, String matrix2, String cluster1,
-			String cluster2) throws FileNotFoundException {
+			String cluster2) throws IOException {
 		ILabelSelection ls_t0 = getLabelsFromMatrixClusters(matrix1, cluster1);
 		ILabelSelection ls_t1 = getLabelsFromMatrixClusters(matrix2, cluster2);
 		LabelDiachronism ld = new LabelDiachronism(ls_t0, ls_t1);
@@ -56,7 +57,7 @@ public abstract class AFactory {
 	}
 
 	public LabelDiachronism matchingFromMatrixClusterLabels(String matrix1, String matrix2, String cluster1,
-			String cluster2, String label1, String label2) throws FileNotFoundException {
+			String cluster2, String label1, String label2) throws IOException {
 		ILabelSelection ls_t0 = getLabelsFromMatrixClustersLabels(matrix1, cluster1, label1);
 		ILabelSelection ls_t1 = getLabelsFromMatrixClustersLabels(matrix2, cluster2, label2);
 		LabelDiachronism ld = new LabelDiachronism(ls_t0, ls_t1);
@@ -64,22 +65,22 @@ public abstract class AFactory {
 	}
 
 	public ILabelSelection getLabelsFromMatrixClusters(String matrix, String cluster)
-			throws FileNotFoundException {
+			throws IOException {
 		ILabelSelection ls_t0 = new LabelSelection(new FeaturesSelection(new CsrMatrixClustered(new CsrMatrix(fr.getReader(matrix)), cr.getReader(cluster).getClusters())));
 		return ls_t0;
 	}
 	
-	public ILabelSelection getLabelsFromMatrixClustersLabels(String matrix,  String cluster, String label) throws FileNotFoundException {
+	public ILabelSelection getLabelsFromMatrixClustersLabels(String matrix,  String cluster, String label) throws IOException {
 		LabelReader lr = new LabelReader(label);
 		LabelStore ls = lr.getLs();
 		ILabelSelection ls_t0 = new LabelSelection(new FeaturesSelection(new CsrMatrixClustered(new MatrixFeatureLabels(new CsrMatrix(fr.getReader(matrix)), ls), cr.getReader(cluster).getClusters())));
 		return ls_t0;
 	}
 	
-	public  IFeaturesSelection getFeatureSelecter(String matrix, String cluster) throws FileNotFoundException {
+	public  IFeaturesSelection getFeatureSelecter(String matrix, String cluster) throws IOException {
 		return new FeaturesSelection(new CsrMatrixClustered(new CsrMatrix(fr.getReader(matrix)), new ClusteringReader(cluster).getClusters()));
 	}
-	public  IFeaturesSelection getFeatureSelecter(String matrix, String cluster, String labels) throws FileNotFoundException {
+	public  IFeaturesSelection getFeatureSelecter(String matrix, String cluster, String labels) throws IOException {
 		return new FeaturesSelection(new CsrMatrixClustered(new MatrixFeatureLabels(new CsrMatrix(fr.getReader(matrix)), lr.getReader(labels).getLs()), cr.getReader(cluster).getClusters()));
 	}
 

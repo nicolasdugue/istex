@@ -1,6 +1,5 @@
 package model.util;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -10,17 +9,18 @@ import java.util.HashMap;
  *
  */
 public class LabelStore {
-	private ArrayList<String> labels = new ArrayList<String>();
+	private String[] labels;
+	int cpt=0;
 	private HashMap<String, Integer> features = new HashMap<String, Integer>();
-	public LabelStore() {
-		super();
+	public LabelStore(int size) {
+		labels=new String[size];
 	}
 	/**
 	 * @param key the row or column index
 	 * @return the label matching with the key
 	 */
 	public String getLabel(Integer key) {
-		return labels.get(key);
+		return labels[key];
 	}
 	
 	/**
@@ -36,21 +36,14 @@ public class LabelStore {
 	 * 
 	 */
 	public void addLabel(String value) {
-		features.put(value,labels.size());
-		labels.add(value);
-		
+		features.put(value,cpt);
+		labels[cpt]=value;
+		cpt++;
 	}
 	
-	/**
-	 * @param value label
-	 * @return true if the label exists
-	 */
-	public boolean containsLabel(String value) {
-		return labels.contains(value);
-	}
 	
 	public int getSize() {
-		return labels.size();
+		return labels.length;
 	}
 	
 }

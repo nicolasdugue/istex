@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Iterator;
 
 import com.google.gson.Gson;
@@ -38,9 +39,9 @@ public class Controller {
 	 * 
 	 * @param f1 source features values
 	 * @param f2 target features values
-	 * @throws FileNotFoundException
+	 * @throws IOException 
 	 */
-	public void doRunDiachronism(String f1, String f2) throws FileNotFoundException {
+	public void doRunDiachronism(String f1, String f2) throws IOException {
 		ld=adf.matchingFromLabel(f1, f2);
 		v.print(this.getJson());
 	}
@@ -51,9 +52,9 @@ public class Controller {
 	 * @param m2 target matrix
 	 * @param c1 source clustering
 	 * @param c2 target clustering
-	 * @throws FileNotFoundException
+	 * @throws IOException 
 	 */
-	public void doRunDiachronism(String m1, String m2, String c1, String c2) throws FileNotFoundException {
+	public void doRunDiachronism(String m1, String m2, String c1, String c2) throws IOException {
 		ld=adf.matchingFromMatrixCluster(m1,m2,c1,c2);
 		v.print(this.getJson());
 	}
@@ -67,9 +68,9 @@ public class Controller {
 	 * @param c2 target clustering
 	 * @param l1 source labels
 	 * @param l2 target labels
-	 * @throws FileNotFoundException
+	 * @throws IOException 
 	 */
-	public void doRunDiachronism(String m1, String m2, String c1, String c2, String l1, String l2) throws FileNotFoundException {
+	public void doRunDiachronism(String m1, String m2, String c1, String c2, String l1, String l2) throws IOException {
 		if (l1 == null || l2 == null)
 			this.doRunDiachronism(m1, m2, c1, c2);
 		else {

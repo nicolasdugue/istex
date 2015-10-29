@@ -15,7 +15,7 @@ public class TestClusteringModel {
 
 	@Test
 	public void testAdd() {
-		Clustering c = new Clustering();
+		Clustering c = new Clustering(11);
 		c.add(0);
 		c.add(4);
 		c.add(1);

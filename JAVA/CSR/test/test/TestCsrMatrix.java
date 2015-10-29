@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +22,7 @@ public class TestCsrMatrix {
 	@Before
 	public void setUp() throws Exception {
 		IMatrixReader mr = new ArcsReader("matrix_arcs");
-		Clustering c = new Clustering();
+		Clustering c = new Clustering(4);
 		c.add(0);
 		c.add(0);
 		c.add(1);
@@ -98,25 +100,25 @@ public class TestCsrMatrix {
 
 	@Test
 	public void testGetRow() {
-		assertEquals(2, cm.getRow(0).size());
-		assertEquals(2, cm.getRow(1).size());
-		assertEquals(1, cm.getRow(2).size());
-		assertEquals(1, cm.getRow(3).size());
+		assertEquals(2, cm.getRow(0).length);
+		assertEquals(2, cm.getRow(1).length);
+		assertEquals(1, cm.getRow(2).length);
+		assertEquals(1, cm.getRow(3).length);
 
-		assertTrue(cm.getRow(0).contains(new PairF(0, 2f)) && cm.getRow(0).contains(new PairF(3, 7f))
-				&& cm.getRow(1).contains(new PairF(0, 1f)) && cm.getRow(1).contains(new PairF(1, 3f))
-				&& cm.getRow(2).contains(new PairF(3, 8f)) && cm.getRow(3).contains(new PairF(2, 4f)));
+		assertTrue(Arrays.asList(cm.getRow(0)).contains(new PairF(0, 2f)) && Arrays.asList(cm.getRow(0)).contains(new PairF(3, 7f))
+				&& Arrays.asList(cm.getRow(1)).contains(new PairF(0, 1f)) && Arrays.asList(cm.getRow(1)).contains(new PairF(1, 3f))
+				&& Arrays.asList(cm.getRow(2)).contains(new PairF(3, 8f)) && Arrays.asList(cm.getRow(3)).contains(new PairF(2, 4f)));
 	}
 
 	public void getColumn() {
-		assertEquals(2, cm.getColumn(0).size());
-		assertEquals(1, cm.getColumn(1).size());
-		assertEquals(1, cm.getColumn(2).size());
-		assertEquals(2, cm.getColumn(3).size());
+		assertEquals(2, cm.getColumn(0).length);
+		assertEquals(1, cm.getColumn(1).length);
+		assertEquals(1, cm.getColumn(2).length);
+		assertEquals(2, cm.getColumn(3).length);
 
-		assertTrue(cm.getColumn(0).contains(new PairF(0, 2f)) && cm.getColumn(0).contains(new PairF(1, 1f))
-				&& cm.getColumn(1).contains(new PairF(1, 3f)) && cm.getColumn(2).contains(new PairF(3, 4f))
-				&& cm.getColumn(3).contains(new PairF(0, 7f)) && cm.getColumn(3).contains(new PairF(2, 8f)));
+		assertTrue(Arrays.asList(cm.getColumn(0)).contains(new PairF(0, 2f)) && Arrays.asList(cm.getColumn(0)).contains(new PairF(1, 1f))
+				&& Arrays.asList(cm.getColumn(1)).contains(new PairF(1, 3f)) && Arrays.asList(cm.getColumn(2)).contains(new PairF(3, 4f))
+				&& Arrays.asList(cm.getColumn(3)).contains(new PairF(0, 7f)) && Arrays.asList(cm.getColumn(3)).contains(new PairF(2, 8f)));
 	}
 
 }

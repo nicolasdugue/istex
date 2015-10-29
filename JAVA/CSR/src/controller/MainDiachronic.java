@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 
 import org.apache.commons.cli.CommandLine;
@@ -129,6 +130,8 @@ public class MainDiachronic {
 
 		} catch (ParseException exp) {
 			log.fatal("Unexpected exception:" + exp.getMessage());
+		} catch (IOException e) {
+			log.fatal(e);
 		}
 
 		

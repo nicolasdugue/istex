@@ -1,13 +1,14 @@
 package controller;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import model.util.factory.AFactory;
 import model.util.factory.GraphFactory;
 import view.View;
 
 public class DiachronicIsko {
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		View v = new View();
 		AFactory factory = new GraphFactory();
 

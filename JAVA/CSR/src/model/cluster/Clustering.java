@@ -19,7 +19,8 @@ public class Clustering implements IClustering{
 	 * An array that stores for each object (matrix row) i, the cluster j it belongs to.
 	 * <br>So clusters.get(i) returns j which is the cluster i belongs to.
 	 */
-	private ArrayList<Integer> clusters = new ArrayList<Integer>();
+	private int[] clusters;
+	private int cpt=0;
 
 	// Liste des objets dans chaque cluster
 	/**
@@ -28,28 +29,19 @@ public class Clustering implements IClustering{
 	 */
 	private ArrayList<ArrayList<Integer>> clustersList = new ArrayList<ArrayList<Integer>>();
 
+	
+	public Clustering(int size) {
+		clusters=new int[size];
+	}
+
+
 	public int size() {
 		return clustersList.size();
 	}
 
-	public boolean isEmpty() {
-		return clusters.isEmpty();
-	}
-
-	public boolean contains(Object o) {
-		return clusters.contains(o);
-	}
-
-	public Object clone() {
-		return clusters.clone();
-	}
-
-	public Object[] toArray() {
-		return clusters.toArray();
-	}
 
 	public Integer getClusterOfObjectI(int index) {
-		return clusters.get(index);
+		return clusters[index];
 	}
 
 	
@@ -60,33 +52,19 @@ public class Clustering implements IClustering{
 	 * @param e Cluster to which the object clusters.size() belongs
 	 * @return whether the object could be added or not to clusters
 	 */
-	public boolean add(Integer e) {
+	public void add(Integer e) {
 		int nb_clusters = clustersList.size() - 1;
 		if (nb_clusters < e) {
 			for (int i = 0; i < (e - nb_clusters); i++) {
 				clustersList.add(new ArrayList<Integer>());
 			}
 		}
-		int row = clusters.size();
+		int row = cpt;
 		clustersList.get(e).add(row);
-		return clusters.add(e);
+		clusters[cpt]=e;
+		cpt++;
 	}
 
-	public void add(int index, Integer element) {
-		clusters.add(index, element);
-	}
-
-	public Integer remove(int index) {
-		return clusters.remove(index);
-	}
-
-	public boolean remove(Object o) {
-		return clusters.remove(o);
-	}
-
-	public Iterator<Integer> iterator() {
-		return clusters.iterator();
-	}
 
 	public ArrayList<Integer> getObjectsInCk(int cluster) {
 		return clustersList.get(cluster);

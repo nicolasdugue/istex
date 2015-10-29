@@ -16,7 +16,7 @@ public class TestCsrMatrixClustered {
 	@Before
 	public void setUp() throws Exception {
 		MatrixReader mr = new MatrixReader("matrix");
-		Clustering c = new Clustering();
+		Clustering c = new Clustering(4);
 		c.add(0);
 		c.add(0);
 		c.add(1);

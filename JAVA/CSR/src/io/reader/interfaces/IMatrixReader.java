@@ -19,6 +19,8 @@ public interface IMatrixReader {
 	public int getNb_columns();
 
 	public int getNb_elmt();
+	
+	public void clear();
 
 	
 }

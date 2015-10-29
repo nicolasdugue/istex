@@ -42,11 +42,11 @@ public abstract class MatrixDecorator implements IMatrix {
 		return m.getNbRows();
 	}
 
-	public List<PairF> getRow(int i) {
+	public PairF[] getRow(int i) {
 		return m.getRow(i);
 	}
 
-	public List<PairF> getColumn(int j) {
+	public PairF[] getColumn(int j) {
 		return m.getColumn(j);
 	}
 

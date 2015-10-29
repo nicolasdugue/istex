@@ -1,6 +1,7 @@
 package model.matrix;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -46,11 +47,11 @@ import util.SGLogger;
  */
 public class CsrMatrix implements IMatrix {
 
-	protected ArrayList< PairF > rows;
-	protected ArrayList<Integer> cumulative_rows;
+	protected PairF[] rows;
+	protected int[] cumulative_rows;
 	
-	protected ArrayList<PairF> columns;
-	protected ArrayList<Integer> cumulative_columns;
+	protected PairF[] columns;
+	protected int[] cumulative_columns;
 	
 	//Avoid computing several times the sums
 	protected float[] sum_line;
@@ -59,33 +60,39 @@ public class CsrMatrix implements IMatrix {
 	private Logger log;
 	
 	public CsrMatrix(IMatrixReader mr) {
-		cumulative_rows=new ArrayList<Integer>(mr.getNb_rows());
-		rows = new ArrayList<PairF>(mr.getNb_elmt());
+		cumulative_rows=new int[mr.getNb_rows()];
+		rows = new PairF[mr.getNb_elmt()];
 		Iterator<ArrayList<PairF>> it_rows = mr.getMatrix_rows().iterator();
 		Iterator<PairF> it_row;
 		int elmt_i=0;
+		int nb_row=0;
 		while (it_rows.hasNext()) {
 			it_row=it_rows.next().iterator();
 			while (it_row.hasNext()) {
-				rows.add(it_row.next());
+				rows[elmt_i]=it_row.next();
 				elmt_i++;
 			}
-			cumulative_rows.add(elmt_i);
+			cumulative_rows[nb_row]=elmt_i;
+			nb_row++;
 		}
 		
-		cumulative_columns=new ArrayList<Integer>(mr.getNb_columns());
-		columns = new ArrayList<PairF>(mr.getNb_elmt());
+		cumulative_columns=new int[mr.getNb_columns()];
+		columns = new PairF[mr.getNb_elmt()];
 		Iterator<ArrayList<PairF>> it_columns = mr.getMatrix_columns().iterator();
 		Iterator<PairF> it_column;
 		elmt_i=0;
+		int nb_col=0;
 		while (it_columns.hasNext()) {
 			it_column=it_columns.next().iterator();
 			while (it_column.hasNext()) {
-				columns.add(it_column.next());
+				columns[elmt_i]=it_column.next();
 				elmt_i++;
 			}
-			cumulative_columns.add(elmt_i);
+			cumulative_columns[nb_col]=elmt_i;
+			nb_col++;
 		}
+		//Release memory
+		mr.clear();
 		
 		sum_line = new float[this.getNbRows()];
 		sum_col = new float[this.getNbColumns()];
@@ -103,27 +110,27 @@ public class CsrMatrix implements IMatrix {
 	}
 	
 	public int getCumulativeRows(int i) {
-		return cumulative_rows.get(i);
+		return cumulative_rows[i];
 	}
 	public int getCumulativeColumns(int i) {
-		return cumulative_columns.get(i);
+		return cumulative_columns[i];
 	}
 	
 	public PairF getIinRows(int i) {
-		return rows.get(i);
+		return rows[i];
 	}
 	public PairF getIinColumns(int i) {
-		return columns.get(i);
+		return columns[i];
 	}
 	
 	public int getNbElements() {
-		return cumulative_rows.get(cumulative_rows.size() - 1);
+		return cumulative_rows[cumulative_rows.length - 1];
 	}
 	public int getNbRows() {
-		return cumulative_rows.size();
+		return cumulative_rows.length;
 	}
 	public int getNbColumns() {
-		return cumulative_columns.size();
+		return cumulative_columns.length;
 	}
 	
 	/**
@@ -151,8 +158,8 @@ public class CsrMatrix implements IMatrix {
 	}
 	
 	private float getSum(int i, boolean is_on_row) {
-		ArrayList< PairF > rows_or_col;
-		ArrayList<Integer> cumulative_rows_or_col;
+		PairF[] rows_or_col;
+		int[] cumulative_rows_or_col;
 		if (is_on_row) {
 			rows_or_col=this.rows;
 			cumulative_rows_or_col=this.cumulative_rows;
@@ -167,12 +174,12 @@ public class CsrMatrix implements IMatrix {
 			start=0;
 		}
 		else {
-			start=cumulative_rows_or_col.get(i-1);
+			start=cumulative_rows_or_col[i-1];
 		}
-		end =cumulative_rows_or_col.get(i);
+		end =cumulative_rows_or_col[i];
 		float sum=0f;
 		for (int j=start; j < end; j++) {
-			sum +=rows_or_col.get(j).getRight();
+			sum +=rows_or_col[j].getRight();
 		}
 		return sum;
 	}
@@ -191,32 +198,32 @@ public class CsrMatrix implements IMatrix {
 
 
 	@Override
-	public List<PairF> getRow(int i) {
+	public PairF[] getRow(int i) {
 		int start;
 		int end;
 		if (i == 0) {
 			start=0;
 		}
 		else {
-			start=cumulative_rows.get(i-1);
+			start=cumulative_rows[i-1];
 		}
-		end =cumulative_rows.get(i);
-		return rows.subList(start, end);
+		end =cumulative_rows[i];
+		return Arrays.copyOfRange(rows, start, end);
 	}
 
 
 	@Override
-	public List<PairF> getColumn(int j) {
+	public PairF[] getColumn(int j) {
 		int start;
 		int end;
 		if (j == 0) {
 			start=0;
 		}
 		else {
-			start=cumulative_columns.get(j-1);
+			start=cumulative_columns[j-1];
 		}
-		end =cumulative_columns.get(j);
-		return columns.subList(start, end);
+		end =cumulative_columns[j];
+		return Arrays.copyOfRange(columns, start, end);
 	}
 
 

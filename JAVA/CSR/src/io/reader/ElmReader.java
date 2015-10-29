@@ -2,16 +2,18 @@ package io.reader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import io.reader.interfaces.IClusteringReader;
 import model.cluster.Clustering;
+import util.LineNumber;
 
 public class ElmReader  implements IClusteringReader{
 	private Clustering clusters;
 	private String fileName;
-	public ElmReader(String fileName) throws FileNotFoundException {
-		clusters=new Clustering();
+	public ElmReader(String fileName) throws IOException {
+		clusters=new Clustering(LineNumber.getNbLines(fileName));
 		this.fileName = fileName;
 		readAndFillModel();
 	}

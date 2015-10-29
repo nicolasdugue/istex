@@ -15,12 +15,12 @@ public interface IMatrix {
 	 * @param i the row index
 	 * @return A list of integer pairs describing the i-th matrix row such as (j, w) where j is the column of the i-th row element and w its weight
 	 */
-	public List<PairF> getRow(int i);
+	public PairF[] getRow(int i);
 	/**
 	 * @param j the column index
 	 * @return A list of integer pairs describing the j-th matrix column such as (i, w) where i is the row of the j-th column element and w its weight
 	 */
-	public List<PairF> getColumn(int j);
+	public PairF[] getColumn(int j);
 	
 	/**
 	 * @return the number of non-null x_ij in the Matrix, basically less than to {@link #getNbRows()} * {@link #getNbColumns()}

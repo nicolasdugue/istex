@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import io.reader.interfaces.IMatrixReader;
 import model.util.nuplet.PairF;
+import util.Memory;
 
 /**
  * 
@@ -102,6 +103,16 @@ public class ArcsReader implements IMatrixReader {
 	@Override
 	public int getNb_elmt() {
 		return nb_elmt;
+	}
+	
+	public void clear() {
+		for (ArrayList l : matrix_rows)
+			l.clear();
+		for (ArrayList l : matrix_columns)
+			l.clear();
+		matrix_rows.clear();
+		matrix_columns.clear();
+		Memory.garbageCollector();		
 	}
 
 }

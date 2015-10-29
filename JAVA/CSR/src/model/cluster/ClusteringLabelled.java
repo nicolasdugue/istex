@@ -13,8 +13,8 @@ public class ClusteringLabelled implements IClustering {
 		return clustering.getClusterOfObjectI(index);
 	}
 
-	public boolean add(Integer e) {
-		return clustering.add(e);
+	public void add(Integer e) {
+		clustering.add(e);
 	}
 
 	public ArrayList<Integer> getObjectsInCk(int cluster) {
