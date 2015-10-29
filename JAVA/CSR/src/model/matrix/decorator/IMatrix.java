@@ -71,6 +71,10 @@ public interface IMatrix {
 	 * @return the j-th column matching with the label
 	 */
 	public int getIndexOfColLabel(String label);
+	
+	public int getCumulativeColumns(int i);
+	
+	public PairF getIinColumns(int i);
 
 
 }

@@ -13,7 +13,7 @@ public class TestMatrixReader {
 	private MatrixReader m;
 	@Before
 	public void setUp() throws Exception {
-		m = new MatrixReader("matrix");
+		m = new MatrixReader("exemples/matrix");
 
 	}
 

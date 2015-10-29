@@ -1,7 +1,5 @@
 package model.matrix.decorator;
 
-import java.util.List;
-
 import model.util.nuplet.PairF;
 
 public abstract class MatrixDecorator implements IMatrix {
@@ -81,6 +79,14 @@ public abstract class MatrixDecorator implements IMatrix {
 
 	public int getIndexOfColLabel(String label) {
 		return m.getIndexOfColLabel(label);
+	}
+
+	public int getCumulativeColumns(int i) {
+		return m.getCumulativeColumns(i);
+	}
+
+	public PairF getIinColumns(int i) {
+		return m.getIinColumns(i);
 	}
 
 }

@@ -16,9 +16,9 @@ public class TestFunctionnalCartography {
 	private FunctionalCartography fc;
 	@Before
 	public void setUp() throws Exception {
-		ArcsReader mr = new ArcsReader("Guimera_matrix");
+		ArcsReader mr = new ArcsReader("exemples/Guimera_matrix");
 		CsrMatrix csr = new CsrMatrix(mr);
-		ClusteringReader cr = new ClusteringReader("Guimera_community");
+		ClusteringReader cr = new ClusteringReader("exemples/Guimera_community");
 		CsrMatrixClustered csrc = new CsrMatrixClustered(csr, cr.getClusters());
 		fc=new FunctionalCartography(csrc);
 		fc.doZScore();

@@ -42,11 +42,21 @@ public class CsrMatrixClustered {
 	 * @return sum over the i-th column of the matrix for each objet that belongs to cluster k
 	 */
 	public float getSumColInCluster(int i, int k) {
-		PairF[] column = matrix.getColumn(i);
-		float sum=0;
-		for (PairF p : column) {
-			if (clusters.getClusterOfObjectI(p.getLeft()) == k)
-				sum +=p.getRight();
+		int start;
+		int end;
+		if (i == 0) {
+			start=0;
+		}
+		else {
+			start=matrix.getCumulativeColumns(i-1);
+		}
+		end =matrix.getCumulativeColumns(i);
+		float sum=0f;
+		PairF val;
+		for (int j=start; j < end; j++) {
+			val=matrix.getIinColumns(j);
+			if (clusters.getClusterOfObjectI(val.getLeft()) == k)
+				sum +=val.getRight();
 		}
 		return sum;
 	}

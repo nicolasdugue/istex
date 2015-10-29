@@ -11,9 +11,10 @@ import java.util.HashMap;
 public class LabelStore {
 	private String[] labels;
 	int cpt=0;
-	private HashMap<String, Integer> features = new HashMap<String, Integer>();
+	private HashMap<String, Integer> features;
 	public LabelStore(int size) {
 		labels=new String[size];
+		features = new HashMap<String, Integer>(size);
 	}
 	/**
 	 * @param key the row or column index

@@ -14,9 +14,10 @@ public class MatrixFeatureLabels extends MatrixDecorator{
 
 	public MatrixFeatureLabels(IMatrix m) {
 		super(m);
+
 	}
 	public MatrixFeatureLabels(IMatrix m, LabelStore featuresLabels) {
-		super(m);
+		this(m);
 		this.featuresLabels = featuresLabels;
 	}
 	@Override

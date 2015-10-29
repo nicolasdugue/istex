@@ -135,7 +135,7 @@ public class MainFeatureSelection {
 
 				//Controller c = new Controller(v, factory);
 				FeaturesSelection fs;
-				if (l1 == null)
+				if (!line.hasOption("l"))
 					fs = (FeaturesSelection) factory.getFeatureSelecter(m1,c1);
 				else
 					fs = (FeaturesSelection) factory.getFeatureSelecter(m1,c1,l1);

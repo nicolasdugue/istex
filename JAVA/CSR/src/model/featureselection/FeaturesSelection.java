@@ -25,13 +25,13 @@ public class FeaturesSelection implements IFeaturesSelection {
 	public void setMatrix(CsrMatrixClustered matrix) {
 		this.matrix = matrix;
 	}
-	private float[][] featuresMatrix;
+	//private float[][] featuresMatrix;
 	private float[] meanFMeasure;
 	private float globalMeanFMeasure;
 	public FeaturesSelection(CsrMatrixClustered matrix) {
 		super();
 		this.matrix = matrix;
-		featuresMatrix = new float[matrix.getNbColumns()][matrix.getNbCluster()];
+		//featuresMatrix = new float[matrix.getNbColumns()][matrix.getNbCluster()];
 		meanFMeasure = new float[matrix.getNbColumns()];
 		log=SGLogger.getInstance();
 		fillFromCsrMatrix();
@@ -43,6 +43,7 @@ public class FeaturesSelection implements IFeaturesSelection {
 		float local_sum;
 		float global_sum=0;
 		int not_null;
+		float ffm;
 		for (int j=0; j < matrix.getNbColumns(); j++) {
 			local_sum=0;
 			not_null=0;
@@ -50,9 +51,9 @@ public class FeaturesSelection implements IFeaturesSelection {
 				log.debug(j + "-th feature handled");
 			}
 			for (int k=0; k < matrix.getNbCluster(); k++) {
-				featuresMatrix[j][k]=this.ff(j, k);
-				if (featuresMatrix[j][k] > 0) {
-					local_sum+=featuresMatrix[j][k];
+				ffm=this.ff(j, k);
+				if (ffm > 0) {
+					local_sum+=ffm;
 					not_null++;
 				}
 			}
@@ -96,10 +97,10 @@ public class FeaturesSelection implements IFeaturesSelection {
 	 */
 	private float ff(int column, int cluster) {
 		float sumColInCluster = matrix.getSumColInCluster(column, cluster);
-		float fr=fr(column, cluster,sumColInCluster);
-		float fp = fp(column, cluster,sumColInCluster);
+		float fp = sumColInCluster/matrix.getSumCluster(cluster);
 		if (fp == 0)
 			return 0;
+		float fr=sumColInCluster/ matrix.getSumCol(column);
 		return (2*fr*fp/(fr+fp));
 	}
 	
@@ -122,7 +123,7 @@ public class FeaturesSelection implements IFeaturesSelection {
 
 	
 	private float getFeatureFMeasure(int f, int cluster) {
-		return featuresMatrix[f][cluster];
+		return ff(f,cluster);
 	}
 	
 	
@@ -147,16 +148,20 @@ public class FeaturesSelection implements IFeaturesSelection {
 	
 	public Set<Integer> getFeaturesSelected(int cluster) {
 		Set<Integer> l = new HashSet<Integer>();
+		float ff;
 		for (int i=0; i < matrix.getNbColumns(); i++) {
-			if ((this.featuresMatrix[i][cluster] > this.meanFMeasure[i]) && (this.featuresMatrix[i][cluster] > this.globalMeanFMeasure))
+			ff=this.getFeatureFMeasure(i,cluster);
+			if ((ff > this.meanFMeasure[i]) && (ff > this.globalMeanFMeasure))
 				l.add(i);
 		}
 		return l;
 	}
 	public Set<String> getFeaturesAsStringSelected(int cluster) {
 		Set<String> l = new HashSet<String>();
+		float ff;
 		for (int i=0; i < matrix.getNbColumns(); i++) {
-			if ((this.featuresMatrix[i][cluster] > this.meanFMeasure[i]) && (this.featuresMatrix[i][cluster] > this.globalMeanFMeasure))
+			ff=this.getFeatureFMeasure(i,cluster);
+			if ((ff > this.meanFMeasure[i]) && (ff > this.globalMeanFMeasure))
 				l.add(this.getLabelOfCol(i));
 		}
 		return l;
@@ -216,10 +221,10 @@ public class FeaturesSelection implements IFeaturesSelection {
 	/**
 	 * @param f the feature one wants to get the F-measure
 	 * @param cluster the cluster one is interested
-	 * @return the average Feature F Measure for feature f and cluster cluster
+	 * @return the Feature F Measure for feature f and cluster cluster
 	 */
 	public float getFeatureValue(int f, int cluster) {
-		return getFeatureFMeasure(f, cluster);
+		return ff(f, cluster);
 	}
 	public int getNbRows() {
 		return matrix.getNbRows();

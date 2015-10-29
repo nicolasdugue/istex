@@ -14,7 +14,7 @@ public class TestLabelSelectionFromFile {
 	LabelSelectionFromFile ls;
 	@Before
 	public void setUp() throws Exception {
-		ls = new LabelSelectionFromFile("00-0350gnge-tn-DD-ENL.fmgs");
+		ls = new LabelSelectionFromFile("exemples/00-0350gnge-tn-DD-ENL.fmgs");
 	}
 
 	@Test

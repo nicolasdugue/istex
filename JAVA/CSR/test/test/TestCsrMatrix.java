@@ -21,7 +21,7 @@ public class TestCsrMatrix {
 
 	@Before
 	public void setUp() throws Exception {
-		IMatrixReader mr = new ArcsReader("matrix_arcs");
+		IMatrixReader mr = new ArcsReader("exemples/matrix_arcs");
 		Clustering c = new Clustering(4);
 		c.add(0);
 		c.add(0);

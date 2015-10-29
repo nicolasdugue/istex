@@ -54,10 +54,10 @@ public class CsrMatrix implements IMatrix {
 	protected int[] cumulative_columns;
 	
 	//Avoid computing several times the sums
-	protected float[] sum_line;
+	//protected float[] sum_line;
 	protected float[] sum_col;
 	
-	private Logger log;
+	protected Logger log;
 	
 	public CsrMatrix(IMatrixReader mr) {
 		cumulative_rows=new int[mr.getNb_rows()];
@@ -94,7 +94,7 @@ public class CsrMatrix implements IMatrix {
 		//Release memory
 		mr.clear();
 		
-		sum_line = new float[this.getNbRows()];
+		//sum_line = new float[this.getNbRows()];
 		sum_col = new float[this.getNbColumns()];
 		
 		log=SGLogger.getInstance();
@@ -140,9 +140,20 @@ public class CsrMatrix implements IMatrix {
 	 * @return sum over the i-th row of the matrix
 	 */
 	public float getSumRow(int i) {
-		if (sum_line[i] == 0.0)
-			sum_line[i] = getSum(i, true);
-		return sum_line[i];
+		int start;
+		int end;		
+		if (i == 0) {
+			start=0;
+		}
+		else {
+			start=cumulative_rows[i-1];
+		}
+		end=cumulative_rows[i];
+		float sum=0f;
+		for (int j=start; j < end; j++) {
+			sum +=rows[j].getRight();
+		}
+		return sum;
 	}
 	
 	/**
@@ -152,36 +163,23 @@ public class CsrMatrix implements IMatrix {
 	 * @return sum over the i-th column of the matrix
 	 */
 	public float getSumCol(int i) {
-		if (sum_col[i] == 0.0)
-			sum_col[i] = getSum(i, false);
+		if (sum_col[i] == 0.0) {
+			int start;
+			int end;		
+			if (i == 0) {
+				start=0;
+			}
+			else {
+				start=cumulative_columns[i-1];
+			}
+			end=cumulative_columns[i];
+			float sum=0f;
+			for (int j=start; j < end; j++) {
+				sum +=columns[j].getRight();
+			}
+			sum_col[i]= sum;
+		}
 		return sum_col[i];
-	}
-	
-	private float getSum(int i, boolean is_on_row) {
-		PairF[] rows_or_col;
-		int[] cumulative_rows_or_col;
-		if (is_on_row) {
-			rows_or_col=this.rows;
-			cumulative_rows_or_col=this.cumulative_rows;
-		}
-		else {
-			rows_or_col=this.columns;
-			cumulative_rows_or_col=this.cumulative_columns;
-		}
-		int start;
-		int end;
-		if (i == 0) {
-			start=0;
-		}
-		else {
-			start=cumulative_rows_or_col[i-1];
-		}
-		end =cumulative_rows_or_col[i];
-		float sum=0f;
-		for (int j=start; j < end; j++) {
-			sum +=rows_or_col[j].getRight();
-		}
-		return sum;
 	}
 
 
