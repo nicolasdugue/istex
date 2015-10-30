@@ -238,7 +238,7 @@ public class MainFeatureSelection {
 			if (line.hasOption("e"))
 				return true;
 			if (line.hasOption("g") || line.hasOption("m")) {
-				if (line.hasOption("o")) {
+				if (!line.hasOption("o")) {
 					log.warn("You need to provide output path with -o option");
 					okay=false;
 				}
