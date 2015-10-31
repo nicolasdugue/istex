@@ -83,4 +83,15 @@ public class Clustering implements IClustering{
 	public int getClusterOfLabel(String s) {
 		return Integer.parseInt(s);
 	}
+	
+	/**
+	 * Allows to avoid overhead due to the resizement method of arraylist
+	 * Reisze all the arraylist to the real size
+	 */
+	public void clusteringLoaded() {
+		for (ArrayList l : clustersList)
+			l.trimToSize();
+		clustersList.trimToSize();
+	}
+	
 }

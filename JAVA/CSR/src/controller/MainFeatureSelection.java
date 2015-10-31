@@ -45,7 +45,6 @@ public class MainFeatureSelection {
 
 		options.addOption("h", "help", false, "print this message");
 		options.addOption("g", "graph", false, "read a list of arcs instead of a matrix");
-		options.addOption("r", "roles", false, "Computes community roles");
 		options.addOption("log", "log", false, "log events");
 		options.addOption("v", "verbose", false, "debug or verbose mode");
 		options.addOption("e", "exemple", false, "Run exemple");
@@ -142,60 +141,48 @@ public class MainFeatureSelection {
 				String output =line.getOptionValues("o")[0];
 				
 				
-				//TODO - Make a proper controller
-				if (line.hasOption("r")) {
-					FileWriter fwr = new FileWriter(new File(output+".rl"));
-					FunctionalCartography fc = new FunctionalCartography(fs.getMatrix());
-					fc.doZScore();
-					fwr.write("#node zscore coefp sizecom degree\n");
-					for (int i = 0; i < fs.getNbRows(); i++) {
-						fwr.write(i + " " + fc.getZScore(i) + " "+fc.getParticipationCoefficient(i)+ " "+fc.getSizeCommunity(fc.getCommunity(i))+ " "+fc.getDegree(i)+"\n");
-					}
-					fwr.close();
+				
+				FileWriter fw = new FileWriter(new File(output+".fs"));
+				fw.write("#com node ff\n");
+				ArrayList<Integer> l;
+				SortedLabelSet s = new SortedLabelSet();
+				int node;
+				log.info("Writing Feature selection results");
+				for (int cls=0; cls < fs.getNbCluster(); cls++) {
+					 l= fs.getObjectsInCk(cls);
+					 for (Iterator<Integer> it=l.iterator(); it.hasNext();) {
+						 node=it.next();
+						 s.add(new PairFWeighted(fs.getLabelOfCol(node), fs.getFeatureValue(node, cls)));
+					 }
+					 for (PairFWeighted pair : s) {
+						 fw.write(cls +" "+pair.getLeft()+" "+ pair.getRight()+"\n");
+					 }
+					 s.clear();
 				}
-				else {
-					FileWriter fw = new FileWriter(new File(output+".fs"));
-					fw.write("#com node ff\n");
-					ArrayList<Integer> l;
-					SortedLabelSet s = new SortedLabelSet();
-					int node;
-					log.info("Writing Feature selection results");
-					for (int cls=0; cls < fs.getNbCluster(); cls++) {
-						 l= fs.getObjectsInCk(cls);
-						 for (Iterator<Integer> it=l.iterator(); it.hasNext();) {
-							 node=it.next();
-							 s.add(new PairFWeighted(fs.getLabelOfCol(node), fs.getFeatureValue(node, cls)));
-						 }
-						 for (PairFWeighted pair : s) {
-							 fw.write(cls +" "+pair.getLeft()+" "+ pair.getRight()+"\n");
-						 }
-						 s.clear();
-					}
-					fw.close();
-					if (line.hasOption("ls")) {
-						log.info("Running label selection");
-						FileWriter fwl = new FileWriter(new File(output+".ls"));
-						LabelSelection ls = new LabelSelection(fs);
-						log.info("Writing label selection results");
-						for (int cluster =0; cluster < fs.getNbCluster(); cluster++) {
-							fwl.write("#\n------------CLUSTER "+cluster+ " ------------------+\n");
-							s.clear();
-							for (Iterator<Integer> it=ls.getPrevalentFeatureSet(cluster).iterator(); it.hasNext();) {
-								node=it.next();
-								if (fs.getClusterOfObjectI(node) == cluster) {
-									s.add(new PairFWeighted(fs.getLabelOfCol(node), fs.getFeatureValue(node, cluster)));
-								}
-							}
-							for (PairFWeighted pair : s) {
-								fwl.write(pair.getLeft()+" "+ pair.getRight()+" | ");
+				fw.close();
+				if (line.hasOption("ls")) {
+					log.info("Running label selection");
+					FileWriter fwl = new FileWriter(new File(output+".ls"));
+					LabelSelection ls = new LabelSelection(fs);
+					log.info("Writing label selection results");
+					for (int cluster =0; cluster < fs.getNbCluster(); cluster++) {
+						fwl.write("#\n------------CLUSTER "+cluster+ " ------------------+\n");
+						s.clear();
+						for (Iterator<Integer> it=ls.getPrevalentFeatureSet(cluster).iterator(); it.hasNext();) {
+							node=it.next();
+							if (fs.getClusterOfObjectI(node) == cluster) {
+								s.add(new PairFWeighted(fs.getLabelOfCol(node), fs.getFeatureValue(node, cluster)));
 							}
 						}
-						fwl.close();
+						for (PairFWeighted pair : s) {
+							fwl.write(pair.getLeft()+" "+ pair.getRight()+" | ");
+						}
 					}
-					/*for (int i = 0; i < fs.getNbColumns(); i++) {
-						System.out.println(fs.getLabelOfCol(i) + " " + fs.fp(i, fs.getClusterOfObjectI(i)) + " " + fs.fr(i, fs.getClusterOfObjectI(i)) + " " + fs.getFeatureValue(i, fs.getClusterOfObjectI(i)));
-					}*/
+					fwl.close();
 				}
+				/*for (int i = 0; i < fs.getNbColumns(); i++) {
+					System.out.println(fs.getLabelOfCol(i) + " " + fs.fp(i, fs.getClusterOfObjectI(i)) + " " + fs.fr(i, fs.getClusterOfObjectI(i)) + " " + fs.getFeatureValue(i, fs.getClusterOfObjectI(i)));
+				}*/
 				
 			}
 

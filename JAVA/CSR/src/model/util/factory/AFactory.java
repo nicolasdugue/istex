@@ -83,5 +83,11 @@ public abstract class AFactory {
 	public  IFeaturesSelection getFeatureSelecter(String matrix, String cluster, String labels) throws IOException {
 		return new FeaturesSelection(new CsrMatrixClustered(new MatrixFeatureLabels(new CsrMatrix(fr.getReader(matrix)), lr.getReader(labels).getLs()), cr.getReader(cluster).getClusters()));
 	}
+	public CsrMatrixClustered getMatrixClustered(String matrix, String cluster, String labels) throws FileNotFoundException, IOException{
+		return new CsrMatrixClustered(new MatrixFeatureLabels(new CsrMatrix(fr.getReader(matrix)), lr.getReader(labels).getLs()), cr.getReader(cluster).getClusters());
+	}
+	public CsrMatrixClustered getMatrixClustered(String matrix, String cluster) throws FileNotFoundException, IOException{
+		return new CsrMatrixClustered(new CsrMatrix(fr.getReader(matrix)), cr.getReader(cluster).getClusters());
+	}
 
 }

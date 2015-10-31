@@ -31,6 +31,7 @@ public class ElmReader  implements IClusteringReader{
 				clusters.add(cluster);
 		}
 		sc.close();
+		clusters.clusteringLoaded();
 	}
 	public Clustering getClusters() {
 		return clusters;

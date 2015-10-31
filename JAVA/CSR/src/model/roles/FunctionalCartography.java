@@ -104,6 +104,8 @@ public class FunctionalCartography {
 	 * @return
 	 */
 	public float std(List<Integer> l, float mean) {
+		if (mean == 0)
+			return 0;
 		float std=0;
 		float tmp;
 		for (Iterator<Integer> it=l.iterator(); it.hasNext(); ) {
@@ -149,9 +151,14 @@ public class FunctionalCartography {
 	
 	public float getParticipationCoefficient(int node) {
 		//1 - Somme sur toutes les communautés c de (degré de node dans c - degré de node)²
+		if (this.getDegree(node) == 0)
+			return 0;
 		float coef_p=1;
+		float in_degree;
 		for (int com=0; com < this.getNbCommunities();com++) {
-			coef_p-=Math.pow(((float)this.getDegreeInCom(node, com) / (float)this.getDegree(node)), 2);
+			in_degree=this.getDegreeInCom(node, com);
+			if (in_degree != 0)
+				coef_p-=Math.pow(((float)this.getDegreeInCom(node, com) / (float)this.getDegree(node)), 2);
 		}
 		return coef_p;
 	}
