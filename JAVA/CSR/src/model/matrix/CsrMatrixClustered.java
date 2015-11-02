@@ -62,6 +62,31 @@ public class CsrMatrixClustered {
 	}
 	
 	/**
+	 * @param i the column you need to get the sum
+	 * @param k the cluster the rows have to belong to
+	 * @return sum over the i-th column of the matrix for each objet that belongs to cluster k
+	 */
+	public float getSumRowInCluster(int i, int k) {
+		int start;
+		int end;
+		if (i == 0) {
+			start=0;
+		}
+		else {
+			start=matrix.getCumulativeRows(i-1);
+		}
+		end =matrix.getCumulativeRows(i);
+		float sum=0f;
+		PairF val;
+		for (int j=start; j < end; j++) {
+			val=matrix.getIinRows(j);
+			if (clusters.getClusterOfObjectI(val.getLeft()) == k)
+				sum +=val.getRight();
+		}
+		return sum;
+	}
+	
+	/**
 	 * @param k the cluster you want to get the whole sum
 	 * @return the sum over all the a_ij that belongs to the cluster
 	 */

@@ -5,9 +5,12 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import io.reader.interfaces.IMatrixReader;
 import model.util.nuplet.PairF;
 import util.Memory;
+import util.SGLogger;
 
 /**
  * 
@@ -23,7 +26,6 @@ public class ArcsReader implements IMatrixReader {
 	private int nb_rows;
 	private int nb_columns;
 	private int nb_elmt;
-	
 	public ArcsReader(String filename) throws FileNotFoundException {
 		super();
 		this.filename = filename;

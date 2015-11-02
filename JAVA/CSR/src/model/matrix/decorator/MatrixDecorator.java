@@ -89,4 +89,12 @@ public abstract class MatrixDecorator implements IMatrix {
 		return m.getIinColumns(i);
 	}
 
+	public int getCumulativeRows(int i) {
+		return m.getCumulativeRows(i);
+	}
+
+	public PairF getIinRows(int i) {
+		return m.getIinRows(i);
+	}
+
 }

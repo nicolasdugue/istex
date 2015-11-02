@@ -75,6 +75,10 @@ public interface IMatrix {
 	public int getCumulativeColumns(int i);
 	
 	public PairF getIinColumns(int i);
+	
+	public int getCumulativeRows(int i);
+	
+	public PairF getIinRows(int i);
 
 
 }
