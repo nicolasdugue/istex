@@ -95,6 +95,28 @@
 							</archive>
 						</configuration>
 					</execution>
+					<execution>
+						<id>CommunityRoles</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<skipTests>true</skipTests>
+							<classifier>CommunityRoles</classifier>
+							<descriptorRefs>
+								<descriptorRef>CommunityRoles</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifest>
+									<!-- Jar file entry point -->
+									<addClasspath>true</addClasspath>
+									<classpathPrefix>lib/</classpathPrefix>
+									<mainClass>controller.MainGraphMeasures</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 		</plugins>

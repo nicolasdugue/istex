@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 
 import model.featureselection.FeaturesSelection;
 import model.featureselection.LabelSelection;
+import model.matrix.CsrMatrixClustered;
 import model.roles.FunctionalCartography;
 import model.util.factory.AFactory;
 import model.util.factory.GraphFactory;
@@ -31,10 +32,8 @@ import model.util.factory.MatrixFactory;
 import model.util.nuplet.PairFWeighted;
 import model.util.nuplet.collection.SortedLabelSet;
 import util.SGLogger;
-import view.View;
 
-@SuppressWarnings("deprecation")
-public class MainFeatureSelection {
+public class MainGraphMeasures {
 
 	private static HelpFormatter formatter = new HelpFormatter();
 	private static CommandLineParser parser = new DefaultParser();
@@ -45,10 +44,10 @@ public class MainFeatureSelection {
 
 		options.addOption("h", "help", false, "print this message");
 		options.addOption("g", "graph", false, "read a list of arcs instead of a matrix");
+		//options.addOption("r", "roles", false, "Computes community roles using Guimerà & Amaral measures");
 		options.addOption("log", "log", false, "log events");
 		options.addOption("v", "verbose", false, "debug or verbose mode");
 		options.addOption("e", "exemple", false, "Run exemple");
-		options.addOption("ls", "labelselection", false, "Extract labels");
 		OptionBuilder.hasArgs(1);
 		OptionBuilder.withArgName("matrix");
 		OptionBuilder.withDescription(
@@ -133,56 +132,25 @@ public class MainFeatureSelection {
 				//View v = new View();
 
 				//Controller c = new Controller(v, factory);
-				FeaturesSelection fs;
+				CsrMatrixClustered matrix;
 				if (!line.hasOption("l"))
-					fs = (FeaturesSelection) factory.getFeatureSelecter(m1,c1);
+					matrix = factory.getMatrixClustered(m1,c1);
 				else
-					fs = (FeaturesSelection) factory.getFeatureSelecter(m1,c1,l1);
+					matrix = factory.getMatrixClustered(m1,c1,l1);
 				String output =line.getOptionValues("o")[0];
 				
 				
-				
-				FileWriter fw = new FileWriter(new File(output+".fs"));
-				fw.write("#com node ff\n");
-				ArrayList<Integer> l;
-				SortedLabelSet s = new SortedLabelSet();
-				int node;
-				log.info("Writing Feature selection results");
-				for (int cls=0; cls < fs.getNbCluster(); cls++) {
-					 l= fs.getObjectsInCk(cls);
-					 for (Iterator<Integer> it=l.iterator(); it.hasNext();) {
-						 node=it.next();
-						 s.add(new PairFWeighted(fs.getLabelOfCol(node), fs.getFeatureValue(node, cls)));
-					 }
-					 for (PairFWeighted pair : s) {
-						 fw.write(cls +" "+pair.getLeft()+" "+ pair.getRight()+"\n");
-					 }
-					 s.clear();
+				//TODO - Make a proper controller
+				//if (line.hasOption("r")) {
+				FileWriter fwr = new FileWriter(new File(output+".rl"));
+				FunctionalCartography fc = new FunctionalCartography(matrix);
+				fc.doZScore();
+				fwr.write("#node zscore coefp sizecom degree\n");
+				for (int i = 0; i < matrix.getNbRows(); i++) {
+					fwr.write(i + " " + fc.getZScore(i) + " "+fc.getParticipationCoefficient(i)+ " "+fc.getSizeCommunity(fc.getCommunity(i))+ " "+fc.getDegree(i)+"\n");
 				}
-				fw.close();
-				if (line.hasOption("ls")) {
-					log.info("Running label selection");
-					FileWriter fwl = new FileWriter(new File(output+".ls"));
-					LabelSelection ls = new LabelSelection(fs);
-					log.info("Writing label selection results");
-					for (int cluster =0; cluster < fs.getNbCluster(); cluster++) {
-						fwl.write("#\n------------CLUSTER "+cluster+ " ------------------+\n");
-						s.clear();
-						for (Iterator<Integer> it=ls.getPrevalentFeatureSet(cluster).iterator(); it.hasNext();) {
-							node=it.next();
-							if (fs.getClusterOfObjectI(node) == cluster) {
-								s.add(new PairFWeighted(fs.getLabelOfCol(node), fs.getFeatureValue(node, cluster)));
-							}
-						}
-						for (PairFWeighted pair : s) {
-							fwl.write(pair.getLeft()+" "+ pair.getRight()+" | ");
-						}
-					}
-					fwl.close();
-				}
-				/*for (int i = 0; i < fs.getNbColumns(); i++) {
-					System.out.println(fs.getLabelOfCol(i) + " " + fs.fp(i, fs.getClusterOfObjectI(i)) + " " + fs.fr(i, fs.getClusterOfObjectI(i)) + " " + fs.getFeatureValue(i, fs.getClusterOfObjectI(i)));
-				}*/
+				fwr.close();
+				//}
 				
 			}
 
@@ -265,6 +233,7 @@ public class MainFeatureSelection {
 		}
 		
 		public static void printHelp() {
-			formatter.printHelp("Feature selection, node ", options);
+			formatter.printHelp("Compute community roles ", options);
 		}
+
 }
