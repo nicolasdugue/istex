@@ -11,7 +11,7 @@ Furthermore, this tool is also adapted to deal with large weighted graphs to stu
 * The Java project may be imported into all IDE (Eclipse, IntelliJ or Netbeans) ;
 * It need JRE7 at least ;
 * The projet should be built using Maven and running the command *mvn install* at the root of the projet ;
-* Releases can be downloaded if one does not want to install maven.
+* Releases can be downloaded **if one does not want to install maven**.
 
 #### Using the jar as linux commands
 
