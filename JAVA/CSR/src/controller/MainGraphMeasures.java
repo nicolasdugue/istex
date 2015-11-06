@@ -27,8 +27,12 @@ import model.featureselection.LabelSelection;
 import model.matrix.CsrMatrixClustered;
 import model.roles.FunctionalCartography;
 import model.util.factory.AFactory;
+import model.util.factory.GraphElmFactory;
 import model.util.factory.GraphFactory;
+import model.util.factory.MatrixElmFactory;
 import model.util.factory.MatrixFactory;
+import model.util.factory.NrmClusteringFactory;
+import model.util.factory.NrmElmFactory;
 import model.util.nuplet.PairFWeighted;
 import model.util.nuplet.collection.SortedLabelSet;
 import util.SGLogger;
@@ -111,9 +115,6 @@ public class MainGraphMeasures {
 						printHelp();
 					}
 					else {
-						if (line.hasOption("g")) {
-							factory = new GraphFactory();
-						}
 						if (line.hasOption("log")) {
 							log.setLevel(Level.INFO);
 						}

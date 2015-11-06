@@ -4,14 +4,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import model.util.factory.AFactory;
-import model.util.factory.VieillissementFactory;
+import model.util.factory.NrmElmFactory;
 import view.View;
 
 public class DiachronicVieillissement {
 
 	public static void main(String[] args) throws IOException{
 		View v = new View();
-		AFactory factory = new VieillissementFactory();
+		AFactory factory = new NrmElmFactory();
 
 		Controller c = new Controller(v, factory);
 

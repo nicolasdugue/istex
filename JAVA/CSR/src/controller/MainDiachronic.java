@@ -16,8 +16,12 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import model.util.factory.AFactory;
+import model.util.factory.GraphElmFactory;
 import model.util.factory.GraphFactory;
+import model.util.factory.MatrixElmFactory;
 import model.util.factory.MatrixFactory;
+import model.util.factory.NrmClusteringFactory;
+import model.util.factory.NrmElmFactory;
 import util.SGLogger;
 import view.View;
 
@@ -51,13 +55,13 @@ public class MainDiachronic {
 		OptionBuilder.hasArgs(2);
 		OptionBuilder.withArgName("matrixSource> <matrixTarget");
 		OptionBuilder.withDescription(
-				"Source and targetMatrices. One row per line. Element separated with spaces or tabs.");
+				"Source and target matrices. Fomat : One row per line, element separated with spaces or tabs. NRM files also allowed.");
 		Option opt = OptionBuilder.create("m");
 		options.addOption(opt);
 		OptionBuilder.hasArgs(2);
 		OptionBuilder.withArgName("clusteringSource> <clusteringTarget");
 		OptionBuilder.withDescription(
-				"Source and target clustering. One integer per line indicated the belonging cluster of each row.");
+				"Source and target clustering. One integer per line indicated the belonging cluster of each row. ELM files also allowed.");
 		opt = OptionBuilder.create("c");
 		options.addOption(opt);
 		OptionBuilder.hasArgs(2);
@@ -104,9 +108,6 @@ public class MainDiachronic {
 				if (line.hasOption("e")) {
 					//TODO Diachronic Exemple
 				}
-				if (line.hasOption("g")) {
-					factory = new GraphFactory();
-				}
 				if (line.hasOption("m")) {
 					m1 = line.getOptionValues("m")[0];
 					m2 = line.getOptionValues("m")[1];
@@ -119,7 +120,22 @@ public class MainDiachronic {
 					l2 = line.getOptionValues("l")[1];
 					nbParam+=2;
 				}
-				//TODO ADD fileLabels Diachronism
+				if (line.hasOption("g")) {
+					if (c1.contains(".elm"))
+						factory = new GraphElmFactory();
+					else
+						factory = new GraphFactory();
+				}
+				if (m1.contains(".nrm")) {
+					if (c1.contains(".elm"))
+						factory = new NrmElmFactory();
+					else
+						factory = new NrmClusteringFactory();
+				}
+				else {
+					if (c1.contains(".elm"))
+						factory = new MatrixElmFactory();
+				}
 
 				View v = new View();
 

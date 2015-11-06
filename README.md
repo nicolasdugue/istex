@@ -8,8 +8,26 @@ It allows to analyse diachronically two different clustering of a same corpora (
 Furthermore, this tool is also adapted to deal with large weighted graphs to study the collaboration networks of authors of the corpus (**[3]**).
 
 ## Installation
-* The Java project may be imported into all IDE (Eclipse, IntelliJ or Netbeans) and then built. It need JRE7 at least ;
-* It requires GSON library and apache common cli library to be included in the build path.
+* The Java project may be imported into all IDE (Eclipse, IntelliJ or Netbeans) ;
+* It need JRE7 at least ;
+* The projet should be built using Maven and running the command *mvn install* at the root of the projet ;
+* Releases can be downloaded if one does not want to install maven.
+
+### Using the jar as linux commands
+
+To be able to use the jar easily as linux commands, you can use the following procedure.
+
+In a shell, run the following commands for each jar you want to use as a Linux command (except the last line, only once).
+
+	mkdir ~bin
+	echo "java -jar /path/to/the/jar/jarname.jar $@" > ~bin/cmdname
+	chmod +x cmdname
+	echo "export PATH=$PATH:~/bin" >> ~/.bashrc
+	
+
+Unlog then log to a terminal, you sould be able to run *cmdname* as a command.
+
+
 
 ## Organization
 The project is composed of the following folders:

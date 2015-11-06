@@ -26,8 +26,12 @@ import model.featureselection.FeaturesSelection;
 import model.featureselection.LabelSelection;
 import model.roles.FunctionalCartography;
 import model.util.factory.AFactory;
+import model.util.factory.GraphElmFactory;
 import model.util.factory.GraphFactory;
+import model.util.factory.MatrixElmFactory;
 import model.util.factory.MatrixFactory;
+import model.util.factory.NrmClusteringFactory;
+import model.util.factory.NrmElmFactory;
 import model.util.nuplet.PairFWeighted;
 import model.util.nuplet.collection.SortedLabelSet;
 import util.SGLogger;
@@ -85,7 +89,9 @@ public class MainFeatureSelection {
 			CommandLine line = parser.parse(options, args);
 			boolean process = check(line, options);
 			if (process) {
+				String output;
 				if (line.hasOption("e")) {
+					
 					log.setLevel(Level.INFO);
 					MainDiachronic m = new MainDiachronic();
 					URL url = m.getClass().getClassLoader().getResource("matrix_lamirel_iskomaghreb");
@@ -106,15 +112,13 @@ public class MainFeatureSelection {
 					}
 					else
 						l1=url.getFile();
+					log.info("Results stored in exemple_resultat file");
 				}
 				else {
 					if (line.hasOption("h")) {
 						printHelp();
 					}
 					else {
-						if (line.hasOption("g")) {
-							factory = new GraphFactory();
-						}
 						if (line.hasOption("log")) {
 							log.setLevel(Level.INFO);
 						}
@@ -123,13 +127,40 @@ public class MainFeatureSelection {
 						}
 						m1 = line.getOptionValues("m")[0];
 						c1 = line.getOptionValues("c")[0];
+						log.debug("Matrice : " + m1);
+						log.debug("Clustering : " +c1);
 						if (line.hasOption("l")) {
 							l1 = line.getOptionValues("l")[0];
 						}
 						
+						if (line.hasOption("g")) {
+							if (c1.contains(".elm"))
+								factory = new GraphElmFactory();
+							else
+								factory = new GraphFactory();
+						}
+						if (m1.contains(".nrm")) {
+							log.debug("Matrice nrm");
+							if (c1.contains(".elm"))  {
+								log.debug("Clustering elm");
+								factory = new NrmElmFactory();
+							}
+							else
+								factory = new NrmClusteringFactory();
+						}
+						else {
+							if (c1.contains(".elm"))
+								factory = new MatrixElmFactory();
+						}
+						
+						
 					}
 					
 				}
+				if (line.hasOption("e"))
+					output="exemple_resultat";
+				else
+					output=line.getOptionValues("o")[0];
 				//View v = new View();
 
 				//Controller c = new Controller(v, factory);
@@ -138,21 +169,19 @@ public class MainFeatureSelection {
 					fs = (FeaturesSelection) factory.getFeatureSelecter(m1,c1);
 				else
 					fs = (FeaturesSelection) factory.getFeatureSelecter(m1,c1,l1);
-				String output =line.getOptionValues("o")[0];
+				
 				
 				
 				
 				FileWriter fw = new FileWriter(new File(output+".fs"));
-				fw.write("#com node ff\n");
+				fw.write("#cluster object ff\n");
 				ArrayList<Integer> l;
 				SortedLabelSet s = new SortedLabelSet();
-				int node;
+				int feature;
 				log.info("Writing Feature selection results");
 				for (int cls=0; cls < fs.getNbCluster(); cls++) {
-					 l= fs.getObjectsInCk(cls);
-					 for (Iterator<Integer> it=l.iterator(); it.hasNext();) {
-						 node=it.next();
-						 s.add(new PairFWeighted(fs.getLabelOfCol(node), fs.getFeatureValue(node, cls)));
+					 for (int j=0; j < fs.getNbColumns(); j++) {
+						 s.add(new PairFWeighted(fs.getLabelOfCol(j), fs.getFeatureValue(j, cls)));
 					 }
 					 for (PairFWeighted pair : s) {
 						 fw.write(cls +" "+pair.getLeft()+" "+ pair.getRight()+"\n");
@@ -160,7 +189,7 @@ public class MainFeatureSelection {
 					 s.clear();
 				}
 				fw.close();
-				if (line.hasOption("ls")) {
+				if (line.hasOption("ls") || line.hasOption("e")) {
 					log.info("Running label selection");
 					FileWriter fwl = new FileWriter(new File(output+".ls"));
 					LabelSelection ls = new LabelSelection(fs);
@@ -169,10 +198,8 @@ public class MainFeatureSelection {
 						fwl.write("#\n------------CLUSTER "+cluster+ " ------------------+\n");
 						s.clear();
 						for (Iterator<Integer> it=ls.getPrevalentFeatureSet(cluster).iterator(); it.hasNext();) {
-							node=it.next();
-							if (fs.getClusterOfObjectI(node) == cluster) {
-								s.add(new PairFWeighted(fs.getLabelOfCol(node), fs.getFeatureValue(node, cluster)));
-							}
+							feature=it.next();
+							s.add(new PairFWeighted(fs.getLabelOfCol(feature), fs.getFeatureValue(feature, cluster)));
 						}
 						for (PairFWeighted pair : s) {
 							fwl.write(pair.getLeft()+" "+ pair.getRight()+" | ");
