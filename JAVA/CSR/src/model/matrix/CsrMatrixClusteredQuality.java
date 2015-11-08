@@ -199,7 +199,7 @@ public class CsrMatrixClusteredQuality {
 				if (j % 1000 == 0) {
 					log.debug(j + "-th feature handled");
 				}
-				for (int k=0; k < ((CsrMatrixClusteredQuality) matrix).getNbCluster(); k++) {
+				for (int k=0; k < ( matrix.getNbCluster(); k++) {
 					ffm=this.ff(j, k);
 					if (ffm > 0) {
 						local_sum+=ffm;
