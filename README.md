@@ -11,7 +11,7 @@ Furthermore, this tool is also adapted to deal with large weighted graphs to stu
 * The Java project may be imported into all IDE (Eclipse, IntelliJ or Netbeans) ;
 * It need JRE7 at least ;
 * The projet should be built using Maven and running the command *mvn install* at the root of the projet ;
-* Releases can be downloaded if one does not want to install maven.
+* Releases can be downloaded **if one does not want to install maven**.
 
 #### Using the jar as linux commands
 
@@ -102,4 +102,3 @@ national Joint Conference on, pages 956–965. IEEE, 2011.
 Academy of Sciences, 98(2) :404–409, 2001.
 * **[4]** Ivan P Stanimirovic and Milan B Tasic. Performance comparison of storage formats for sparse matrices.
 FACTA UNIVERSITATIS (NIS) Ser. Math. Inform, 24 :39–51, 2009.
-* **[5]** Patrick Viry. Ateji px for java-parallel programming made simple. Ateji White Paper, 2010.
