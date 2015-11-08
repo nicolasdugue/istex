@@ -34,7 +34,7 @@ public class LabelSelection implements ILabelSelection {
 		int clusterWithValueMax;
 		float featureValue;
 
-		for (int j = 0; j < fs.getNbFeatureSelected(); j++) {
+		for (int j = 0; j < fs.getNbFeatures(); j++) {
 			if (j % 1000 == 0) {
 				log.debug(j+"-th feature handled");
 			}

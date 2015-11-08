@@ -32,7 +32,7 @@ import model.util.factory.MatrixElmFactory;
 import model.util.factory.MatrixFactory;
 import model.util.factory.NrmClusteringFactory;
 import model.util.factory.NrmElmFactory;
-import model.util.nuplet.PairFWeighted;
+import model.util.nuplet.PairSFWeighted;
 import model.util.nuplet.collection.SortedLabelSet;
 import util.SGLogger;
 import view.View;
@@ -181,9 +181,9 @@ public class MainFeatureSelection {
 				log.info("Writing Feature selection results");
 				for (int cls=0; cls < fs.getNbCluster(); cls++) {
 					 for (int j=0; j < fs.getNbColumns(); j++) {
-						 s.add(new PairFWeighted(fs.getLabelOfCol(j), fs.getFeatureValue(j, cls)));
+						 s.add(new PairSFWeighted(fs.getLabelOfCol(j), fs.getFeatureValue(j, cls)));
 					 }
-					 for (PairFWeighted pair : s) {
+					 for (PairSFWeighted pair : s) {
 						 fw.write(cls +" "+pair.getLeft()+" "+ pair.getRight()+"\n");
 					 }
 					 s.clear();
@@ -199,9 +199,9 @@ public class MainFeatureSelection {
 						s.clear();
 						for (Iterator<Integer> it=ls.getPrevalentFeatureSet(cluster).iterator(); it.hasNext();) {
 							feature=it.next();
-							s.add(new PairFWeighted(fs.getLabelOfCol(feature), fs.getFeatureValue(feature, cluster)));
+							s.add(new PairSFWeighted(fs.getLabelOfCol(feature), fs.getFeatureValue(feature, cluster)));
 						}
-						for (PairFWeighted pair : s) {
+						for (PairSFWeighted pair : s) {
 							fwl.write(pair.getLeft()+" "+ pair.getRight()+" | ");
 						}
 					}

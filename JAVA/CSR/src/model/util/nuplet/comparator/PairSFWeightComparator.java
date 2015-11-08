@@ -2,12 +2,12 @@ package model.util.nuplet.comparator;
 
 import java.util.Comparator;
 
-import model.util.nuplet.PairFWeighted;
+import model.util.nuplet.PairSFWeighted;
 
-public class WeightComparator implements Comparator<PairFWeighted> {
+public class PairSFWeightComparator implements Comparator<PairSFWeighted> {
 
 	@Override
-	public int compare(PairFWeighted o1, PairFWeighted o2) {
+	public int compare(PairSFWeighted o1, PairSFWeighted o2) {
 		float diff = o1.getRight() - o2.getRight();
 		if (diff == 0) {
 			return (o1.getLeft().compareTo(o2.getLeft()));

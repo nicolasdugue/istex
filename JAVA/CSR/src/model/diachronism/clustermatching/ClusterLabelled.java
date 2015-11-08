@@ -5,14 +5,14 @@ import java.util.TreeSet;
 
 import com.google.gson.annotations.SerializedName;
 
-import model.util.nuplet.PairFWeighted;
-import model.util.nuplet.comparator.WeightComparator;
+import model.util.nuplet.PairSFWeighted;
+import model.util.nuplet.comparator.PairSFWeightComparator;
 
 public class ClusterLabelled {
 	@SerializedName("Name")
 	private String name;
 	@SerializedName("Labels")
-	private TreeSet<PairFWeighted> labels = new TreeSet<PairFWeighted>(new WeightComparator());
+	private TreeSet<PairSFWeighted> labels = new TreeSet<PairSFWeighted>(new PairSFWeightComparator());
 	
 	/**
 	 * @return the name
@@ -38,10 +38,10 @@ public class ClusterLabelled {
 	 * @return
 	 * @see java.util.ArrayList#add(java.lang.Object)
 	 */
-	public boolean add(PairFWeighted e) {
+	public boolean add(PairSFWeighted e) {
 		return labels.add(e);
 	}
-	public Set<PairFWeighted> getLabels() {
+	public Set<PairSFWeighted> getLabels() {
 		return labels;
 	}
 }

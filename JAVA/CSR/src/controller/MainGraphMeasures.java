@@ -33,7 +33,7 @@ import model.util.factory.MatrixElmFactory;
 import model.util.factory.MatrixFactory;
 import model.util.factory.NrmClusteringFactory;
 import model.util.factory.NrmElmFactory;
-import model.util.nuplet.PairFWeighted;
+import model.util.nuplet.PairSFWeighted;
 import model.util.nuplet.collection.SortedLabelSet;
 import util.SGLogger;
 
