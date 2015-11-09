@@ -13,26 +13,37 @@ import util.Memory;
 /**
  * Allows to Read a Matrix and to store it in a temporary manner.
  * <br>CsrMatrix Object is able to use this temporary storage in order to build a new, actual CSR/CSC matrix
- * <br>File is supposed to by organised this way :
+ * <br>File is supposed to by organized this way :
  * <br>-one matrix row per line of the file
  * <br>-matrix weights can be separated with space or tabs
- * 
+ *
  * @author dugue
- * 
+ *
  *
  */
 public class MatrixReader implements IMatrixReader {
 
-	
+
 	private String fileName;
 	private ArrayList<ArrayList<PairF > > matrix_rows = new ArrayList<ArrayList<PairF >>();
 	private ArrayList<ArrayList<PairF > > matrix_columns= new ArrayList<ArrayList<PairF >>();
 	private int nb_rows;
 	private int nb_columns;
 	private int nb_elmt;
+	private float sum_elmt;
+	
+	public float getSum_elmt() {
+		return sum_elmt;
+	}
+
+	public void setSum_elmt(float sum_elmt) {
+		this.sum_elmt = sum_elmt;
+	}
+
 	public MatrixReader(String fileName) throws FileNotFoundException {
 		super();
 		this.nb_elmt=0;
+		this.sum_elmt  = 0;
 		this.fileName = fileName;
 		read();
 	}
@@ -67,6 +78,7 @@ public class MatrixReader implements IMatrixReader {
 					row.add(new PairF(col_i, xij));
 					matrix_columns.get(col_i).add(new PairF(row_i, xij));
 					this.nb_elmt++;
+					this.sum_elmt = this.sum_elmt + xij;
 				}
 				col_i++;
 			}
@@ -84,8 +96,8 @@ public class MatrixReader implements IMatrixReader {
 	public PairF getXijColumns(int i, int j) {
 		return matrix_columns.get(i).get(j);
 	}
-	
-	
+
+
 	public ArrayList<ArrayList<PairF>> getMatrix_rows() {
 		return matrix_rows;
 	}
@@ -132,7 +144,7 @@ public class MatrixReader implements IMatrixReader {
 			l.clear();
 		matrix_rows.clear();
 		matrix_columns.clear();
-		Memory.garbageCollector();		
+		Memory.garbageCollector();
 	}
 
 }
