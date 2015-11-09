@@ -34,9 +34,7 @@ public class LabelSelection implements ILabelSelection {
 		int clusterWithValueMax;
 		float featureValue;
 
-		//TODO Check whether features are correctly selected before label selection
-		//TODO Design several strategies : by feature selection, using a threshold or the current strategy (each feature is selected and only once)
-		for (int j = 0; j < fs.getNbFeatureSelected(); j++) {
+		for (int j = 0; j < fs.getNbFeatures(); j++) {
 			if (j % 1000 == 0) {
 				log.debug(j+"-th feature handled");
 			}

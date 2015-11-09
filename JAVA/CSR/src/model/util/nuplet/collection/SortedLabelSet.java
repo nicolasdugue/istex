@@ -5,13 +5,13 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NavigableSet;
 import java.util.SortedSet;
+import java.util.Spliterator;
 import java.util.TreeSet;
+import model.util.nuplet.PairSFWeighted;
+import model.util.nuplet.comparator.PairSFWeightComparator;
 
-import model.util.nuplet.PairFWeighted;
-import model.util.nuplet.comparator.WeightComparator;
-
-public class SortedLabelSet implements Iterable<PairFWeighted>{
-	TreeSet<PairFWeighted> set = new TreeSet<>(new WeightComparator());
+public class SortedLabelSet implements Iterable<PairSFWeighted>, Collection<PairSFWeighted>{
+	TreeSet<PairSFWeighted> set = new TreeSet<PairSFWeighted>(new PairSFWeightComparator());
 
 
 	public boolean equals(Object o) {
@@ -26,15 +26,15 @@ public class SortedLabelSet implements Iterable<PairFWeighted>{
 		return set.removeAll(c);
 	}
 
-	public Iterator<PairFWeighted> iterator() {
+	public Iterator<PairSFWeighted> iterator() {
 		return set.iterator();
 	}
 
-	public Iterator<PairFWeighted> descendingIterator() {
+	public Iterator<PairSFWeighted> descendingIterator() {
 		return set.descendingIterator();
 	}
 
-	public NavigableSet<PairFWeighted> descendingSet() {
+	public NavigableSet<PairSFWeighted> descendingSet() {
 		return set.descendingSet();
 	}
 
@@ -50,7 +50,7 @@ public class SortedLabelSet implements Iterable<PairFWeighted>{
 		return set.contains(o);
 	}
 
-	public boolean add(PairFWeighted e) {
+	public boolean add(PairSFWeighted e) {
 		return set.add(e);
 	}
 
@@ -62,20 +62,20 @@ public class SortedLabelSet implements Iterable<PairFWeighted>{
 		set.clear();
 	}
 
-	public boolean addAll(Collection<? extends PairFWeighted> c) {
+	public boolean addAll(Collection<? extends PairSFWeighted> c) {
 		return set.addAll(c);
 	}
 
-	public NavigableSet<PairFWeighted> subSet(PairFWeighted fromElement, boolean fromInclusive, PairFWeighted toElement,
+	public NavigableSet<PairSFWeighted> subSet(PairSFWeighted fromElement, boolean fromInclusive, PairSFWeighted toElement,
 			boolean toInclusive) {
 		return set.subSet(fromElement, fromInclusive, toElement, toInclusive);
 	}
 
-	public SortedSet<PairFWeighted> subSet(PairFWeighted fromElement, PairFWeighted toElement) {
+	public SortedSet<PairSFWeighted> subSet(PairSFWeighted fromElement, PairSFWeighted toElement) {
 		return set.subSet(fromElement, toElement);
 	}
 
-	public Comparator<? super PairFWeighted> comparator() {
+	public Comparator<? super PairSFWeighted> comparator() {
 		return set.comparator();
 	}
 
@@ -83,40 +83,80 @@ public class SortedLabelSet implements Iterable<PairFWeighted>{
 		return set.toString();
 	}
 
-	public PairFWeighted first() {
+	public PairSFWeighted first() {
 		return set.first();
 	}
 
-	public PairFWeighted last() {
+	public PairSFWeighted last() {
 		return set.last();
 	}
 
-	public PairFWeighted lower(PairFWeighted e) {
+	public PairSFWeighted lower(PairSFWeighted e) {
 		return set.lower(e);
 	}
 
-	public PairFWeighted floor(PairFWeighted e) {
+	public PairSFWeighted floor(PairSFWeighted e) {
 		return set.floor(e);
 	}
 
-	public PairFWeighted ceiling(PairFWeighted e) {
+	public PairSFWeighted ceiling(PairSFWeighted e) {
 		return set.ceiling(e);
 	}
 
-	public PairFWeighted higher(PairFWeighted e) {
+	public PairSFWeighted higher(PairSFWeighted e) {
 		return set.higher(e);
 	}
 
-	public PairFWeighted pollFirst() {
+	public PairSFWeighted pollFirst() {
 		return set.pollFirst();
 	}
 
-	public PairFWeighted pollLast() {
+	public PairSFWeighted pollLast() {
 		return set.pollLast();
 	}
 
 	public Object clone() {
 		return set.clone();
 	}
+
+
+	public Object[] toArray() {
+		return set.toArray();
+	}
+
+	public <T> T[] toArray(T[] a) {
+		return set.toArray(a);
+	}
+
+	public boolean containsAll(Collection<?> c) {
+		return set.containsAll(c);
+	}
+
+	public NavigableSet<PairSFWeighted> headSet(PairSFWeighted toElement, boolean inclusive) {
+		return set.headSet(toElement, inclusive);
+	}
+
+	public boolean retainAll(Collection<?> c) {
+		return set.retainAll(c);
+	}
+
+	public NavigableSet<PairSFWeighted> tailSet(PairSFWeighted fromElement, boolean inclusive) {
+		return set.tailSet(fromElement, inclusive);
+	}
+
+	public SortedSet<PairSFWeighted> headSet(PairSFWeighted toElement) {
+		return set.headSet(toElement);
+	}
+
+	public SortedSet<PairSFWeighted> tailSet(PairSFWeighted fromElement) {
+		return set.tailSet(fromElement);
+	}
+
+
+	public Spliterator<PairSFWeighted> spliterator() {
+		return set.spliterator();
+	}
+
+
 
 }

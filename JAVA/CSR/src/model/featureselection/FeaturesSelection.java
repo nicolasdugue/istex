@@ -142,7 +142,7 @@ public class FeaturesSelection implements IFeaturesSelection {
 	/**
 	 * @return the number of features
 	 */
-	public int getNbFeatureSelected() {
+	public int getNbFeatures() {
 		return matrix.getNbColumns();
 	}
 	

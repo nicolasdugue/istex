@@ -31,7 +31,7 @@ public interface IFeaturesSelection {
 	/**
 	 * @return the number of features
 	 */
-	public int getNbFeatureSelected();
+	public int getNbFeatures();
 	
 	public Set<Integer> getFeaturesSelected(int cluster);
 	public Set<String> getFeaturesAsStringSelected(int cluster);

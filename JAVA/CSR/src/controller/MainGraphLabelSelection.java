@@ -8,7 +8,7 @@ import java.util.TreeSet;
 import model.featureselection.FeaturesSelection;
 import model.featureselection.LabelSelection;
 import model.util.factory.GraphFactory;
-import model.util.nuplet.PairFWeighted;
+import model.util.nuplet.PairSFWeighted;
 import model.util.nuplet.collection.SortedLabelSet;
 
 public class MainGraphLabelSelection {
@@ -32,10 +32,10 @@ public class MainGraphLabelSelection {
 				ff=fs.getFeatureValue(f, cluster);
 				if (fs.getClusterOfObjectI(f) == cluster) {
 					label=fs.getLabelOfCol(f);
-					s.add(new PairFWeighted(label, ff));
+					s.add(new PairSFWeighted(label, ff));
 				}
 			}
-			for (PairFWeighted pair : s) {
+			for (PairSFWeighted pair : s) {
 				fw.write(pair.getLeft()+" "+ pair.getRight()+" | ");
 			}
 			

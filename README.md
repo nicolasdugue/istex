@@ -8,8 +8,80 @@ It allows to analyse diachronically two different clustering of a same corpora (
 Furthermore, this tool is also adapted to deal with large weighted graphs to study the collaboration networks of authors of the corpus (**[3]**).
 
 ## Installation
-* The Java project may be imported into all IDE (Eclipse, IntelliJ or Netbeans) and then built. It need JRE7 at least ;
-* It requires GSON library and apache common cli library to be included in the build path.
+* The Java project may be imported into all IDE (Eclipse, IntelliJ or Netbeans) ;
+* It need JRE7 at least ;
+* The projet should be built using Maven and running the command *mvn install* at the root of the projet ;
+* Releases can be downloaded **if one does not want to install maven**.
+
+#### Using the jar as linux commands
+
+To be able to use the jar easily as linux commands, you can use the following procedure.
+
+In a shell, run the following commands for each jar you want to use as a Linux command (except the last line, only once).
+
+	mkdir ~bin
+	echo "java -jar /path/to/the/jar/jarname.jar $@" > ~bin/cmdname
+	chmod +x cmdname
+	echo "export PATH=$PATH:~/bin" >> ~/.bashrc
+	
+
+Unlog then log to a terminal, you sould be able to run *cmdname* as a command.
+
+## Usage
+
+#### Diachronism
+	
+	java -jar csr-0.0.1-Diachronism.jar 
+	usage: MainDiachronic, Diachronism toolbox
+	 -c <clusteringSource> <clusteringTarget>          Source and target
+		                                           clustering. One integer
+		                                           per line indicated the
+		                                           belonging cluster of
+		                                           each row. ELM files
+		                                           also allowed.
+	 -e,--example                                      run exemple .
+	 -fl <featuresLabelSource> <featuresLabelTarget>   Source and target
+		                                           features labels. One
+		                                           String per line
+		                                           indicated the
+		                                           corresponding label of
+		                                           each feature.
+	 -g,--graph                                        read a list of arcs
+		                                           instead of a matrix
+	 -h,--help                                         print this message
+	 -l <labelsSource> <labelsTarget>                  Labels source and
+		                                           target to use to run
+		                                           the diachronism
+		                                           algorithm
+	 -log,--logfile <arg>                              used to log in a
+		                                           specific file
+	 -m <matrixSource> <matrixTarget>                  Source and target
+		                                           matrices. Fomat : One
+		                                           row per line, element
+		                                           separated with spaces
+		                                           or tabs. NRM files also
+		                                           allowed.
+	 -q,--quiet                                        be extra quiet
+	 -v,--verbose                                      be extra verbose
+
+#### Feature Selection
+
+	java -jar csr-0.0.1-FeatureSelection.jar 
+	usage: Feature selection, node
+	 -c <clustering>        Source clustering. One integer per line indicated
+		                the belonging cluster of each row.
+	 -e,--exemple           Run exemple
+	 -g,--graph             read a list of arcs instead of a matrix
+	 -h,--help              print this message
+	 -l <labels>            Source labels to use to run the diachronism
+		                algorithm
+	 -log,--log             log events
+	 -ls,--labelselection   Extract labels
+	 -m <matrix>            Source matrix, One row per line. Element separated
+		                with spaces or tabs.
+	 -o <output>            Output file without ext
+	 -v,--verbose           debug or verbose mode
+
 
 ## Organization
 The project is composed of the following folders:
@@ -30,4 +102,3 @@ national Joint Conference on, pages 956–965. IEEE, 2011.
 Academy of Sciences, 98(2) :404–409, 2001.
 * **[4]** Ivan P Stanimirovic and Milan B Tasic. Performance comparison of storage formats for sparse matrices.
 FACTA UNIVERSITATIS (NIS) Ser. Math. Inform, 24 :39–51, 2009.
-* **[5]** Patrick Viry. Ateji px for java-parallel programming made simple. Ateji White Paper, 2010.

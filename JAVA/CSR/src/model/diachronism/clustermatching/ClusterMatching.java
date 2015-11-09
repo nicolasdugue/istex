@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.google.gson.annotations.SerializedName;
 
-import model.util.nuplet.PairFWeighted;
+import model.util.nuplet.PairSFWeighted;
 
 public class ClusterMatching {
 	@SerializedName("Cluster Source")
@@ -49,9 +49,9 @@ public class ClusterMatching {
 	/**
 	 * @param e
 	 * @return
-	 * @see model.diachronism.clustermatching.ClusterLabelled#add(model.util.PairFWeighted)
+	 * @see model.diachronism.clustermatching.ClusterLabelled#add(model.util.PairSFWeighted)
 	 */
-	public boolean add(PairFWeighted e) {
+	public boolean add(PairSFWeighted e) {
 		return cl.add(e);
 	}
 
@@ -66,7 +66,7 @@ public class ClusterMatching {
 	}
 
 
-	public Set<PairFWeighted> getLabels() {
+	public Set<PairSFWeighted> getLabels() {
 		return cl.getLabels();
 	}
 

@@ -78,7 +78,7 @@ public abstract class AFactory {
 	}
 	
 	public  IFeaturesSelection getFeatureSelecter(String matrix, String cluster) throws IOException {
-		return new FeaturesSelection(new CsrMatrixClustered(new CsrMatrix(fr.getReader(matrix)), new ClusteringReader(cluster).getClusters()));
+		return new FeaturesSelection(new CsrMatrixClustered(new CsrMatrix(fr.getReader(matrix)), cr.getReader(cluster).getClusters()));
 	}
 	public  IFeaturesSelection getFeatureSelecter(String matrix, String cluster, String labels) throws IOException {
 		return new FeaturesSelection(new CsrMatrixClustered(new MatrixFeatureLabels(new CsrMatrix(fr.getReader(matrix)), lr.getReader(labels).getLs()), cr.getReader(cluster).getClusters()));
