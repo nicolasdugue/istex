@@ -32,8 +32,10 @@ public class MatrixReader implements IMatrixReader {
 	private int nb_rows;
 	private int nb_columns;
 	private int nb_elmt;
-	private LinkedList sumRow = new LinkedList();
-	private LinkedList sumCol = new LinkedList();
+	
+	//Permet de calculer les sommes pour les ajouter directement dans CsrMatrix sans refaire les calculs à posteriori
+	private LinkedList<Float> sumRow = new LinkedList<Float>();
+	private LinkedList<Float> sumCol = new LinkedList<Float>();
 
 	
 	public MatrixReader(String fileName) throws FileNotFoundException {
@@ -104,19 +106,19 @@ public class MatrixReader implements IMatrixReader {
 		nb_rows=row_i;
 		sc.close();
 	}
-	public LinkedList getSumRow() {
+	public LinkedList<Float> getSumRow() {
 		return sumRow;
 	}
 
-	public void setSumRow(LinkedList sumRow) {
+	public void setSumRow(LinkedList<Float> sumRow) {
 		this.sumRow = sumRow;
 	}
 
-	public LinkedList getSumCol() {
+	public LinkedList<Float> getSumCol() {
 		return sumCol;
 	}
 
-	public void setSumCol(LinkedList sumCol) {
+	public void setSumCol(LinkedList<Float> sumCol) {
 		this.sumCol = sumCol;
 	}
 
@@ -167,11 +169,14 @@ public class MatrixReader implements IMatrixReader {
 	public void setNb_elmt(int nb_elmt) {
 		this.nb_elmt = nb_elmt;
 	}
+	@SuppressWarnings("rawtypes")
 	public void clear() {
 		for (ArrayList l : matrix_rows)
 			l.clear();
 		for (ArrayList l : matrix_columns)
 			l.clear();
+		sumRow.clear();
+		sumCol.clear();
 		matrix_rows.clear();
 		matrix_columns.clear();
 		Memory.garbageCollector();
