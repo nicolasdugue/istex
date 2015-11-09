@@ -1,17 +1,1 @@
-controller
-io.reader
-io.reader.factory
-model.cluster
-model.cluster.decorator
-model.diachronism
-model.diachronism.clustermatching
-model.featureselection
 model.matrix
-model.matrix.decorator
-model.roles
-model.util
-model.util.factory
-model.util.nuplet
-model.util.nuplet.comparator
-test
-view

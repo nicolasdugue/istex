@@ -13,14 +13,6 @@ public class Pair<T1,T2> {
 	public T1 getLeft() {
 		return left;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((left == null) ? 0 : left.hashCode());
-		result = prime * result + ((right == null) ? 0 : right.hashCode());
-		return result;
-	}
 	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean equals(Object obj) {

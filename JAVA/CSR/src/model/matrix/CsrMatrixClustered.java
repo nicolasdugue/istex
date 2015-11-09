@@ -16,10 +16,8 @@ public class CsrMatrixClustered {
 	private IClustering clusters;
 	private float[] sum_cluster;
 	private Logger log;
-	
-	public CsrMatrixClustered() {
-		super();
-	}
+
+
 
 	public CsrMatrixClustered(IMatrix m, IClustering clusters) {
 		this.matrix=m;
@@ -174,6 +172,8 @@ public class CsrMatrixClustered {
 	public int getClusterOfLabel(String s) {
 		return clusters.getClusterOfLabel(s);
 	}
+
+	
 	
 	
 	

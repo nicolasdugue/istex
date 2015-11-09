@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import io.reader.ClusteringReader;
 import io.reader.LabelReader;
 import io.reader.MatrixReader;
 import model.cluster.Clustering;
@@ -20,17 +21,11 @@ public class TestFeaturesSelection {
 	@Before
 	public void setUp() throws Exception {
 		MatrixReader iskoMaghreb = new MatrixReader("exemples/matrix_lamirel_iskomaghreb");
-		Clustering cim = new Clustering(6);
-		cim.add(0);
-		cim.add(0);
-		cim.add(0);
-		cim.add(1);
-		cim.add(1);
-		cim.add(1);
+		ClusteringReader rd = new ClusteringReader("exemples/clustering_lamirel_iskomaghreb");
 		IMatrix m = new CsrMatrix(iskoMaghreb);
 		LabelReader l = new LabelReader("exemples/label_lamirel_iskomaghreb");
 		IMatrix ml = new MatrixFeatureLabels(m, l.getLs());
-		CsrMatrixClustered cm_im = new CsrMatrixClustered(ml, cim);
+		CsrMatrixClustered cm_im = new CsrMatrixClustered(m, rd.getClusters());
 		fs = new FeaturesSelection(cm_im);
 	}
 

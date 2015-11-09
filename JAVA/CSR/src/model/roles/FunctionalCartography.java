@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import model.matrix.CsrMatrixClustered;
+import util.SGLogger;
 
 public class FunctionalCartography {
 
 	private CsrMatrixClustered matrix;
-	float[] z_score;
-	float[] participation;
+	private float[] z_score;
+	private float[] participation;
+	private Logger log;
+	
 	
 	
 	
@@ -19,6 +24,7 @@ public class FunctionalCartography {
 		this.matrix = matrix;
 		z_score = new float[matrix.getNbColumns()];
 		participation=new float[matrix.getNbColumns()];
+		log=SGLogger.getInstance();
 	}
 
 	/**
@@ -159,7 +165,8 @@ public class FunctionalCartography {
 	 */
 	public void doZScore() {
 		for (int i=0; i< this.getNbCommunities(); i++) {
-			doZScore(i);			
+			doZScore(i);
+			log.debug("Community " + i + " handled : " + this.getSizeCommunity(i) + " nodes in it");
 		}
 	}
 	
@@ -173,7 +180,7 @@ public class FunctionalCartography {
 		for (int com=0; com < this.getNbCommunities();com++) {
 			in_degree=this.getDegreeInCom(node, com);
 			if (in_degree != 0)
-				coef_p-=Math.pow(((float)this.getDegreeInCom(node, com) / (float)this.getDegree(node)), 2);
+				coef_p-=Math.pow(((float)in_degree / (float)this.getDegree(node)), 2);
 		}
 		return coef_p;
 	}
