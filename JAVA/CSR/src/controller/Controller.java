@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -8,6 +7,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import model.diachronism.LabelDiachronism;
+import model.featureselection.labellingstategies.FeatureSelectionStrategy;
+import model.featureselection.labellingstategies.ILabelSelectionStrategy;
 import model.util.factory.AFactory;
 import view.View;
 
@@ -24,6 +25,7 @@ public class Controller {
 	private LabelDiachronism ld;
 	private View v;
 	private AFactory adf;
+	private ILabelSelectionStrategy lss = new FeatureSelectionStrategy();
 	
 	
 	
@@ -31,6 +33,12 @@ public class Controller {
 		super();
 		this.v = v;
 		this.adf=f;
+	}
+	public Controller(View v, AFactory f, ILabelSelectionStrategy lss ) {
+		super();
+		this.v = v;
+		this.adf=f;
+		this.lss=lss;
 	}
 
 
@@ -55,7 +63,7 @@ public class Controller {
 	 * @throws IOException 
 	 */
 	public void doRunDiachronism(String m1, String m2, String c1, String c2) throws IOException {
-		ld=adf.matchingFromMatrixCluster(m1,m2,c1,c2);
+		ld=adf.matchingFromMatrixCluster(m1,m2,c1,c2, lss);
 		v.print(this.getJson());
 	}
 	
@@ -74,7 +82,7 @@ public class Controller {
 		if (l1 == null || l2 == null)
 			this.doRunDiachronism(m1, m2, c1, c2);
 		else {
-			ld=adf.matchingFromMatrixClusterLabels(m1,m2,c1,c2,l1,l2);
+			ld=adf.matchingFromMatrixClusterLabels(m1,m2,c1,c2,l1,l2,lss);
 			v.print(this.getJson());
 		}
 	}

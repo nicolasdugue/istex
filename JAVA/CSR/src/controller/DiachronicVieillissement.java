@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import model.util.factory.AFactory;
@@ -25,21 +24,21 @@ public class DiachronicVieillissement {
 //		  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P2.idd" };
 		
 		
-		String[] params = {
-				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P1.nrm",
-				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.nrm",
-				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P1.elm",
-				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.elm",
-				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P1.idd",
-				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.idd" };
+//		String[] params = {
+//				  "/home/dugue/Dropbox/LORIA/SemanticCommunities/Vieillissement/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P1.nrm",
+//				  "/home/dugue/Dropbox/LORIA/SemanticCommunities/Vieillissement/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.nrm",
+//				  "/home/dugue/Dropbox/LORIA/SemanticCommunities/Vieillissement/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P1.elm",
+//				  "/home/dugue/Dropbox/LORIA/SemanticCommunities/Vieillissement/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.elm",
+//				  "/home/dugue/Dropbox/LORIA/SemanticCommunities/Vieillissement/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P1.idd",
+//				  "/home/dugue/Dropbox/LORIA/SemanticCommunities/Vieillissement/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.idd" };
 		  
-//		  String[] params = {
-//				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P2.nrm",
-//				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.nrm",
-//				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P2.elm",
-//				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.elm",
-//				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P2.idd",
-//				  "/home/dugue/Dropbox/LORIA/DATA/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.idd" };
+		  String[] params = {
+				  "/home/dugue/Dropbox/LORIA/SemanticCommunities/Vieillissement/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P2.nrm",
+				  "/home/dugue/Dropbox/LORIA/SemanticCommunities/Vieillissement/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.nrm",
+				  "/home/dugue/Dropbox/LORIA/SemanticCommunities/Vieillissement/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P2.elm",
+				  "/home/dugue/Dropbox/LORIA/SemanticCommunities/Vieillissement/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.elm",
+				  "/home/dugue/Dropbox/LORIA/SemanticCommunities/Vieillissement/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P2.idd",
+				  "/home/dugue/Dropbox/LORIA/SemanticCommunities/Vieillissement/Vieillissement/Clusterings/DataViel-Pascal/Vieux3P3.idd" };
 		 
 		
 		c.doRunDiachronism(params[0], params[1], params[2], params[3], params[4], params[5]);

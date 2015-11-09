@@ -25,7 +25,7 @@ public class TestFeaturesSelection {
 		IMatrix m = new CsrMatrix(iskoMaghreb);
 		LabelReader l = new LabelReader("exemples/label_lamirel_iskomaghreb");
 		IMatrix ml = new MatrixFeatureLabels(m, l.getLs());
-		CsrMatrixClustered cm_im = new CsrMatrixClustered(m, rd.getClusters());
+		CsrMatrixClustered cm_im = new CsrMatrixClustered(ml, rd.getClusters());
 		fs = new FeaturesSelection(cm_im);
 	}
 

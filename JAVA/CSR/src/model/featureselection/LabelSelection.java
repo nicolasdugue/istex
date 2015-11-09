@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import model.featureselection.labellingstategies.ILabelSelectionStrategy;
+import util.Memory;
 import util.SGLogger;
 
 /**
@@ -21,10 +23,19 @@ public class LabelSelection implements ILabelSelection {
 	private ArrayList<ArrayList<Integer>> labels = new ArrayList<ArrayList<Integer>>();
 	private IFeaturesSelection fs;
 	private Logger log;
+	private ILabelSelectionStrategy lss;
 	
-	public LabelSelection(IFeaturesSelection fs) {
+	public LabelSelection(IFeaturesSelection fs, ILabelSelectionStrategy s) {
 		log=SGLogger.getInstance();
 		this.fs=fs;
+		this.lss=s;
+		for (int i = 0; i < fs.getNbCluster(); i++) {
+			labels.add(new ArrayList<Integer>(lss.getLabelCluster(i)));
+		}
+		
+		/*
+		 * SCIENTOMETRICS STRATEGY - BUT NOT VERY EFFICIENT
+		 * 
 		// POur chaque cluster, on prépare une liste de labels qui, au départ,
 		// est vide
 		for (int i = 0; i < fs.getNbCluster(); i++) {
@@ -49,7 +60,7 @@ public class LabelSelection implements ILabelSelection {
 			}
 			//The feature f is added to the set of cluster labels of the cluster that maximizes the Feature F-Measure of f
 			labels.get(clusterWithValueMax).add(j);
-		}
+		}*/
 	}
 	
 	/**
@@ -101,6 +112,23 @@ public class LabelSelection implements ILabelSelection {
 	public int getClusterOfLabel(String s) {
 		return fs.getClusterOfLabel(s);
 	}
+
+
+	public void setLss(ILabelSelectionStrategy lss) {
+		this.lss = lss;
+		labels.clear();
+		for (int i = 0; i < fs.getNbCluster(); i++) {
+			labels.add(new ArrayList<Integer>(lss.getLabelCluster(i)));
+		}
+		Memory.garbageCollector();
+	}
+
+	public float getFeatureValue(int f, int cluster) {
+		return fs.getFeatureValue(f, cluster);
+	}
+	
+	
+	
 	
 
 }

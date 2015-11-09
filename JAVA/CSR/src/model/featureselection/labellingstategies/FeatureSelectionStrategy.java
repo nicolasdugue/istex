@@ -4,10 +4,13 @@ import java.util.Collection;
 
 import model.featureselection.IFeaturesSelection;
 
-public class FeatureSelectionStategy implements ILabelSectionStategy {
+public class FeatureSelectionStrategy implements ILabelSelectionStrategy {
 	private IFeaturesSelection fs;
 
-	public FeatureSelectionStategy(IFeaturesSelection fs) {
+	public FeatureSelectionStrategy() {
+		super();
+	}
+	public FeatureSelectionStrategy(IFeaturesSelection fs) {
 		super();
 		this.fs = fs;
 	}

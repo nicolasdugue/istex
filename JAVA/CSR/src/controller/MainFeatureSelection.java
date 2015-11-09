@@ -24,7 +24,9 @@ import org.apache.log4j.Logger;
 
 import model.featureselection.FeaturesSelection;
 import model.featureselection.LabelSelection;
-import model.roles.FunctionalCartography;
+import model.featureselection.labellingstategies.FeatureSelectionStrategy;
+import model.featureselection.labellingstategies.FeatureThresholdStrategy;
+import model.featureselection.labellingstategies.FixedNumberOfLabelStrategy;
 import model.util.factory.AFactory;
 import model.util.factory.GraphElmFactory;
 import model.util.factory.GraphFactory;
@@ -35,7 +37,6 @@ import model.util.factory.NrmElmFactory;
 import model.util.nuplet.PairSFWeighted;
 import model.util.nuplet.collection.SortedLabelSet;
 import util.SGLogger;
-import view.View;
 
 @SuppressWarnings("deprecation")
 public class MainFeatureSelection {
@@ -52,7 +53,6 @@ public class MainFeatureSelection {
 		options.addOption("log", "log", false, "log events");
 		options.addOption("v", "verbose", false, "debug or verbose mode");
 		options.addOption("e", "exemple", false, "Run exemple");
-		options.addOption("ls", "labelselection", false, "Extract labels");
 		OptionBuilder.hasArgs(1);
 		OptionBuilder.withArgName("matrix");
 		OptionBuilder.withDescription(
@@ -75,6 +75,22 @@ public class MainFeatureSelection {
 		OptionBuilder.withDescription("Output file without ext");
 		opt = OptionBuilder.create("o");
 		options.addOption(opt);
+		OptionBuilder.hasArgs(1);
+		OptionBuilder.withArgName("threshold");
+		OptionBuilder.withDescription("Select label with a threshold on feature selection.");
+		opt = OptionBuilder.create("lst");
+		options.addOption(opt);
+		OptionBuilder.hasArgs(0);
+		OptionBuilder.withArgName("feature");
+		OptionBuilder.withDescription("Select label with feature selection. Automatic.");
+		opt = OptionBuilder.create("lsf");
+		options.addOption(opt);
+		OptionBuilder.hasArgs(1);
+		OptionBuilder.withArgName("number");
+		OptionBuilder.withDescription("Select a fixed number of labels per cluster.");
+		opt = OptionBuilder.create("lsn");
+		options.addOption(opt);
+		
 
 		//args = new String[] { "-c", "t", "test" };
 
@@ -175,7 +191,6 @@ public class MainFeatureSelection {
 				
 				FileWriter fw = new FileWriter(new File(output+".fs"));
 				fw.write("#cluster object ff\n");
-				ArrayList<Integer> l;
 				SortedLabelSet s = new SortedLabelSet();
 				int feature;
 				log.info("Writing Feature selection results");
@@ -189,13 +204,24 @@ public class MainFeatureSelection {
 					 s.clear();
 				}
 				fw.close();
-				if (line.hasOption("ls") || line.hasOption("e")) {
+				if (line.hasOption("lsn") || line.hasOption("lsf") || line.hasOption("lst") || line.hasOption("e")) {
 					log.info("Running label selection");
 					FileWriter fwl = new FileWriter(new File(output+".ls"));
-					LabelSelection ls = new LabelSelection(fs);
+					LabelSelection ls;
+					if (line.hasOption("lsn")) {
+						ls = new LabelSelection(fs, new FixedNumberOfLabelStrategy(fs, Integer.parseInt(line.getOptionValues("lsn")[0])));
+					}
+					else if (line.hasOption("lst")){
+						ls = new LabelSelection(fs, new FeatureThresholdStrategy(fs, Float.parseFloat(line.getOptionValues("lst")[0])));
+					}
+					else {
+						ls = new LabelSelection(fs, new FeatureSelectionStrategy(fs));
+					}
 					log.info("Writing label selection results");
 					for (int cluster =0; cluster < fs.getNbCluster(); cluster++) {
-						fwl.write("#\n------------CLUSTER "+cluster+ " ------------------+\n");
+						if (cluster != 0)
+							fwl.write("\n");
+						fwl.write("#------------CLUSTER "+cluster+ " ------------------+\n");
 						s.clear();
 						for (Iterator<Integer> it=ls.getPrevalentFeatureSet(cluster).iterator(); it.hasNext();) {
 							feature=it.next();

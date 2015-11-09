@@ -2,7 +2,6 @@ package controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -15,6 +14,11 @@ import org.apache.commons.cli.ParseException;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import model.featureselection.LabelSelection;
+import model.featureselection.labellingstategies.FeatureSelectionStrategy;
+import model.featureselection.labellingstategies.FeatureThresholdStrategy;
+import model.featureselection.labellingstategies.FixedNumberOfLabelStrategy;
+import model.featureselection.labellingstategies.ILabelSelectionStrategy;
 import model.util.factory.AFactory;
 import model.util.factory.GraphElmFactory;
 import model.util.factory.GraphFactory;
@@ -49,9 +53,8 @@ public class MainDiachronic {
 		options.addOption("h", "help", false, "print this message");
 		options.addOption("q", "quiet", false, "be extra quiet");
 		options.addOption("v", "verbose", false, "be extra verbose");
-		options.addOption("e", "example", false, "run exemple .");
+		//options.addOption("e", "example", false, "run exemple .");
 		options.addOption("g", "graph", false, "read a list of arcs instead of a matrix");
-		options.addOption("log", "logfile", true, "used to log in a specific file");
 		OptionBuilder.hasArgs(2);
 		OptionBuilder.withArgName("matrixSource> <matrixTarget");
 		OptionBuilder.withDescription(
@@ -75,6 +78,22 @@ public class MainDiachronic {
 		OptionBuilder.withDescription("Labels source and target to use to run the diachronism algorithm");
 		opt = OptionBuilder.create("l");
 		options.addOption(opt);
+		
+		OptionBuilder.hasArgs(1);
+		OptionBuilder.withArgName("threshold");
+		OptionBuilder.withDescription("Select label with a threshold on feature selection.");
+		opt = OptionBuilder.create("lst");
+		options.addOption(opt);
+		OptionBuilder.hasArgs(0);
+		OptionBuilder.withArgName("feature");
+		OptionBuilder.withDescription("Select label with feature selection. Automatic.");
+		opt = OptionBuilder.create("lsf");
+		options.addOption(opt);
+		OptionBuilder.hasArgs(1);
+		OptionBuilder.withArgName("number");
+		OptionBuilder.withDescription("Select a fixed number of labels per cluster.");
+		opt = OptionBuilder.create("lsn");
+		options.addOption(opt);
 
 		//args = new String[] { "-c", "t", "test" };
 
@@ -92,9 +111,6 @@ public class MainDiachronic {
 			boolean process = check(line, options);
 			int nbParam=0;
 			if (process) {
-				if (line.hasOption("log")) {
-					log.setLevel(Level.INFO);
-				}
 				if (line.hasOption("h")) {
 					printHelp();
 				}
@@ -138,8 +154,21 @@ public class MainDiachronic {
 				}
 
 				View v = new View();
-
-				Controller c = new Controller(v, factory);
+				Controller c;
+				if (line.hasOption("lsn")) {
+					FixedNumberOfLabelStrategy lss = new FixedNumberOfLabelStrategy();
+					lss.setNumberOfLabels(Integer.parseInt(line.getOptionValues("lsn")[0]));
+					c = new Controller(v, factory, lss);
+				}
+				else if (line.hasOption("lst")){
+					FeatureThresholdStrategy lss = new FeatureThresholdStrategy();
+					lss.setThreshold(Float.parseFloat(line.getOptionValues("lst")[0]));
+					c = new Controller(v, factory,lss);
+				}
+				else {
+					c = new Controller(v, factory);
+				}
+				
 
 				c.doRunDiachronism(m1,m2,c1,c2,l1,l2);
 			}

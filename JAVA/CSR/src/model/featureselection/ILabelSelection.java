@@ -28,4 +28,8 @@ public interface ILabelSelection {
 	public int getIndexOfColLabel(String label);
 	
 	public float getFeatureFMeanValue(int f);
+
+	public float getFeatureValue(int f, int cluster);
+	
+	
 }

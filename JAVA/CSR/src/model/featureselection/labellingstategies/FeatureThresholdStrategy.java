@@ -4,12 +4,28 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import model.featureselection.IFeaturesSelection;
+import org.apache.log4j.Logger;
 
-public class FeatureThresholdStrategy implements ILabelSectionStategy {
+import model.featureselection.IFeaturesSelection;
+import util.SGLogger;
+
+public class FeatureThresholdStrategy implements ILabelSelectionStrategy {
 	private IFeaturesSelection fs;
 	private float threshold=0.025f;
 
+	public FeatureThresholdStrategy() {
+		super();
+	}
+	public FeatureThresholdStrategy(IFeaturesSelection fs) {
+		super();
+		this.fs = fs;
+	}
+	public FeatureThresholdStrategy(IFeaturesSelection fs, float t) {
+		this(fs);
+		this.threshold=t;
+		
+	}
+	
 	public IFeaturesSelection getFs() {
 		return fs;
 	}
@@ -22,21 +38,18 @@ public class FeatureThresholdStrategy implements ILabelSectionStategy {
 	public void setThreshold(float threshold) {
 		this.threshold = threshold;
 	}
-	public FeatureThresholdStrategy(IFeaturesSelection fs) {
-		super();
-		this.fs = fs;
-	}
-	public FeatureThresholdStrategy(IFeaturesSelection fs, float t) {
-		this(fs);
-		this.threshold=t;
-		
-	}
+	
 	@Override
 	public Collection<Integer> getLabelCluster(int cluster) {
+		Logger log = SGLogger.getInstance();
 		List<Integer> l = new LinkedList<Integer>();
+		float ff;
 		for (int f=0; f < fs.getNbFeatures(); f++) {
-			if (fs.getFeatureValue(f, cluster) >= threshold)
+			ff=fs.getFeatureValue(f, cluster);
+			if (ff > threshold) {
+				log.debug("Feature : " + fs.getLabelOfCol(f)+ " > threshold : " + ff);
 				l.add(f);
+			}
 		}
 		return l;
 	}

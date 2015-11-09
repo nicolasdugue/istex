@@ -226,8 +226,8 @@ public class LabelDiachronism {
 		TripletLabel triplet;
 		float k;
 		for (String label : labels_s_and_t) {
-			value_t=ls_t.getFeatureFMeanValue(ls_t.getIndexOfColLabel(label));
-			value_s=ls_s.getFeatureFMeanValue(ls_s.getIndexOfColLabel(label));
+			value_t=ls_t.getFeatureValue(ls_t.getIndexOfColLabel(label), t);
+			value_s=ls_s.getFeatureValue(ls_s.getIndexOfColLabel(label), s);
 			k=value_t / value_s;
 			triplet=new TripletLabel(label, value_s,value_t);
 			labels_s.remove(label);

@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -22,19 +20,10 @@ import org.apache.commons.cli.ParseException;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
-import model.featureselection.FeaturesSelection;
-import model.featureselection.LabelSelection;
 import model.matrix.CsrMatrixClustered;
 import model.roles.FunctionalCartography;
 import model.util.factory.AFactory;
-import model.util.factory.GraphElmFactory;
-import model.util.factory.GraphFactory;
-import model.util.factory.MatrixElmFactory;
 import model.util.factory.MatrixFactory;
-import model.util.factory.NrmClusteringFactory;
-import model.util.factory.NrmElmFactory;
-import model.util.nuplet.PairSFWeighted;
-import model.util.nuplet.collection.SortedLabelSet;
 import util.SGLogger;
 
 public class MainGraphMeasures {

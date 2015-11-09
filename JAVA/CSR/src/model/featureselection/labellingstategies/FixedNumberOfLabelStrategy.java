@@ -9,10 +9,19 @@ import model.util.nuplet.PairF;
 import model.util.nuplet.collection.SortedFeatureSet;
 import util.Memory;
 
-public class FixedNumberOfLabelStrategy implements ILabelSectionStategy {
+public class FixedNumberOfLabelStrategy implements ILabelSelectionStrategy {
 	private IFeaturesSelection fs;
 	private int numberOfLabels = 5;
 	
+	public FixedNumberOfLabelStrategy() {
+		super();
+	}
+	
+	public FixedNumberOfLabelStrategy(IFeaturesSelection fs) {
+		super();
+		this.fs = fs;
+	}
+
 	public FixedNumberOfLabelStrategy(IFeaturesSelection fs, int numberOfLabels) {
 		super();
 		this.fs = fs;
@@ -35,11 +44,7 @@ public class FixedNumberOfLabelStrategy implements ILabelSectionStategy {
 		this.numberOfLabels = numberOfLabels;
 	}
 
-	public FixedNumberOfLabelStrategy(IFeaturesSelection fs) {
-		super();
-		this.fs = fs;
-	}
-
+	
 	@Override
 	public Collection<Integer> getLabelCluster(int cluster) {
 		SortedFeatureSet s = new SortedFeatureSet();

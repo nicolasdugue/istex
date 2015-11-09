@@ -20,9 +20,9 @@ public class LabelCore {
 	@SerializedName("Common Labels prevalent in Target")
 	private TreeSet<TripletLabel> commonTargetLabels = new TreeSet<TripletLabel>(comparator);
 	@SerializedName("Source Labels")
-	private TreeSet<TripletLabel> sourceLabels = new TreeSet<TripletLabel>();
+	private transient TreeSet<TripletLabel> sourceLabels = new TreeSet<TripletLabel>();
 	@SerializedName("Target Labels")
-	private TreeSet<TripletLabel> targetLabels = new TreeSet<TripletLabel>(comparator);
+	private transient TreeSet<TripletLabel> targetLabels = new TreeSet<TripletLabel>(comparator);
 	
 	
 	public String getS() {

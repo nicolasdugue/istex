@@ -104,5 +104,9 @@ public class LabelSelectionFromFile implements ILabelSelection {
 	public int getClusterOfLabel(String s) {
 		return clusterLabels.getIndexOfLabel(s);
 	}
+	@Override
+	public float getFeatureValue(int f, int cluster) {
+		return featuresWeights.get(f);
+	}
 
 }

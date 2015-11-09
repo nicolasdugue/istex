@@ -39,7 +39,6 @@ Unlog then log to a terminal, you sould be able to run *cmdname* as a command.
 		                                           belonging cluster of
 		                                           each row. ELM files
 		                                           also allowed.
-	 -e,--example                                      run exemple .
 	 -fl <featuresLabelSource> <featuresLabelTarget>   Source and target
 		                                           features labels. One
 		                                           String per line
@@ -53,8 +52,14 @@ Unlog then log to a terminal, you sould be able to run *cmdname* as a command.
 		                                           target to use to run
 		                                           the diachronism
 		                                           algorithm
-	 -log,--logfile <arg>                              used to log in a
-		                                           specific file
+	 -lsf                                              Select label with
+		                                           feature selection.
+		                                           Automatic.
+	 -lsn <number>                                     Select a fixed number
+		                                           of labels per cluster.
+	 -lst <threshold>                                  Select label with a
+		                                           threshold on feature
+		                                           selection.
 	 -m <matrixSource> <matrixTarget>                  Source and target
 		                                           matrices. Fomat : One
 		                                           row per line, element
@@ -68,19 +73,20 @@ Unlog then log to a terminal, you sould be able to run *cmdname* as a command.
 
 	java -jar csr-0.0.1-FeatureSelection.jar 
 	usage: Feature selection, node
-	 -c <clustering>        Source clustering. One integer per line indicated
-		                the belonging cluster of each row.
-	 -e,--exemple           Run exemple
-	 -g,--graph             read a list of arcs instead of a matrix
-	 -h,--help              print this message
-	 -l <labels>            Source labels to use to run the diachronism
-		                algorithm
-	 -log,--log             log events
-	 -ls,--labelselection   Extract labels
-	 -m <matrix>            Source matrix, One row per line. Element separated
-		                with spaces or tabs.
-	 -o <output>            Output file without ext
-	 -v,--verbose           debug or verbose mode
+	 -c <clustering>    Source clustering. One integer per line indicated the
+		            belonging cluster of each row.
+	 -e,--exemple       Run exemple
+	 -g,--graph         read a list of arcs instead of a matrix
+	 -h,--help          print this message
+	 -l <labels>        Source labels to use to run the diachronism algorithm
+	 -log,--log         log events
+	 -lsf               Select label with feature selection. Automatic.
+	 -lsn <number>      Select a fixed number of labels per cluster.
+	 -lst <threshold>   Select label with a threshold on feature selection.
+	 -m <matrix>        Source matrix, One row per line. Element separated
+		            with spaces or tabs.
+	 -o <output>        Output file without ext
+	 -v,--verbose       debug or verbose mode
 
 
 ## Organization

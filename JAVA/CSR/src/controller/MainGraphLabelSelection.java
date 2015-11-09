@@ -3,10 +3,10 @@ package controller;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.TreeSet;
 
 import model.featureselection.FeaturesSelection;
 import model.featureselection.LabelSelection;
+import model.featureselection.labellingstategies.FeatureSelectionStrategy;
 import model.util.factory.GraphFactory;
 import model.util.nuplet.PairSFWeighted;
 import model.util.nuplet.collection.SortedLabelSet;
@@ -18,7 +18,7 @@ public class MainGraphLabelSelection {
 		String clustering_file="/home/dugue/Dropbox/LORIA/DATA/Vieillissement/graph_6_int_oslo_files/tp.clst";
 		String label_file="/home/dugue/Dropbox/LORIA/DATA/Vieillissement/labels";
 		FeaturesSelection fs = (FeaturesSelection) new GraphFactory().getFeatureSelecter(graph_file,clustering_file,label_file);
-		LabelSelection ls = new LabelSelection(fs);
+		LabelSelection ls = new LabelSelection(fs , new FeatureSelectionStrategy(fs));
 		int f;
 		float ff;
 		String label;
