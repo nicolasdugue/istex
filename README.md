@@ -20,7 +20,7 @@ To be able to use the jar easily as linux commands, you can use the following pr
 In a shell, run the following commands for each jar you want to use as a Linux command (except the last line, only once).
 
 	mkdir ~bin
-	echo "java -jar /path/to/the/jar/jarname.jar $@" > ~bin/cmdname
+	echo "java -jar /path/to/the/jar/jarname.jar $@" > ~bin/cmdname  OU echo  "java –jar /le chemin/jarname.jar $@" | sudo tee –a  ~bin/cmdname
 	chmod +x cmdname
 	echo "export PATH=$PATH:~/bin" >> ~/.bashrc
 	
@@ -30,6 +30,19 @@ Unlog then log to a terminal, you sould be able to run *cmdname* as a command.
 ## Usage
 
 #### Diachronism
+
+**Exemple :**
+	diachronism -m m1.nrm m2.nrm -c c1.elm c2.elm -l l1.idd l2.idd -lst 0.015 > lst0_015.json
+
+
+This command runs the diachronic analysis on matrices m1 et m2 respectively associated to clusterings and labels c1,l1 et c2,l2. Furthermore, clusters labeling is made using a thresdholf of 0.015 on Feature F-Mesure.
+
+If you want an automatic threshold, use the "-lsf" option.
+
+Finally, the output lst0_015.json is in json. To visualize it like an HTML report, open "JAVA/Visu/json2html-master/index.htm" with your browser, copy the json into the textarea and click on "json 2  html".
+
+
+###### Help : 
 	
 	java -jar csr-0.0.1-Diachronism.jar 
 	usage: MainDiachronic, Diachronism toolbox
