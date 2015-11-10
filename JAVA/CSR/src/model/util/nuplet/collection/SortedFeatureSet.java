@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NavigableSet;
 import java.util.SortedSet;
-import java.util.Spliterator;
 import java.util.TreeSet;
 
 import model.util.nuplet.PairF;
@@ -151,8 +150,5 @@ public class SortedFeatureSet implements Iterable<PairF>, Collection<PairF>{
 		return set.clone();
 	}
 
-	public Spliterator<PairF> spliterator() {
-		return set.spliterator();
-	}
 	
 }

@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NavigableSet;
 import java.util.SortedSet;
-import java.util.Spliterator;
 import java.util.TreeSet;
 import model.util.nuplet.PairSFWeighted;
 import model.util.nuplet.comparator.PairSFWeightComparator;
@@ -151,12 +150,6 @@ public class SortedLabelSet implements Iterable<PairSFWeighted>, Collection<Pair
 	public SortedSet<PairSFWeighted> tailSet(PairSFWeighted fromElement) {
 		return set.tailSet(fromElement);
 	}
-
-
-	public Spliterator<PairSFWeighted> spliterator() {
-		return set.spliterator();
-	}
-
 
 
 }
