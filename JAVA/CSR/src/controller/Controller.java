@@ -2,10 +2,13 @@ package controller;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.TreeSet;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import model.diachronism.LabelCore;
+import model.diachronism.LabelCoreComparator;
 import model.diachronism.LabelDiachronism;
 import model.featureselection.labellingstategies.FeatureSelectionStrategy;
 import model.featureselection.labellingstategies.ILabelSelectionStrategy;
@@ -100,6 +103,9 @@ public class Controller {
 	    String json="[";
 	    boolean[] targets=new boolean[ld.getNbClusterTarget()];
 	    
+	    //Pour ordonner les Matching, d'abord les plus forts
+	    TreeSet<LabelCore> set = new TreeSet<LabelCore>(new LabelCoreComparator());
+	    
 		for (int s =0; s < ld.getNbClusterSource(); s++) {
 			itClusters=ld.getTargetClusterMatching(s).iterator();
 			if (!itClusters.hasNext()) {
@@ -110,10 +116,13 @@ public class Controller {
 					target=itClusters.next();
 					targets[target] = true;
 					
-					json+=gson.toJson(ld.getLabelCore(s, target));
-					json+=",";
+					set.add(ld.getLabelCore(s, target));
 				}
 			}
+		}
+		for (LabelCore l : set) {
+			json+=gson.toJson(l);
+			json+=",";
 		}
 		for (int t = 0; t < targets.length; t++) {
 			if (!targets[t]) {

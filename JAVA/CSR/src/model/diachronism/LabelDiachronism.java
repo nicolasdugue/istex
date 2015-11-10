@@ -257,6 +257,9 @@ public class LabelDiachronism {
 			lc.addTarget(triplet);
 		}
 		
+		lc.setP_s_t(p_s_knowing_t[t][s]);
+		lc.setP_t_s(p_t_knowing_s[s][t]);
+		
 		return lc;
 	}
 	public String getLabelOfClusterSource(int cluster) {

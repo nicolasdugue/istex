@@ -7,12 +7,14 @@ import com.google.gson.annotations.SerializedName;
 import model.util.nuplet.TripletLabel;
 import model.util.nuplet.comparator.TripletComparatorTarget;
 
-public class LabelCore {
+public class LabelCore{
+	
 	@SerializedName("Cluster Source")
 	private String s;
 	@SerializedName("Cluster Target")
 	private String t;
 	private transient TripletComparatorTarget comparator = new TripletComparatorTarget();
+	
 	@SerializedName("Kernel Labels")
 	private TreeSet<TripletLabel> kernelLabels = new TreeSet<TripletLabel>();
 	@SerializedName("Common Labels prevalent in Source")
@@ -23,6 +25,11 @@ public class LabelCore {
 	private transient TreeSet<TripletLabel> sourceLabels = new TreeSet<TripletLabel>();
 	@SerializedName("Target Labels")
 	private transient TreeSet<TripletLabel> targetLabels = new TreeSet<TripletLabel>(comparator);
+	
+	@SerializedName("Activity probability : s to t")
+	private float p_s_t;
+	@SerializedName("Activity probability : t to s")
+	private float p_t_s;
 	
 	
 	public String getS() {
@@ -60,6 +67,20 @@ public class LabelCore {
 	}
 	public TreeSet<TripletLabel> getTargetLabels() {
 		return targetLabels;
+	}
+	
+	
+	public float getP_s_t() {
+		return p_s_t;
+	}
+	public void setP_s_t(float p_s_t) {
+		this.p_s_t = p_s_t;
+	}
+	public float getP_t_s() {
+		return p_t_s;
+	}
+	public void setP_t_s(float p_t_s) {
+		this.p_t_s = p_t_s;
 	}
 	
 }
