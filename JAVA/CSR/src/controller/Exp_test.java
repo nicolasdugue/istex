@@ -15,6 +15,7 @@ import model.matrix.CsrMatrixClustered;
 import model.matrix.decorator.IMatrix;
 import model.matrix.decorator.MatrixFeatureLabels;
 import model.util.nuplet.PairF;
+import io.reader.ArcsReader;
 import io.reader.ClusteringReader;
 import io.reader.LabelReader;
 import io.reader.MatrixReader;
@@ -22,7 +23,8 @@ import io.reader.MatrixReader;
 public class Exp_test {
 
 	public static void main(String[] args) throws IOException {
-
+		
+		/*--Uncomment me--/ getSum test for MatrixReader
 		MatrixReader mr = new MatrixReader("exemples/matrix_lamirel_iskomaghreb");
 		System.out.println("La somme des lignes : "+mr.getSumRow());
 		System.out.println("La somme des colonnes : "+mr.getSumCol());
@@ -30,7 +32,16 @@ public class Exp_test {
 		IMatrix im = new CsrMatrix(mr);
 		CsrMatrixClustered mc = new CsrMatrixClustered( im, cr.getClusters());
 		FeaturesSelection fs = new FeaturesSelection(mc);
+		//*/
+		ArcsReader ar = new ArcsReader("exemples/Guimera_matrix");
+		for (int i=0;i<ar.getMatrix_columns().size();i++){
+			System.out.println("La colonne "+i+" : "+ar.getMatrix_columns().get(i));
+			
+		}
+				
 		
+		//System.out.println("La somme des lignes : "+ar.getSumRow());
+		//System.out.println("La somme des colonnes : "+ar.getSumCol());
 		
 		
 		/*private void read() throws FileNotFoundException {
