@@ -3,6 +3,7 @@ package io.reader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
@@ -23,6 +24,11 @@ public class ArcsReader implements IMatrixReader {
 	private String filename;
 	private ArrayList<ArrayList<PairF > > matrix_rows = new ArrayList<ArrayList<PairF >>();
 	private ArrayList<ArrayList<PairF > > matrix_columns= new ArrayList<ArrayList<PairF >>();
+	
+	private ArrayList<Float> sumRow = new ArrayList<Float>();
+	private ArrayList<Float> sumCol = new ArrayList<Float>();
+	
+	
 	private int nb_rows;
 	private int nb_columns;
 	private int nb_elmt;
@@ -58,13 +64,17 @@ public class ArcsReader implements IMatrixReader {
 			if (Math.max(src, dst) > (Math.min(matrix_columns.size(), matrix_rows.size()) - 1)) {
 				for (int i=matrix_rows.size(); i <= Math.max(src, dst); i++) {
 					matrix_rows.add(new ArrayList<PairF >());
+					sumRow.add(new Float(0));
 				}
 				for (int i=matrix_columns.size(); i <= Math.max(src, dst); i++) {
 					matrix_columns.add(new ArrayList<PairF >());
+					sumCol.add(new Float(0));
 				}
 			}
 			matrix_rows.get(src).add(new PairF(dst,weight));
+			sumRow.set(src, sumRow.get(src)+weight);
 			matrix_columns.get(dst).add(new PairF(src, weight));
+			sumCol.set(src, sumCol.get(src)+weight);
 			nb_elmt++;
 		}
 		nb_rows=matrix_rows.size();
@@ -72,6 +82,18 @@ public class ArcsReader implements IMatrixReader {
 		sc.close();
 	}
 
+	public ArrayList<Float> getSumRow() {
+		return sumRow;
+	}
+	public void setSumRow(ArrayList<Float> sumRow) {
+		this.sumRow = sumRow;
+	}
+	public ArrayList<Float> getSumCol() {
+		return sumCol;
+	}
+	public void setSumCol(ArrayList<Float> sumCol) {
+		this.sumCol = sumCol;
+	}
 	@Override
 	public String getFileName() {
 		return filename;

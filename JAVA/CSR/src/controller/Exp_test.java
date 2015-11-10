@@ -34,10 +34,20 @@ public class Exp_test {
 		FeaturesSelection fs = new FeaturesSelection(mc);
 		//*/
 		ArcsReader ar = new ArcsReader("exemples/Guimera_matrix");
+		
+	    
+		System.out.println(ar.getSumRow());
+		System.out.println(ar.getSumCol());
+		
 		for (int i=0;i<ar.getMatrix_columns().size();i++){
 			System.out.println("La colonne "+i+" : "+ar.getMatrix_columns().get(i));
 			
 		}
+		for (int i=0;i<ar.getMatrix_columns().size();i++){
+			System.out.println("La ligne "+i+" : "+ar.getMatrix_rows().get(i));
+	
+		}
+			
 				
 		
 		//System.out.println("La somme des lignes : "+ar.getSumRow());
