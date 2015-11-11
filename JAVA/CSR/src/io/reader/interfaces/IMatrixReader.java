@@ -1,7 +1,7 @@
 package io.reader.interfaces;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
-
 import model.util.nuplet.PairF;
 
 public interface IMatrixReader {
@@ -22,5 +22,7 @@ public interface IMatrixReader {
 	
 	public void clear();
 
+	public AbstractList getSumRow();
 	
+	public AbstractList getSumCol();
 }

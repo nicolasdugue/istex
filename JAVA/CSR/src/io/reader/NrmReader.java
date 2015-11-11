@@ -3,6 +3,8 @@ package io.reader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 import io.reader.interfaces.IMatrixReader;
@@ -17,6 +19,10 @@ public class NrmReader implements IMatrixReader {
 	private int nb_rows;
 	private int nb_columns;
 	private int nb_elmt;
+	private LinkedList sumRow = new LinkedList();
+	private LinkedList sumCol = new LinkedList();
+	
+	
 	public NrmReader(String fileName) throws FileNotFoundException {
 		super();
 		this.nb_elmt=0;
@@ -37,40 +43,73 @@ public class NrmReader implements IMatrixReader {
 		String line;
 		Scanner lineReader;
 		float xij;
+		float sum_row_xij = 0f;
 		int row_i=0;
 		int col_i=0;
 		ArrayList<PairF > row;
-		boolean first =true;
+		
+		//first
+		if(sc.hasNextLine()){
+			nb_columns=Integer.parseInt(sc.nextLine());	
+		}
+		
 		while (sc.hasNextLine()) {
 			line=sc.nextLine();
-			if (!first) {
-				lineReader= new Scanner(line);
-				row = new ArrayList<PairF >();
-				col_i=0;
-				while (col_i < nb_columns) {
-					xij=lineReader.nextFloat();
-					if (row_i == 0) { // Première ligne
-						matrix_columns.add(new ArrayList<PairF >());
-					}
+			lineReader= new Scanner(line);
+			row = new ArrayList<PairF >();
+			col_i=0;
+			sum_row_xij = 0f;
+			ListIterator<Float> lic = sumCol.listIterator();
+			while (col_i < nb_columns) {
+				xij=lineReader.nextFloat();
+				if (row_i == 0) { // Première ligne
+					matrix_columns.add(new ArrayList<PairF >());
+					sumCol.add(xij);
+					
 					if (xij != 0) {
+						lic.set(lic.next()+xij);
 						row.add(new PairF(col_i, xij));
 						matrix_columns.get(col_i).add(new PairF(row_i, xij));
 						this.nb_elmt++;
+						sum_row_xij = sum_row_xij +xij;
+					
 					}
-					col_i++;
+				
 				}
-				row_i++;
-				matrix_rows.add(row);
-				lineReader.close();
+				
+				else if (xij != 0) {
+					row.add(new PairF(col_i, xij));
+					matrix_columns.get(col_i).add(new PairF(row_i, xij));
+					this.nb_elmt++;
+					sum_row_xij = sum_row_xij +xij;
+				}
+				col_i++;
 			}
-			else {
-				first=false;
-				nb_columns=Integer.parseInt(line);
-			}
+			sumRow.add(sum_row_xij);
+			row_i++;
+			matrix_rows.add(row);
+			lineReader.close();
+			
 		}
 		nb_rows=row_i;
 		sc.close();
 	}
+	public LinkedList getSumRow() {
+		return sumRow;
+	}
+
+	public void setSumRow(LinkedList sumRow) {
+		this.sumRow = sumRow;
+	}
+
+	public LinkedList getSumCol() {
+		return sumCol;
+	}
+
+	public void setSumCol(LinkedList sumCol) {
+		this.sumCol = sumCol;
+	}
+
 	public PairF getXijRows(int i, int j) {
 		return matrix_rows.get(i).get(j);
 	}
