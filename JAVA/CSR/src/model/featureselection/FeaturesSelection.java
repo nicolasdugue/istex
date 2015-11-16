@@ -104,6 +104,16 @@ public class FeaturesSelection implements IFeaturesSelection {
 		return (2*fr*fp/(fr+fp));
 	}
 	
+	//========================ADDED_BEGEIN========================
+	//NOTES :
+	//*IF Den == 0 , return 0. 
+	//*MOVE TO CLUSTERED MATRIX QUAL
+	public float getContrast(int column, int cluster) {
+		
+		return this.meanFMeasure[column]==0 ? 0 : ff(column,cluster)/this.meanFMeasure[column]; 
+	}
+	//========================ADDED_END========================
+	
 	public int getNbColumns() {
 		return matrix.getNbColumns();
 	}

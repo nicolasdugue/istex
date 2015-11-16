@@ -23,16 +23,18 @@ import io.reader.MatrixReader;
 public class Exp_test {
 
 	public static void main(String[] args) throws IOException {
-		
-		/*--Uncomment me--/ getSum test for MatrixReader
+		//--Uncomment me--/ getSum test for MatrixReader
 		MatrixReader mr = new MatrixReader("exemples/matrix_lamirel_iskomaghreb");
 		System.out.println("La somme des lignes : "+mr.getSumRow());
 		System.out.println("La somme des colonnes : "+mr.getSumCol());
+		for(int i=0;i<mr.getMatrix_columns().size();i++)
+			
+		System.out.println("getCol"+mr.getMatrix_rows().get(i));
 		ClusteringReader cr = new ClusteringReader("exemples/clustering_lamirel_iskomaghreb");
 		IMatrix im = new CsrMatrix(mr);
 		CsrMatrixClustered mc = new CsrMatrixClustered( im, cr.getClusters());
-		FeaturesSelection fs = new FeaturesSelection(mc);
-		//*/
+		//FeaturesSelection fs = new FeaturesSelection(mc);
+		/*
 		ArcsReader ar = new ArcsReader("exemples/Guimera_matrix");
 		
 	    
