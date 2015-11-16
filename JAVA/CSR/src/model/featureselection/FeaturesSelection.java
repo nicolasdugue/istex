@@ -104,15 +104,40 @@ public class FeaturesSelection implements IFeaturesSelection {
 		return (2*fr*fp/(fr+fp));
 	}
 	
-	//========================ADDED_BEGEIN========================
-	//NOTES :
-	//*IF Den == 0 , return 0. 
-	//*MOVE TO CLUSTERED MATRIX QUAL
+	//========================ADDED_BEGIN========================
+	
 	public float getContrast(int column, int cluster) {
+		//NOTES :
+		//*IF Den == 0 , return 0. 
+		//TODO MOVE TO CLUSTERED MATRIX QUAL
 		
 		return this.meanFMeasure[column]==0 ? 0 : ff(column,cluster)/this.meanFMeasure[column]; 
 	}
+	
+	public float PC() {
+
+		//NOTES :
+		//-MOVE TO CLUSTERED MATRIX QUAL
+		int nbClusters = matrix.getNbCluster(); 
+		float resultPC = 0f;
+		float sumContrast = 0f;
+		for (int i =0 ;  i < nbClusters ; i++){
+					
+			//Sum of contrasts
+			for (int f : this.getFeaturesSelected(i))
+			{
+				sumContrast += getContrast(f,i);
+			};
+			
+			resultPC += 1/matrix.getSizeCk(i)*sumContrast;
+			sumContrast = 0f;
+		}
+		return(resultPC/nbClusters);
+		
+	}
+	
 	//========================ADDED_END========================
+	
 	
 	public int getNbColumns() {
 		return matrix.getNbColumns();

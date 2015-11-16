@@ -5,10 +5,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
 
+import model.cluster.Clustering;
 import model.featureselection.FeaturesSelection;
 import model.matrix.CsrMatrix;
 import model.matrix.CsrMatrixClustered;
@@ -21,19 +23,39 @@ import io.reader.LabelReader;
 import io.reader.MatrixReader;
 
 public class Exp_test {
+	public static void p(Object O){
+		System.out.print(O);
+	}
+	
+	public static void pl(Object O){
+		System.out.println(O);
+	}
 
 	public static void main(String[] args) throws IOException {
+		
+		
 		//--Uncomment me--/ getSum test for MatrixReader
 		MatrixReader mr = new MatrixReader("exemples/matrix_lamirel_iskomaghreb");
 		System.out.println("La somme des lignes : "+mr.getSumRow());
 		System.out.println("La somme des colonnes : "+mr.getSumCol());
-		for(int i=0;i<mr.getMatrix_columns().size();i++)
-			
-		System.out.println("getCol"+mr.getMatrix_rows().get(i));
+		/*for(int i=0;i<mr.getMatrix_columns().size();i++)
+			System.out.println("getCol"+mr.getMatrix_rows().get(i));
+			*/
 		ClusteringReader cr = new ClusteringReader("exemples/clustering_lamirel_iskomaghreb");
 		IMatrix im = new CsrMatrix(mr);
 		CsrMatrixClustered mc = new CsrMatrixClustered( im, cr.getClusters());
-		//FeaturesSelection fs = new FeaturesSelection(mc);
+		FeaturesSelection fs = new FeaturesSelection(mc);
+		Iterator I = fs.getFeaturesSelected().iterator();
+		while (I.hasNext()){
+			pl(I.next());
+			}
+		pl(cr.getClusters().getSizeCk(0));
+		pl("lol");
+		for (int index : fs.getFeaturesSelected(2))
+		{
+			pl(index);
+		}
+		//pl(mc.getNbCluster());
 		/*
 		ArcsReader ar = new ArcsReader("exemples/Guimera_matrix");
 		
@@ -129,5 +151,4 @@ public class Exp_test {
 		//
 		//*/
 	}
-
 }
