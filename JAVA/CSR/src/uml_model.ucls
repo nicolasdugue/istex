@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="controller.Controller" project="csr" file="/csr/src/controller/Controller.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="330" x="5405" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="controller.DiachronicIsko" project="csr" 
+    file="/csr/src/controller/DiachronicIsko.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="113" x="654" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="controller.MainGraphMeasures" project="csr" 
+    file="/csr/src/controller/MainGraphMeasures.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="211" x="403" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="controller.MainGuimera" project="csr" file="/csr/src/controller/MainGuimera.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="113" x="41" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="controller.MainDiachronic" project="csr" 
+    file="/csr/src/controller/MainDiachronic.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="211" x="1058" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="controller.MainGraphLabelSelection" project="csr" 
+    file="/csr/src/controller/MainGraphLabelSelection.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="169" x="194" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="controller.DiachronicVieillissement" project="csr" 
+    file="/csr/src/controller/DiachronicVieillissement.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="165" x="1309" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="controller.Exp_test" project="csr" file="/csr/src/controller/Exp_test.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="113" x="1514" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="controller.MainFeatureSelection" project="csr" 
+    file="/csr/src/controller/MainFeatureSelection.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="211" x="807" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="io.reader.ElmReader" project="csr" file="/csr/src/io/reader/ElmReader.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="160" x="2716" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="io.reader.ClusteringReader" project="csr" 
+    file="/csr/src/io/reader/ClusteringReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="160" x="2916" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="io.reader.ArcsReader" project="csr" file="/csr/src/io/reader/ArcsReader.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="459" width="265" x="6034" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="io.reader.MatrixReader" project="csr" file="/csr/src/io/reader/MatrixReader.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="585" width="285" x="6339" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="io.reader.LabelReader" project="csr" file="/csr/src/io/reader/LabelReader.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="139" x="5855" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="io.reader.NrmReader" project="csr" file="/csr/src/io/reader/NrmReader.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="585" width="285" x="6664" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="16" language="java" name="io.reader.interfaces.IMatrixReader" project="csr" 
+    file="/csr/src/io/reader/interfaces/IMatrixReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="265" x="6339" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="17" language="java" name="io.reader.interfaces.ILabelReader" project="csr" 
+    file="/csr/src/io/reader/interfaces/ILabelReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="116" x="6183" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="18" language="java" name="io.reader.interfaces.IClusteringReader" project="csr" 
+    file="/csr/src/io/reader/interfaces/IClusteringReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="140" x="2953" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="19" language="java" name="model.cluster.ClusteringLabelled" project="csr" 
+    file="/csr/src/model/cluster/ClusteringLabelled.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="210" x="2429" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="model.cluster.Clustering" project="csr" 
+    file="/csr/src/model/cluster/Clustering.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="234" x="2679" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="io.reader.factory.FactoryGraphReader" project="csr" 
+    file="/csr/src/io/reader/factory/FactoryGraphReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="181" x="3576" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="io.reader.factory.FactorySimpleClusteringReader" project="csr" 
+    file="/csr/src/io/reader/factory/FactorySimpleClusteringReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="204" x="3797" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="io.reader.factory.FactorySimpleMatrixReader" project="csr" 
+    file="/csr/src/io/reader/factory/FactorySimpleMatrixReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="182" x="3133" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="io.reader.factory.FactoryElmReader" project="csr" 
+    file="/csr/src/io/reader/factory/FactoryElmReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="200" x="4041" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="io.reader.factory.FactoryNrmReader" project="csr" 
+    file="/csr/src/io/reader/factory/FactoryNrmReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="181" x="3355" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="io.reader.factory.FactorySimpleLabelReader" project="csr" 
+    file="/csr/src/io/reader/factory/FactorySimpleLabelReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="178" x="5458" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="27" language="java" name="io.reader.factory.interfaces.IFactoryLabelReader" project="csr" 
+    file="/csr/src/io/reader/factory/interfaces/IFactoryLabelReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="178" x="5384" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="28" language="java" name="io.reader.factory.interfaces.IFactoryClusteringReader" project="csr" 
+    file="/csr/src/io/reader/factory/interfaces/IFactoryClusteringReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="200" x="4041" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="29" language="java" name="io.reader.factory.interfaces.IFactoryDataReader" project="csr" 
+    file="/csr/src/io/reader/factory/interfaces/IFactoryDataReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="181" x="3576" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="30" language="java" name="model.cluster.decorator.IClustering" project="csr" 
+    file="/csr/src/model/cluster/decorator/IClustering.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="210" x="2429" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="31" language="java" name="model.diachronism.clustermatching.ClusterMatching" project="csr" 
+    file="/csr/src/model/diachronism/clustermatching/ClusterMatching.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="188" x="1951" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="model.diachronism.clustermatching.ClusterLabelled" project="csr" 
+    file="/csr/src/model/diachronism/clustermatching/ClusterLabelled.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="188" x="1951" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="model.diachronism.LabelDiachronism" project="csr" 
+    file="/csr/src/model/diachronism/LabelDiachronism.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="549" width="285" x="5133" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="model.diachronism.LabelCore" project="csr" 
+    file="/csr/src/model/diachronism/LabelCore.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="441" width="244" x="1667" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="35" language="java" name="model.featureselection.IFeaturesSelection" project="csr" 
+    file="/csr/src/model/featureselection/IFeaturesSelection.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="246" x="4826" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="36" language="java" name="model.featureselection.LabelSelectionFromFile" project="csr" 
+    file="/csr/src/model/featureselection/LabelSelectionFromFile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="333" width="251" x="4281" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="model.featureselection.FeaturesSelection" project="csr" 
+    file="/csr/src/model/featureselection/FeaturesSelection.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="693" width="246" x="3502" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="model.featureselection.LabelSelection" project="csr" 
+    file="/csr/src/model/featureselection/LabelSelection.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="251" x="5107" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="39" language="java" name="model.featureselection.ILabelSelection" project="csr" 
+    file="/csr/src/model/featureselection/ILabelSelection.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="251" x="5093" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="40" language="java" name="model.featureselection.labellingstategies.FixedNumberOfLabelStrategy" 
+    project="csr" file="/csr/src/model/featureselection/labellingstategies/FixedNumberOfLabelStrategy.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="279" x="4507" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="model.featureselection.labellingstategies.FeatureThresholdStrategy" project="csr" 
+    file="/csr/src/model/featureselection/labellingstategies/FeatureThresholdStrategy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="225" width="273" x="4194" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="model.featureselection.labellingstategies.FeatureSelectionStategy" project="csr" 
+    file="/csr/src/model/featureselection/labellingstategies/FeatureSelectionStategy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="241" x="4826" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="43" language="java" name="model.featureselection.labellingstategies.ILabelSectionStategy" project="csr" 
+    file="/csr/src/model/featureselection/labellingstategies/ILabelSectionStategy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="214" x="4572" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="44" language="java" name="model.matrix.decorator.IMatrix" project="csr" 
+    file="/csr/src/model/matrix/decorator/IMatrix.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="333" width="178" x="1773" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="45" language="java" name="model.matrix.decorator.MatrixFeatureLabels" project="csr" 
+    file="/csr/src/model/matrix/decorator/MatrixFeatureLabels.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="218" x="1515" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="model.matrix.decorator.MatrixObjectLabel" project="csr" 
+    file="/csr/src/model/matrix/decorator/MatrixObjectLabel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="206" x="1269" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="model.matrix.decorator.MatrixDecorator" project="csr" 
+    file="/csr/src/model/matrix/decorator/MatrixDecorator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="351" width="178" x="1515" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="model.matrix.CsrMatrixClustered" project="csr" 
+    file="/csr/src/model/matrix/CsrMatrixClustered.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="441" width="210" x="2179" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="model.matrix.CsrMatrix" project="csr" file="/csr/src/model/matrix/CsrMatrix.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="477" width="178" x="1733" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="model.roles.FunctionalCartography" project="csr" 
+    file="/csr/src/model/roles/FunctionalCartography.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="477" width="279" x="2179" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="model.util.factory.MatrixElmFactory" project="csr" 
+    file="/csr/src/model/util/factory/MatrixElmFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="123" x="6092" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="52" language="java" name="model.util.factory.GraphElmFactory" project="csr" 
+    file="/csr/src/model/util/factory/GraphElmFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="121" x="5602" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="53" language="java" name="model.util.factory.MatrixFactory" project="csr" 
+    file="/csr/src/model/util/factory/MatrixFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="102" x="6406" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="54" language="java" name="model.util.factory.NrmElmFactory" project="csr" 
+    file="/csr/src/model/util/factory/NrmElmFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="111" x="6255" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="55" language="java" name="model.util.factory.AFactory" project="csr" 
+    file="/csr/src/model/util/factory/AFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="467" x="5676" y="770"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="56" language="java" name="model.util.factory.GraphFactory" project="csr" 
+    file="/csr/src/model/util/factory/GraphFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="101" x="5763" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="57" language="java" name="model.util.factory.NrmClusteringFactory" project="csr" 
+    file="/csr/src/model/util/factory/NrmClusteringFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="148" x="5904" y="1359"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="58">    
+    <end type="SOURCE" refId="54"/>    
+    <end type="TARGET" refId="55"/>  
+  </generalization>  
+  <realization id="59">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="27"/>  
+  </realization>  
+  <realization id="60">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="18"/>  
+  </realization>  
+  <realization id="61">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="35"/>  
+  </realization>  
+  <realization id="62">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="29"/>  
+  </realization>  
+  <association id="63">    
+    <end type="SOURCE" refId="55" navigable="false" variant="ASSOCIATION">      
+      <attribute id="64" name="lr"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="66">    
+    <end type="SOURCE" refId="53"/>    
+    <end type="TARGET" refId="55"/>  
+  </generalization>  
+  <generalization id="67">    
+    <end type="SOURCE" refId="45"/>    
+    <end type="TARGET" refId="47"/>  
+  </generalization>  
+  <association id="68">    
+    <end type="SOURCE" refId="33" navigable="false" variant="ASSOCIATION">      
+      <attribute id="69" name="ls_t"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <end type="SOURCE" refId="40" navigable="false" variant="ASSOCIATION">      
+      <attribute id="72" name="fs"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="74">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="29"/>  
+  </realization>  
+  <generalization id="75">    
+    <end type="SOURCE" refId="56"/>    
+    <end type="TARGET" refId="55"/>  
+  </generalization>  
+  <association id="76">    
+    <end type="SOURCE" refId="19" navigable="false" variant="ASSOCIATION">      
+      <attribute id="77" name="clustering"/>      
+      <multiplicity id="78" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="79">    
+    <end type="SOURCE" refId="55" navigable="false" variant="ASSOCIATION">      
+      <attribute id="80" name="cr"/>      
+      <multiplicity id="81" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="82">    
+    <end type="SOURCE" refId="52"/>    
+    <end type="TARGET" refId="55"/>  
+  </generalization>  
+  <association id="83">    
+    <end type="SOURCE" refId="41" navigable="false" variant="ASSOCIATION">      
+      <attribute id="84" name="fs"/>      
+      <multiplicity id="85" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <end type="SOURCE" refId="10" navigable="false" variant="ASSOCIATION">      
+      <attribute id="87" name="clusters"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="89">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="16"/>  
+  </realization>  
+  <association id="90">    
+    <end type="SOURCE" refId="48" navigable="false" variant="ASSOCIATION">      
+      <attribute id="91" name="matrix"/>      
+      <multiplicity id="92" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="44" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="93">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="29"/>  
+  </realization>  
+  <generalization id="94">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="55"/>  
+  </generalization>  
+  <association id="95">    
+    <end type="SOURCE" refId="50" navigable="false" variant="ASSOCIATION">      
+      <attribute id="96" name="matrix"/>      
+      <multiplicity id="97" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="48" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="98">    
+    <end type="SOURCE" refId="41"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="99">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="28"/>  
+  </realization>  
+  <association id="100">    
+    <end type="SOURCE" refId="31" navigable="false" variant="ASSOCIATION">      
+      <attribute id="101" name="targets"/>      
+      <multiplicity id="102" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="103">    
+    <end type="SOURCE" refId="51"/>    
+    <end type="TARGET" refId="55"/>  
+  </generalization>  
+  <association id="104">    
+    <end type="SOURCE" refId="47" navigable="false" variant="ASSOCIATION">      
+      <attribute id="105" name="m"/>      
+      <multiplicity id="106" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="44" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="107">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="30"/>  
+  </realization>  
+  <realization id="108">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="28"/>  
+  </realization>  
+  <realization id="109">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <association id="110">    
+    <end type="SOURCE" refId="55" navigable="false" variant="ASSOCIATION">      
+      <attribute id="111" name="fr"/>      
+      <multiplicity id="112" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="29" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="113">    
+    <end type="SOURCE" refId="33" navigable="false" variant="ASSOCIATION">      
+      <attribute id="114" name="ls_s"/>      
+      <multiplicity id="115" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="116">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="30"/>  
+  </realization>  
+  <association id="117">    
+    <end type="SOURCE" refId="1" navigable="false" variant="ASSOCIATION">      
+      <attribute id="118" name="adf"/>      
+      <multiplicity id="119" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="55" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="120">    
+    <end type="SOURCE" refId="11" navigable="false" variant="ASSOCIATION">      
+      <attribute id="121" name="clusters"/>      
+      <multiplicity id="122" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="123">    
+    <end type="SOURCE" refId="38" navigable="false" variant="ASSOCIATION">      
+      <attribute id="124" name="fs"/>      
+      <multiplicity id="125" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="126">    
+    <end type="SOURCE" refId="48" navigable="false" variant="ASSOCIATION">      
+      <attribute id="127" name="clusters"/>      
+      <multiplicity id="128" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="129">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <realization id="130">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="18"/>  
+  </realization>  
+  <realization id="131">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="44"/>  
+  </realization>  
+  <realization id="132">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="39"/>  
+  </realization>  
+  <association id="133">    
+    <end type="SOURCE" refId="31" navigable="false" variant="ASSOCIATION">      
+      <attribute id="134" name="cl"/>      
+      <multiplicity id="135" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="136">    
+    <end type="SOURCE" refId="49"/>    
+    <end type="TARGET" refId="44"/>  
+  </realization>  
+  <realization id="137">    
+    <bendpoint x="5102" y="770"/>    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="39"/>  
+  </realization>  
+  <realization id="138">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="16"/>  
+  </realization>  
+  <association id="139">    
+    <end type="SOURCE" refId="37" navigable="false" variant="ASSOCIATION">      
+      <attribute id="140" name="matrix"/>      
+      <multiplicity id="141" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="48" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="142">    
+    <end type="SOURCE" refId="1" navigable="false" variant="ASSOCIATION">      
+      <attribute id="143" name="ld"/>      
+      <multiplicity id="144" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="145">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="16"/>  
+  </realization>  
+  <association id="146">    
+    <end type="SOURCE" refId="42" navigable="false" variant="ASSOCIATION">      
+      <attribute id="147" name="fs"/>      
+      <multiplicity id="148" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="149">    
+    <end type="SOURCE" refId="42"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <generalization id="150">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="47"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
