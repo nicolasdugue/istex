@@ -49,12 +49,10 @@ public class Exp_test {
 		while (I.hasNext()){
 			pl(I.next());
 			}
-		pl(cr.getClusters().getSizeCk(0));
+		pl(cr.getClusters().
+				getSizeCk(0));
 		pl("lol");
-		for (int index : fs.getFeaturesSelected(2))
-		{
-			pl(index);
-		}
+		
 		//pl(mc.getNbCluster());
 		/*
 		ArcsReader ar = new ArcsReader("exemples/Guimera_matrix");

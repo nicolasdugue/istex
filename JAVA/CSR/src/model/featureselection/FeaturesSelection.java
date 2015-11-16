@@ -121,7 +121,7 @@ public class FeaturesSelection implements IFeaturesSelection {
 		int nbClusters = matrix.getNbCluster(); 
 		float resultPC = 0f;
 		float sumContrast = 0f;
-		for (int i =0 ;  i < nbClusters ; i++){
+		for (int i = 0 ;  i < nbClusters ; i++){
 					
 			//Sum of contrasts
 			for (int f : this.getFeaturesSelected(i))
@@ -133,6 +133,53 @@ public class FeaturesSelection implements IFeaturesSelection {
 			sumContrast = 0f;
 		}
 		return(resultPC/nbClusters);
+		
+	}
+	
+	public float EC() {
+
+		//NOTES :
+		//-MOVE TO CLUSTERED MATRIX QUAL
+		int nbClusters = matrix.getNbCluster(); 
+		float resultEC = 0f;
+		float sumContrast = 0f;
+		float sumAntiContrast = 0f;
+		float tempContrast =0f;
+		int nbActiveFeatures=0;
+		int nbPassiveFeatures=0;
+		
+		for (int i =0 ;  i < nbClusters ; i++){
+					
+			// Get all the information with one single thread
+			for (int f : this.getFeaturesSelected(i))
+			{
+				//One single call
+				tempContrast += getContrast(f,i);
+				
+				//Active feature
+				if (tempContrast >= 1)
+				{
+					sumContrast += tempContrast;
+					nbActiveFeatures++;
+				}
+				//Passive feature
+				else
+				{
+					sumAntiContrast += 1/tempContrast; //TODO : decide what to do risk 1/0
+					nbPassiveFeatures++;
+				}
+							
+			}
+			int nbDataAssociatedCk = matrix.getSizeCk(i);
+			resultEC += 1/( nbDataAssociatedCk * (nbActiveFeatures+nbPassiveFeatures)) * ( nbActiveFeatures*sumContrast + nbPassiveFeatures*sumAntiContrast) ;
+			
+			//Reset sums
+			sumContrast = 0f;
+			sumAntiContrast = 0f;
+			nbActiveFeatures=0;
+			nbPassiveFeatures=0;
+		}
+		return(resultEC/nbClusters);
 		
 	}
 	
