@@ -57,18 +57,10 @@ public class Exp_test {
 		//Start 
 		
 		//fs.getMatrix().getMatrix().getRow(i)
-		int k = 0;
-		int rowSize = fs.getRow(0).length ;
-		int colSize = fs.getObjectsInCk(k).size();
+		pl(Quality.getDB(fs));
+		pl(Quality.getPC(fs));
+		pl(Quality.getEC(fs));
 		
-		//Centroid 
-		Float[] centroid = new Float[rowSize];
-		for (int i=0; i<rowSize ;i++)
-		{
-			centroid[i] = fs.getMatrix().getSumRow(i)/colSize;
-		}
-		
-		pl(centroid[0]);
 		
 		
 		

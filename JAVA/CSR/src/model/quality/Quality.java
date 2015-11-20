@@ -41,12 +41,13 @@ public class Quality {
 				for (int f : fs.getFeaturesSelected(i))
 				{
 					sumContrast += getContrast(fs,f,i);
-				};
+				}
 				
-				resultPC += 1/fs.getMatrix().getSizeCk(i)*sumContrast;
+				resultPC += 1/((float)fs.getMatrix().getSizeCk(i))*sumContrast;
 				sumContrast = 0f;
 			}
-			return(resultPC/nbClusters);
+
+			return(resultPC/((float)nbClusters));
 			
 		}
 		//EC index
@@ -85,7 +86,7 @@ public class Quality {
 								
 				}
 				int nbDataAssociatedCk = fs.getMatrix().getSizeCk(i);
-				resultEC += 1/( nbDataAssociatedCk * (nbActiveFeatures+nbPassiveFeatures)) * ( nbActiveFeatures*sumContrast + nbPassiveFeatures*sumAntiContrast) ;
+				resultEC += 1/(((float) nbDataAssociatedCk) * ((float) nbActiveFeatures+ (float) nbPassiveFeatures)) * (((float) nbActiveFeatures)*sumContrast + ((float) nbPassiveFeatures)*sumAntiContrast) ;
 				
 				//Reset sums
 				sumContrast = 0f;
@@ -93,7 +94,7 @@ public class Quality {
 				nbActiveFeatures=0;
 				nbPassiveFeatures=0;
 			}
-			return(resultEC/nbClusters);
+			return(resultEC/((float)nbClusters));
 			
 		}
 		
@@ -117,7 +118,7 @@ public class Quality {
 				//---------------
 				public static float getDistanceSquare(PairF[] x , Float[] y) {			
 					
-					int size = 1+Math.min(x.length, y.length);
+					int size = Math.min(x.length, y.length);
 					float Sum =0;
 					float temp; 
 					for (int i=0;i<size;i++)
@@ -132,7 +133,7 @@ public class Quality {
 				//---------------
 				public static float getDistanceSquare(PairF[] x , PairF[] y) {			
 					
-					int size = 1+Math.min(x.length, y.length);
+					int size = Math.min(x.length, y.length);
 					float Sum =0;
 					float temp; 
 					for (int i=0;i<size;i++)
@@ -168,8 +169,8 @@ public class Quality {
 					{
 						sumDiam += getDistanceSquare(fs.getRow(i), centroid);
 					}
-					int nbDataAssociatedCk = fs.getMatrix().getSizeCk(k);
-					
+					float nbDataAssociatedCk = (float) fs.getMatrix().getSizeCk(k);
+								
 					return((float) Math.sqrt(1/nbDataAssociatedCk * sumDiam));
 					
 				}
@@ -198,7 +199,7 @@ public class Quality {
 				
 		//Davies-Bouldin 
 		//---------------------
-		public static float getDU(FeaturesSelection fs) {
+		public static float getDB(FeaturesSelection fs) {
 			
 			int nbClusters = fs.getMatrix().getNbCluster();
 			
