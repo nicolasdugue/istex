@@ -20,7 +20,7 @@ To be able to use the jar easily as linux commands, you can use the following pr
 In a shell, run the following commands for each jar you want to use as a Linux command (except the last line, only once).
 
 	mkdir ~/bin
-	echo  "java –jar /le chemin/jarname.jar \$@" | sudo tee –a  ~/bin/cmdname
+	echo  "java –jar /le chemin/jarname.jar \$@" | tee  ~/bin/cmdname
 	chmod +x ~/bin/cmdname
 	echo "export PATH=$PATH:~/bin" >> ~/.bashrc
 	
