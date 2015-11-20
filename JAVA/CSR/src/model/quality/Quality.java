@@ -128,6 +128,21 @@ public class Quality {
 					return(Sum);
 				}
 				
+				//Square Distance 
+				//---------------
+				public static float getDistanceSquare(PairF[] x , PairF[] y) {			
+					
+					int size = 1+Math.min(x.length, y.length);
+					float Sum =0;
+					float temp; 
+					for (int i=0;i<size;i++)
+					{
+						temp = Math.abs(x[i].getRight()-y[i].getRight()); //compare weights
+						Sum += temp*temp;
+					}
+					return(Sum);
+				}
+				
 				
 				//Diameter of a cluster 
 				//---------------------
@@ -163,25 +178,21 @@ public class Quality {
 				//-------------------------
 				public static float getDiss(int i,int j, FeaturesSelection fs) {
 					
-					  
-					int rowSize = fs.getRow(0).length ;
-					int colSize = fs.getObjectsInCk(k).size();
-					
-					//Centroid 
-					Float[] centroid = new Float[rowSize];
-					for (int i=0; i<rowSize ;i++)
+					float distance = getDistanceSquare(fs.getRow(fs.getObjectsInCk(i).get(0)), fs.getRow(fs.getObjectsInCk(j).get(0))); 
+					float temp_distance = distance;
+					for ( int indexVectorCI : fs.getObjectsInCk(i))
 					{
-						centroid[i] = fs.getMatrix().getSumRow(i)/colSize;
+						for (int indexVectorCJ : fs.getObjectsInCk(j))
+						{
+							temp_distance = getDistanceSquare(fs.getRow(indexVectorCI), fs.getRow(indexVectorCJ));
+							if (distance > temp_distance)
+							{
+								distance = temp_distance;
+							}
+						}
 					}
-					float sumDiam =0f;
-					
-					for (int i=0; i<colSize ;i++)
-					{
-						sumDiam += getDistanceSquare(fs.getRow(i), centroid);
-					}
-					int nbDataAssociatedCk = fs.getMatrix().getSizeCk(k);
-					
-					return((float) Math.sqrt(1/nbDataAssociatedCk * sumDiam));
+
+					return((float) Math.sqrt(distance));
 					
 				}
 				
@@ -189,46 +200,33 @@ public class Quality {
 		//---------------------
 		public static float getDU(FeaturesSelection fs) {
 			
-			int nbClusters = fs.getMatrix().getNbCluster(); 
-			float resultEC = 0f;
-			float sumContrast = 0f;
-			float sumAntiContrast = 0f;
-			float tempContrast =0f;
-			int nbActiveFeatures=0;
-			int nbPassiveFeatures=0;
+			int nbClusters = fs.getMatrix().getNbCluster();
+			
+			if (nbClusters < 2)
+				return 0;
+			
+			float DB_Sum = (getDiameter(0, fs)+getDiameter(1, fs))/getDiss(0, 1, fs);
+			float temp_DB_Sum = DB_Sum;
 			
 			for (int i =0 ;  i < nbClusters ; i++){
-						
 				
-				for (int f : fs.getFeaturesSelected(i))
+				for (int j = 0; j< i; j++)
 				{
-					//One single call
-					tempContrast += getContrast(fs,f,i);
-					
-					//Active feature
-					if (tempContrast >= 1)
-					{
-						sumContrast += tempContrast;
-						nbActiveFeatures++;
-					}
-					//Passive feature
-					else
-					{
-						sumAntiContrast += 1/tempContrast; //TODO : decide what to do when 1/0
-						nbPassiveFeatures++;
-					}
+					temp_DB_Sum = (getDiameter(i, fs)+getDiameter(j, fs))/getDiss(i, j, fs);
+					if (DB_Sum < temp_DB_Sum)	
+						DB_Sum = temp_DB_Sum;
+				}
+				
+				for (int j = i+1; j < nbClusters ; j++)
+				{
+					temp_DB_Sum = (getDiameter(i, fs)+getDiameter(j, fs))/getDiss(i, j, fs);
+					if (DB_Sum < temp_DB_Sum)	
+						DB_Sum = temp_DB_Sum;
 								
 				}
-				int nbDataAssociatedCk = fs.getMatrix().getSizeCk(i);
-				resultEC += 1/( nbDataAssociatedCk * (nbActiveFeatures+nbPassiveFeatures)) * ( nbActiveFeatures*sumContrast + nbPassiveFeatures*sumAntiContrast) ;
 				
-				//Reset sums
-				sumContrast = 0f;
-				sumAntiContrast = 0f;
-				nbActiveFeatures=0;
-				nbPassiveFeatures=0;
 			}
-			return(resultEC/nbClusters);
+			return(DB_Sum/nbClusters);
 			
 		}
 		
