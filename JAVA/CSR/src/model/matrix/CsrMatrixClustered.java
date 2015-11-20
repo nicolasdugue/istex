@@ -84,6 +84,14 @@ public class CsrMatrixClustered {
 		return sum;
 	}
 	
+	public IMatrix getMatrix() {
+		return matrix;
+	}
+
+	public void setMatrix(IMatrix matrix) {
+		this.matrix = matrix;
+	}
+
 	/**
 	 * @param k the cluster you want to get the whole sum
 	 * @return the sum over all the a_ij that belongs to the cluster

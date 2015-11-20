@@ -16,6 +16,7 @@ import model.matrix.CsrMatrix;
 import model.matrix.CsrMatrixClustered;
 import model.matrix.decorator.IMatrix;
 import model.matrix.decorator.MatrixFeatureLabels;
+import model.quality.Quality;
 import model.util.nuplet.PairF;
 import io.reader.ArcsReader;
 import io.reader.ClusteringReader;
@@ -36,22 +37,41 @@ public class Exp_test {
 		
 		//--Uncomment me--/ getSum test for MatrixReader
 		MatrixReader mr = new MatrixReader("exemples/matrix_lamirel_iskomaghreb");
+		/*
 		System.out.println("La somme des lignes : "+mr.getSumRow());
 		System.out.println("La somme des colonnes : "+mr.getSumCol());
-		/*for(int i=0;i<mr.getMatrix_columns().size();i++)
+		for(int i=0;i<mr.getMatrix_columns().size();i++)
 			System.out.println("getCol"+mr.getMatrix_rows().get(i));
 			*/
 		ClusteringReader cr = new ClusteringReader("exemples/clustering_lamirel_iskomaghreb");
 		IMatrix im = new CsrMatrix(mr);
 		CsrMatrixClustered mc = new CsrMatrixClustered( im, cr.getClusters());
 		FeaturesSelection fs = new FeaturesSelection(mc);
-		Iterator I = fs.getFeaturesSelected().iterator();
+		/*Iterator I = fs.getFeaturesSelected().iterator();
 		while (I.hasNext()){
 			pl(I.next());
 			}
-		pl(cr.getClusters().
-				getSizeCk(0));
-		pl("lol");
+		pl(cr.getClusters().*/
+		
+		
+		//Start 
+		
+		//fs.getMatrix().getMatrix().getRow(i)
+		int k = 0;
+		int rowSize = fs.getRow(0).length ;
+		int colSize = fs.getObjectsInCk(k).size();
+		
+		//Centroid 
+		Float[] centroid = new Float[rowSize];
+		for (int i=0; i<rowSize ;i++)
+		{
+			centroid[i] = fs.getMatrix().getSumRow(i)/colSize;
+		}
+		
+		pl(centroid[0]);
+		
+		
+		
 		
 		//pl(mc.getNbCluster());
 		/*
