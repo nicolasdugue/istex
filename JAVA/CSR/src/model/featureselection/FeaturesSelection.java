@@ -8,6 +8,8 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 import model.matrix.CsrMatrixClustered;
+import model.matrix.decorator.IMatrix;
+import model.util.nuplet.PairF;
 import util.SGLogger;
 
 /**
@@ -103,6 +105,9 @@ public class FeaturesSelection implements IFeaturesSelection {
 		float fr=sumColInCluster/ matrix.getSumCol(column);
 		return (2*fr*fp/(fr+fp));
 	}
+	
+	
+	
 	
 	public int getNbColumns() {
 		return matrix.getNbColumns();
@@ -241,6 +246,16 @@ public class FeaturesSelection implements IFeaturesSelection {
 	public ArrayList<Integer> getObjectsInCk(int cluster) {
 		return matrix.getObjectsInCk(cluster);
 	}
+	
+	//ADDED : BEGIN
+	public PairF[] getColumn(int j) { 
+		return matrix.getMatrix().getColumn(j);
+	}
+	
+	public PairF[] getRow(int j) { 
+		return matrix.getMatrix().getRow(j);
+	}
+	//ADDED : END
 	
 	
 	
