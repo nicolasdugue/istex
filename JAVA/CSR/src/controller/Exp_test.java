@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import model.cluster.Clustering;
 import model.featureselection.FeaturesSelection;
 import model.matrix.CsrMatrix;
@@ -18,19 +20,13 @@ import model.matrix.decorator.IMatrix;
 import model.matrix.decorator.MatrixFeatureLabels;
 import model.quality.Quality;
 import model.util.nuplet.PairF;
+import util.SGLogger;
 import io.reader.ArcsReader;
 import io.reader.ClusteringReader;
 import io.reader.LabelReader;
 import io.reader.MatrixReader;
 
 public class Exp_test {
-	public static void p(Object O){
-		System.out.print(O);
-	}
-	
-	public static void pl(Object O){
-		System.out.println(O);
-	}
 
 	public static void main(String[] args) throws IOException {
 		
@@ -57,11 +53,12 @@ public class Exp_test {
 		//Start 
 		
 		//fs.getMatrix().getMatrix().getRow(i)
-		pl(Quality.getDB(fs));
-		pl(Quality.getPC(fs));
-		pl(Quality.getEC(fs));
+		//pl(Quality.getDB(fs));
+		//pl(Quality.getPC(fs));
+		//pl(Quality.getEC(fs));
 		
-		
+		Logger log = SGLogger.getInstance();
+		log.fatal("test");
 		
 		
 		

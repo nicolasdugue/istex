@@ -22,7 +22,7 @@ public interface IMatrixReader {
 	
 	public void clear();
 
-	public AbstractList getSumRow();
+	public AbstractList<Float> getSumRow();
 	
-	public AbstractList getSumCol();
+	public AbstractList<Float> getSumCol();
 }

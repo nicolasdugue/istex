@@ -74,7 +74,7 @@ public class ArcsReader implements IMatrixReader {
 			matrix_rows.get(src).add(new PairF(dst,weight));
 			sumRow.set(src, sumRow.get(src)+weight);
 			matrix_columns.get(dst).add(new PairF(src, weight));
-			sumCol.set(src, sumCol.get(src)+weight);
+			sumCol.set(dst, sumCol.get(dst)+weight);
 			nb_elmt++;
 		}
 		nb_rows=matrix_rows.size();
@@ -136,6 +136,8 @@ public class ArcsReader implements IMatrixReader {
 			l.clear();
 		matrix_rows.clear();
 		matrix_columns.clear();
+		sumCol.clear();
+		sumRow.clear();
 		Memory.garbageCollector();		
 	}
 

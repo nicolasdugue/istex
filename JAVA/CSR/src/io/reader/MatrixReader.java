@@ -65,14 +65,14 @@ public class MatrixReader implements IMatrixReader {
 		ArrayList<PairF > row;
 		
 		
-
+		ListIterator<Float> lic;
 		while (sc.hasNextLine()) {
 			line=sc.nextLine();
 			lineReader= new Scanner(line);
 			row = new ArrayList<PairF >();
 			col_i=0;
 			sum_row_xij = 0f;
-			ListIterator<Float> lic = sumCol.listIterator();
+			lic = sumCol.listIterator();
 			while (lineReader.hasNextFloat()) {
 				xij=lineReader.nextFloat();
 				if (row_i == 0) { // Première ligne

@@ -19,8 +19,8 @@ public class NrmReader implements IMatrixReader {
 	private int nb_rows;
 	private int nb_columns;
 	private int nb_elmt;
-	private LinkedList sumRow = new LinkedList();
-	private LinkedList sumCol = new LinkedList();
+	private LinkedList<Float> sumRow = new LinkedList<Float>();
+	private LinkedList<Float> sumCol = new LinkedList<Float>();
 	
 	
 	public NrmReader(String fileName) throws FileNotFoundException {
@@ -94,19 +94,19 @@ public class NrmReader implements IMatrixReader {
 		nb_rows=row_i;
 		sc.close();
 	}
-	public LinkedList getSumRow() {
+	public LinkedList<Float> getSumRow() {
 		return sumRow;
 	}
 
-	public void setSumRow(LinkedList sumRow) {
+	public void setSumRow(LinkedList<Float> sumRow) {
 		this.sumRow = sumRow;
 	}
 
-	public LinkedList getSumCol() {
+	public LinkedList<Float> getSumCol() {
 		return sumCol;
 	}
 
-	public void setSumCol(LinkedList sumCol) {
+	public void setSumCol(LinkedList<Float> sumCol) {
 		this.sumCol = sumCol;
 	}
 
@@ -164,6 +164,8 @@ public class NrmReader implements IMatrixReader {
 			l.clear();
 		matrix_rows.clear();
 		matrix_columns.clear();
+		sumCol.clear();
+		sumRow.clear();
 		Memory.garbageCollector();		
 	}
 

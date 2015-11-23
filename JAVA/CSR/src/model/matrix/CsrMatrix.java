@@ -54,8 +54,8 @@ public class CsrMatrix implements IMatrix {
 	protected int[] cumulative_columns;
 	
 	//Avoid computing several times the sums
-	//protected float[] sum_line;
-	protected float[] sum_col;
+	protected Float[] sum_row;
+	protected Float[] sum_col;
 	
 	protected Logger log;
 	
@@ -91,11 +91,16 @@ public class CsrMatrix implements IMatrix {
 			cumulative_columns[nb_col]=elmt_i;
 			nb_col++;
 		}
+		
+		sum_col = new Float[this.getNbColumns()];
+		sum_col=mr.getSumCol().toArray(sum_col);
+		sum_row = new Float[this.getNbRows()];
+		sum_row=mr.getSumRow().toArray(sum_row);
 		//Release memory
 		mr.clear();
 		
 		//sum_line = new float[this.getNbRows()];
-		sum_col = new float[this.getNbColumns()];
+		
 		
 		log=SGLogger.getInstance();
 		log.debug(this.getNbRows() + " rows");
@@ -140,20 +145,24 @@ public class CsrMatrix implements IMatrix {
 	 * @return sum over the i-th row of the matrix
 	 */
 	public float getSumRow(int i) {
-		int start;
-		int end;		
-		if (i == 0) {
-			start=0;
+		if (sum_row[i] == 0.0) {
+			int start;
+			int end;		
+			if (i == 0) {
+				start=0;
+			}
+			else {
+				start=cumulative_rows[i-1];
+			}
+			end=cumulative_rows[i];
+			float sum=0f;
+			for (int j=start; j < end; j++) {
+				sum +=rows[j].getRight();
+			}
+			sum_row[i]=sum;
+			return sum;
 		}
-		else {
-			start=cumulative_rows[i-1];
-		}
-		end=cumulative_rows[i];
-		float sum=0f;
-		for (int j=start; j < end; j++) {
-			sum +=rows[j].getRight();
-		}
-		return sum;
+		return sum_row[i];
 	}
 	
 	/**
