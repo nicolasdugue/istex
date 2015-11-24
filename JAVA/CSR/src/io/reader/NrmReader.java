@@ -67,7 +67,7 @@ public class NrmReader implements IMatrixReader {
 					sumCol.add(xij);
 					
 					if (xij != 0) {
-						lic.set(lic.next()+xij);
+						//lic.set(lic.next()+xij);
 						row.add(new PairF(col_i, xij));
 						matrix_columns.get(col_i).add(new PairF(row_i, xij));
 						this.nb_elmt++;
@@ -78,6 +78,7 @@ public class NrmReader implements IMatrixReader {
 				}
 				
 				else if (xij != 0) {
+					lic.set(lic.next()+xij);
 					row.add(new PairF(col_i, xij));
 					matrix_columns.get(col_i).add(new PairF(row_i, xij));
 					this.nb_elmt++;
