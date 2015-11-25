@@ -4,6 +4,7 @@ import java.awt.Window.Type;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -36,7 +37,7 @@ public class Exp_test {
 		
 		
 		//--Uncomment me--/ getSum test for MatrixReader
-		MatrixReader mr = new MatrixReader("exemples/matrix_lamirel_iskomaghreb");
+		MatrixReader mr = new MatrixReader("exemples/matrix_lamirel_iskomaghreb_EC");
 		/*
 		System.out.println("La somme des lignes : "+mr.getSumRow());
 		System.out.println("La somme des colonnes : "+mr.getSumCol());
@@ -47,6 +48,25 @@ public class Exp_test {
 		IMatrix im = new CsrMatrix(mr);
 		CsrMatrixClustered mc = new CsrMatrixClustered( im, cr.getClusters());
 		FeaturesSelection fs = new FeaturesSelection(mc);
+		pl("nombre de clusters : " + fs.getNbCluster());
+		pl(Quality.getIntraDistance(mc));
+		pl(Quality.getInterDistance(mc));
+		pl(Quality.getCH(mc));
+		
+		/*for (int i =0 ; i<fs.getNbCluster();i++ )
+			
+			for (int j = 0; j < fs.getObjectsInCk(i).size();j++)
+			{
+				Quality.getContrast(fs, j, i);
+				//pl("le contrast de l'objet : " + j + " dans le cluster " + i+" " + Quality.getContrast(fs, j, i));
+			}
+		//pl("-------------------\n" +Quality.getPC(fs));
+		/*
+		for(cl : fs.getMatrix().get)
+		{
+			pl(Quality.getContrast(fs, i, 1));
+		}
+		
 		/*Iterator I = fs.getFeaturesSelected().iterator();
 		while (I.hasNext()){
 			pl(I.next());
@@ -57,30 +77,36 @@ public class Exp_test {
 		//Start 
 		
 		//fs.getMatrix().getMatrix().getRow(i)
-		pl(Quality.getDB(fs));
-		pl(Quality.getPC(fs));
-		pl(Quality.getEC(fs));
 		
 		
 		
 		
 		
 		//pl(mc.getNbCluster());
-		/*
-		ArcsReader ar = new ArcsReader("exemples/Guimera_matrix");
 		
-	    
+		//ArcsReader ar = new ArcsReader("exemples/Guimera_matrix");
+		/*
+		ArcsReader ar = new ArcsReader("exemples/matrix_arcs_exp_trello");
+		ArcsReader ar_sub = new ArcsReader("exemples/matrix_arcs_sub_trello");
+		
+	    pl(ar.getNb_elmt());
 		System.out.println(ar.getSumRow());
 		System.out.println(ar.getSumCol());
 		
-		for (int i=0;i<ar.getMatrix_columns().size();i++){
-			System.out.println("La colonne "+i+" : "+ar.getMatrix_columns().get(i));
+		for (int i=0;i<ar_sub.getMatrix_columns().size();i++){
+			System.out.println("La colonne "+i+" : "+ar_sub.getMatrix_columns().get(i));
 			
 		}
-		for (int i=0;i<ar.getMatrix_columns().size();i++){
-			System.out.println("La ligne "+i+" : "+ar.getMatrix_rows().get(i));
+		for (int i=0;i<ar_sub.getMatrix_columns().size();i++){
+			System.out.println("La ligne "+i+" : "+ar_sub.getMatrix_rows().get(i));
 	
 		}
+		
+		pl(" n = " + ar.getSumRow());
+		pl(" m = " + ar.getNb_elmt());
+		
+		pl(" nsub = " + ar_sub.getSumRow());
+		pl(" msub = " + ar_sub.getNb_elmt());
 			
 				
 		
