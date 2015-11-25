@@ -145,20 +145,20 @@ public class Quality {
 		}
 		return (Sum);
 	}
-	
-		// Square Distance (Float[],Float[])
-		// ---------------------------------
-		public static float getDistanceSquare(Float[] x, Float[] y) {
 
-			int size = Math.min(x.length, y.length);
-			float Sum = 0;
-			float temp;
-			for (int i = 0; i < size; i++) {
-				temp = Math.abs(x[i] - y[i]); // compare weights
-				Sum += temp * temp;
-			}
-			return (Sum);
+	// Square Distance (Float[],Float[])
+	// ---------------------------------
+	public static float getDistanceSquare(Float[] x, Float[] y) {
+
+		int size = Math.min(x.length, y.length);
+		float Sum = 0;
+		float temp;
+		for (int i = 0; i < size; i++) {
+			temp = Math.abs(x[i] - y[i]); // compare weights
+			Sum += temp * temp;
 		}
+		return (Sum);
+	}
 
 	// Square Distance(PairF[] x, PairF[] y)
 	// -------------------------------------
@@ -213,16 +213,16 @@ public class Quality {
 	// For Intra and Inter inertia index
 	public static float getDiameterSquared(int k, CsrMatrixClustered mc) {
 
-		int rowSize = mc.getMatrix().getRow(0).length; // same for the other rows
-		int colSize = mc.getObjectsInCk(k).size();	
+		int rowSize = mc.getMatrix().getRow(0).length; // same for the other
+														// rows
+		int colSize = mc.getObjectsInCk(k).size();
 		Float[] centroid = new Float[rowSize];
-		
-		
-		//Reset vector value
+
+		// Reset vector value
 		for (int col = 0; col < rowSize; col++) {
 			centroid[col] = 0f;
 		}
-		
+
 		// Sums over the lines in the cluster
 		for (int line : mc.getObjectsInCk(k)) {
 			for (int col = 0; col < rowSize; col++) {
@@ -361,21 +361,88 @@ public class Quality {
 			for (int col = 0; col < rowSize; col++) {
 				centroid[col] = centroid[col] / colSize;
 			}
-			
-			Inter_Sum += getDistanceSquare(barycenter,centroid)*colSize;
-			
+
+			Inter_Sum += getDistanceSquare(barycenter, centroid) * colSize;
+
 		}
 		return (Inter_Sum / nbClusters);
 
 	}
+
+	// Calinksi-Harabasz
+	// ---------------------
+	public static float getCH(CsrMatrixClustered mc) {
+
+		return (((mc.getNbRows() - mc.getNbCluster()) * getInterDistance(mc)) / ((mc
+				.getNbCluster() - 1) * getIntraDistance(mc)));
+
+	}
+
+	// Conductance
+	// ---------------------
+	public static float getConductance(int clusterIndex, CsrMatrixClustered amc) {
+		int nbClusters = amc.getNbCluster();
+		int nbNodes = 0;
+		int ms = 0;
+		int cs = 0;
+
+		for (int cluster = 0; cluster < nbClusters; cluster++) {
+			for (int i : amc.getObjectsInCk(cluster)) {
+				nbNodes++;//or apply .size()
+			}
+		}
+
+		for (int j = 0; j < nbNodes; j++) {
+			if (amc.getClusterOfObjectI(j) == clusterIndex) {
+				for (int i = 0; i < amc.getMatrix().getRow(j).length; i++) {
+					if (amc.getClusterOfObjectI(j) == amc
+							.getClusterOfObjectI(amc.getMatrix().getRow(j)[i]
+									.getLeft())) {
+						ms++;
+					} else {
+						cs++;
+					}
+
+				}
+
+			}
+		}
+
+		
+		return ((float) cs / (2 * ms + cs));
+	}
 	
-		// Calinksi-Harabasz
+		// Cut Ratio
 		// ---------------------
-		public static float getCH(CsrMatrixClustered mc) {
+		public static float getCutRatio(int clusterIndex, CsrMatrixClustered amc) {
+			int nbClusters = amc.getNbCluster();
+			int nbNodes = 0;
+			int ms = 0;
+			int cs = 0;
+
+			for (int cluster = 0; cluster < nbClusters; cluster++) {
+				for (int i : amc.getObjectsInCk(cluster)) {
+					nbNodes++;//or apply .size()
+				}
+			}
+
+			for (int j = 0; j < nbNodes; j++) {
+				if (amc.getClusterOfObjectI(j) == clusterIndex) {
+					for (int i = 0; i < amc.getMatrix().getRow(j).length; i++) {
+						if (amc.getClusterOfObjectI(j) == amc
+								.getClusterOfObjectI(amc.getMatrix().getRow(j)[i]
+										.getLeft())) {
+							ms++;
+						} else {
+							cs++;
+						}
+
+					}
+
+				}
+			}
 
 			
-			return (  ((mc.getNbRows()-mc.getNbCluster())*getInterDistance(mc)) 
-					/((mc.getNbCluster()-1)*getIntraDistance(mc)) );
-
+			return ((float)cs / ((nbNodes-amc.getObjectsInCk(clusterIndex).size()))*(float) amc.getObjectsInCk(clusterIndex).size() );
 		}
 }

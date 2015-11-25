@@ -60,6 +60,7 @@ public class CsrMatrix implements IMatrix {
 	protected Logger log;
 	
 	public CsrMatrix(IMatrixReader mr) {
+		
 		cumulative_rows=new int[mr.getNb_rows()];
 		rows = new PairF[mr.getNb_elmt()];
 		Iterator<ArrayList<PairF>> it_rows = mr.getMatrix_rows().iterator();
