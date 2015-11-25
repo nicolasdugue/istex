@@ -4,8 +4,8 @@
 This project is a JAVA driven library used to deal with documents corpora such as the [ISTEX](http://www.istex.fr/) one.
 
 This library allows to handle large sparse matrices by using CSR and CSC formats.
-It allows to analyse diachronically two different clustering of a same corpora (**[2]**) but at different time steps using several methods (**[1]**).
-Furthermore, this tool is also adapted to deal with large weighted graphs to study the collaboration networks of authors of the corpus (**[3]**).
+It allows to analyse diachronically two different clustering of a same corpora (**[2]**) but at different time steps using several methods (**[1]**) : Clustering, label extraction (**[6]**) and diachronic analysis.
+Furthermore, this tool is also adapted to deal with large weighted graphs to study the collaboration networks of authors of the corpus (**[3,5]**).
 
 ## Installation
 * The Java project may be imported into all IDE (Eclipse, IntelliJ or Netbeans) ;
@@ -114,10 +114,11 @@ The project is composed of the following folders:
 ## References
 * **[1]** Jean-Charles Lamirel. A new approach for automatizing the analysis of research topics dynamics :
 application to optoelectronics research. Scientometrics, 93(1) :151–166, 2012.
-* **[2]** Jean-Charles Lamirel, Raghvendra Mall, Pascal Cuxac, and Ghada Safi. Variations to incremental gro-
-wing neural gas algorithm based on label maximization. In Neural Networks (IJCNN), The 2011 Inter-
+* **[2]** Jean-Charles Lamirel, Raghvendra Mall, Pascal Cuxac, and Ghada Safi. Variations to incremental growing neural gas algorithm based on label maximization. In Neural Networks (IJCNN), The 2011 Inter-
 national Joint Conference on, pages 956–965. IEEE, 2011.
 * **[3]** Mark EJ Newman. The structure of scientific collaboration networks. Proceedings of the National
 Academy of Sciences, 98(2) :404–409, 2001.
 * **[4]** Ivan P Stanimirovic and Milan B Tasic. Performance comparison of storage formats for sparse matrices.
 FACTA UNIVERSITATIS (NIS) Ser. Math. Inform, 24 :39–51, 2009.
+* **[5]** Nicolas Dugué, Ali Tebbakh, Pascal Cuxac, Jean-Charles Lamirel. Feature selection and complex networks methods for an analysis of collaboration evolution in science: an application to the ISTEX digital library. ISKO-MAGHREB 2015, Nov 2015, Hammamet, Tunisia
+* **[6]** Jean-Charles Lamirel, Ingrid Falk, Claire Gardent: Federating clustering and cluster labelling capabilities with a single approach based on feature maximization: French verb classes identification with IGNGF neural clustering.
