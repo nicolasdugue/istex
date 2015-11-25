@@ -23,6 +23,7 @@ import io.reader.ArcsReader;
 import io.reader.ClusteringReader;
 import io.reader.LabelReader;
 import io.reader.MatrixReader;
+import io.reader.interfaces.IMatrixReader;
 
 public class Exp_test {
 	public static void p(Object O){
@@ -36,24 +37,41 @@ public class Exp_test {
 	public static void main(String[] args) throws IOException {
 		
 		
-		//--Uncomment me--/ getSum test for MatrixReader
-		MatrixReader mr = new MatrixReader("exemples/matrix_lamirel_iskomaghreb_EC");
-		/*
+
+		
+		IMatrixReader amr = new ArcsReader("exemples/Guimera_matrix");
+		ClusteringReader acr = new ClusteringReader("exemples/Guimera_community");
+		IMatrix aim = new CsrMatrix(amr);
+		CsrMatrixClustered amc = new CsrMatrixClustered( aim, acr.getClusters());
+		
+		pl("Nombre de clusters : "+amc.getNbCluster());
+		
+		for (int i : amc.getObjectsInCk(0))
+		{
+			pl("Noeud dans le cluster 0 : " + i);
+		}
+		/* 
+		MatrixReader mr = new MatrixReader("exemples/matrix_lamirel_iskomaghreb");
+		IMatrix im = new CsrMatrix(mr);
 		System.out.println("La somme des lignes : "+mr.getSumRow());
 		System.out.println("La somme des colonnes : "+mr.getSumCol());
 		for(int i=0;i<mr.getMatrix_columns().size();i++)
 			System.out.println("getCol"+mr.getMatrix_rows().get(i));
 			*/
+		/*
 		ClusteringReader cr = new ClusteringReader("exemples/clustering_lamirel_iskomaghreb");
 		IMatrix im = new CsrMatrix(mr);
 		CsrMatrixClustered mc = new CsrMatrixClustered( im, cr.getClusters());
 		FeaturesSelection fs = new FeaturesSelection(mc);
+		
+		
 		pl("nombre de clusters : " + fs.getNbCluster());
+		
 		pl(Quality.getIntraDistance(mc));
 		pl(Quality.getInterDistance(mc));
 		pl(Quality.getCH(mc));
 		
-		/*for (int i =0 ; i<fs.getNbCluster();i++ )
+		for (int i =0 ; i<fs.getNbCluster();i++ )
 			
 			for (int j = 0; j < fs.getObjectsInCk(i).size();j++)
 			{
