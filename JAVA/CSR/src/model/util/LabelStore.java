@@ -16,6 +16,9 @@ public class LabelStore {
 		labels=new String[size];
 		features = new HashMap<String, Integer>(size);
 	}
+	public boolean containsKey(Object key) {
+		return features.containsKey(key);
+	}
 	/**
 	 * @param key the row or column index
 	 * @return the label matching with the key

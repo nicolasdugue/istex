@@ -6,16 +6,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import model.util.LabelStore;
 import util.LineNumber;
+import util.SGLogger;
 
 public class LabelSelectionFromFile implements ILabelSelection {
 
 	private ArrayList<ArrayList<Integer>> labels = new ArrayList<ArrayList<Integer>>();
-	private ArrayList<Float> featuresWeights;
+	private ArrayList<ArrayList<Float>> featuresWeights;
 	private LabelStore ls;
 	private String fileName;
 	private LabelStore clusterLabels;
+	private Logger logger = SGLogger.getInstance();
 	
 	
 	
@@ -23,43 +27,122 @@ public class LabelSelectionFromFile implements ILabelSelection {
 		super();
 		this.fileName = fileName;
 		this.clusterLabels = new LabelStore(LineNumber.getNbLines(fileName));
-		featuresWeights = new ArrayList<Float>();
+		featuresWeights = new ArrayList<ArrayList<Float>>();
 		labels = new ArrayList<ArrayList<Integer>>();
 		ls = new LabelStore(this.clusterLabels.getSize());
+		logger.debug("blabl");
 		readAndFill();
+		/*int i =0;
+		String log="";
+		for (ArrayList<Integer> clusterLabels : labels) {
+			logger.debug("Cluster " + i);
+			log="";
+			for (int label : clusterLabels) {
+				log+="\nLabel " + ls.getLabel(label)+ " "+label + ", weight : "+this.getFeatureValue(label, i)+" \n";
+			}
+			logger.debug(log);
+			i++;
+		}
+		logger.debug("!!!!!-----------Group "+this.getIndexOfColLabel("group")+"----------!!!");
+		
+		logger.debug("!!!!!-----------Group in cluster 6 "+this.getFeatureValue(this.getIndexOfColLabel("group"),6)+"----------!!!");
+		*/
 	}
 	private void readAndFill() throws FileNotFoundException {
-		Scanner sc = new Scanner(new File(fileName));
-		String line;
-		boolean first = true;
-		int i=0;
-		ArrayList<Integer> labelRead = new ArrayList<Integer>();
-		String[] tabLine;
-		while (sc.hasNextLine()) {
-			line = sc.nextLine();
-			//If this, then the line describes a new cluster
-			if (line.startsWith("G")) {
-				clusterLabels.addLabel(line);
-				if (first) {
-					first=false;
+		
+		//-------------------------FMGS
+		if (fileName.contains(".fmgs")) {
+			logger.debug("fmgs file");
+			Scanner sc = new Scanner(new File(fileName));
+			String line;
+			boolean first = true;
+			int i=0;
+			ArrayList<Integer> labelRead = new ArrayList<Integer>();
+			ArrayList<Float> weights = new ArrayList<Float>();
+			String[] tabLine;
+			while (sc.hasNextLine()) {
+				
+				line = sc.nextLine();
+				//If this, then the line describes a new cluster
+				if (line.startsWith("G")) {
+					clusterLabels.addLabel(line);
+					if (first) {
+						first=false;
+					}
+					else {
+						labels.add(labelRead);
+						featuresWeights.add(weights);
+						weights =new ArrayList<Float>();
+						labelRead = new ArrayList<Integer>();
+					}
 				}
-				else {
-					labels.add(labelRead);
-					labelRead = new ArrayList<Integer>();
+				else  {
+					tabLine=line.split("\t");
+					if (tabLine.length > 1) {
+						if (ls.containsKey(tabLine[1])) {
+							labelRead.add(ls.getIndexOfLabel(tabLine[1]));
+							weights.add(Float.parseFloat(tabLine[2]));
+						}
+						else {
+							labelRead.add(i);
+							ls.addLabel(tabLine[1]);
+							weights.add(Float.parseFloat(tabLine[2]));
+							i++;
+						}
+					}
 				}
 			}
-			else  {
-				tabLine=line.split("\t");
-				if (tabLine.length > 1) {
-					labelRead.add(i);
-					ls.addLabel(tabLine[1]);
-					featuresWeights.add(Float.parseFloat(tabLine[2]));
-					i++;
-				}
-			}
+			labels.add(labelRead);
+			featuresWeights.add(weights);
+			sc.close();
 		}
-		labels.add(labelRead);
-		sc.close();
+		//-------------------------dcfs ou dfms
+		else {
+			logger.debug("dcfs or dfms file");
+			Scanner sc = new Scanner(new File(fileName));
+			String line;
+			boolean first = true;
+			int i=0;
+			ArrayList<Integer> labelRead = new ArrayList<Integer>();
+			ArrayList<Float> weights = new ArrayList<Float>();
+			String[] tabLine;
+			while (sc.hasNextLine()) {
+				line = sc.nextLine();
+				//If this, then the line describes a new cluster
+				if (line.startsWith("Classe")) {
+					clusterLabels.addLabel(line);
+					if (first) {
+						first=false;
+					}
+					else {
+						labels.add(labelRead);
+						featuresWeights.add(weights);
+						weights =new ArrayList<Float>();
+						labelRead = new ArrayList<Integer>();
+					}
+				}
+				else  {
+					tabLine=line.split(" ");
+					if (tabLine.length > 1) {
+						if (ls.containsKey(tabLine[1])) {
+							logger.debug("ici");
+							labelRead.add(ls.getIndexOfLabel(tabLine[1]));
+							logger.debug("la");
+							weights.add(Float.parseFloat(tabLine[0]));
+						}
+						else {
+							labelRead.add(i);
+							ls.addLabel(tabLine[1]);
+							weights.add(Float.parseFloat(tabLine[0]));
+							i++;
+						}
+					}
+				}
+			}
+			labels.add(labelRead);
+			featuresWeights.add(weights);
+			sc.close();
+		}
 	}
 
 	@Override
@@ -94,7 +177,19 @@ public class LabelSelectionFromFile implements ILabelSelection {
 
 	@Override
 	public float getFeatureFMeanValue(int f) {
-		return featuresWeights.get(f);
+		float mean=0.0f;
+		int inCluster=0;
+		float value;
+		for (int c =0; c < labels.size(); c++) {
+			try {
+				value=this.getFeatureValue(f, c);
+				mean+=value;
+				inCluster++;
+			}
+			catch(Exception e) {
+			}
+		}
+		return mean / inCluster;
 	}
 	@Override
 	public String getLabelOfCluster(int cluster) {
@@ -106,7 +201,19 @@ public class LabelSelectionFromFile implements ILabelSelection {
 	}
 	@Override
 	public float getFeatureValue(int f, int cluster) {
-		return featuresWeights.get(f);
+		ArrayList<Integer> features = labels.get(cluster);
+		int i=0;
+		for (int feature : features) {
+			if (f == feature)
+				break;
+			i++;
+		}
+		try {
+			return featuresWeights.get(cluster).get(i);
+		}
+		catch (IndexOutOfBoundsException e){
+			return 0.0f;
+		}
 	}
 
 }

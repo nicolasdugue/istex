@@ -2,8 +2,11 @@ package model.diachronism;
 
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import model.featureselection.ILabelSelection;
 import model.util.nuplet.TripletLabel;
+import util.SGLogger;
 
 /**
  * 
@@ -42,6 +45,7 @@ public class LabelDiachronism {
 	
 	private float std_s;
 	private float std_t;
+	private Logger logger = SGLogger.getInstance();
 
 	public LabelDiachronism(ILabelSelection ls_t0, ILabelSelection ls_t1) {
 		this.ls_s = ls_t0;
@@ -65,6 +69,7 @@ public class LabelDiachronism {
 		float numerateur2;
 		float denominateur;
 		float denominateur2;
+		
 		//Knowing s
 		for (int s=0; s < ls_s.getNbCluster(); s++) {
 			env=0;
@@ -80,21 +85,33 @@ public class LabelDiachronism {
 					env++;
 					//To compute p(t|s), use this denominator calculated with the target label F measures
 					for (String label : labels_t) {
-						denominateur+=ls_t.getFeatureFMeanValue(ls_t.getIndexOfColLabel(label));
+						denominateur+=ls_t.getFeatureValue(ls_t.getIndexOfColLabel(label),t);
 					}
 					//To compute p(s|t), use this denominator calculated with the source label F measures
 					for (String label : labels_s) {
-						denominateur2+=ls_s.getFeatureFMeanValue(ls_s.getIndexOfColLabel(label));
+						denominateur2+=ls_s.getFeatureValue(ls_s.getIndexOfColLabel(label),s);
 					}
 					numerateur=0;
 					numerateur2=0;
 					for (String label : labels_s_and_t) {
-						numerateur+=ls_t.getFeatureFMeanValue(ls_t.getIndexOfColLabel(label));
-						numerateur2+=ls_s.getFeatureFMeanValue(ls_s.getIndexOfColLabel(label));
+						numerateur+=ls_t.getFeatureValue(ls_t.getIndexOfColLabel(label),t);
+						logger.debug("Labels " + label + " in Cluster " + t+ ": "+ ls_t.getFeatureValue(ls_t.getIndexOfColLabel(label),t));
+						numerateur2+=ls_s.getFeatureValue(ls_s.getIndexOfColLabel(label),s);
 					}
-					p_t_knowing_s[s][t]=numerateur/denominateur;
-					p_s_knowing_t[t][s]=numerateur2/denominateur2;
+					logger.debug("Denominateur "+ denominateur +",Numerateur "+ numerateur );
+					logger.debug("n/d =" + numerateur/denominateur );
+					
+					if (denominateur == 0.0f)
+						p_t_knowing_s[s][t]=0.0f;
+					else 
+						p_t_knowing_s[s][t]=numerateur/denominateur;
+					if (denominateur2 == 0.0f)
+						p_s_knowing_t[t][s]=0.0f;
+					else
+						p_s_knowing_t[t][s]=numerateur2/denominateur2;
 					p_t_knowing_s_sum+=p_t_knowing_s[s][t];
+					logger.debug("p_t_knowing_s["+s+"]["+t+"]="+ p_t_knowing_s[s][t]);
+					logger.debug("p_s_knowing_t["+t+"]["+s+"]="+ p_s_knowing_t[t][s]);
 				}
 			}
 			//env cannot be used to process pA_t since we have to know which cluster from S the source t activates.
@@ -136,6 +153,7 @@ public class LabelDiachronism {
 			std_tmp=(pA_t[i] - a_t)*(pA_t[i] - a_t);
 		}
 		std_t=(float) (Math.sqrt(std_tmp)/pA_t.length);
+		
 	}
 	
 	
@@ -246,12 +264,12 @@ public class LabelDiachronism {
 		}
 		for (String label : labels_s) {
 			value_t=0;
-			value_s=ls_s.getFeatureFMeanValue(ls_s.getIndexOfColLabel(label));
+			value_s=ls_s.getFeatureValue(ls_s.getIndexOfColLabel(label),s);
 			triplet=new TripletLabel(label, value_s,value_t);
 			lc.addSource(triplet);
 		}
 		for (String label : labels_t) {
-			value_t=ls_t.getFeatureFMeanValue(ls_t.getIndexOfColLabel(label));
+			value_t=ls_t.getFeatureValue(ls_t.getIndexOfColLabel(label),t);
 			value_s=0;
 			triplet=new TripletLabel(label, value_s,value_t);
 			lc.addTarget(triplet);
@@ -259,7 +277,6 @@ public class LabelDiachronism {
 		
 		lc.setP_s_t(p_s_knowing_t[t][s]);
 		lc.setP_t_s(p_t_knowing_s[s][t]);
-		
 		return lc;
 	}
 	public String getLabelOfClusterSource(int cluster) {

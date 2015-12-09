@@ -111,6 +111,7 @@ public class MainDiachronic {
 			boolean process = check(line, options);
 			int nbParam=0;
 			if (process) {
+
 				if (line.hasOption("h")) {
 					printHelp();
 				}
@@ -123,6 +124,13 @@ public class MainDiachronic {
 	
 				if (line.hasOption("e")) {
 					//TODO Diachronic Exemple
+				}
+				else if (line.hasOption("fl")) {
+					View v = new View();
+					Controller c;
+					c = new Controller(v);
+					c.doRunDiachronism(line.getOptionValues("fl")[0],line.getOptionValues("fl")[1]);
+					return;
 				}
 				if (line.hasOption("m")) {
 					m1 = line.getOptionValues("m")[0];
@@ -142,19 +150,19 @@ public class MainDiachronic {
 					else
 						factory = new GraphFactory();
 				}
-				if (m1.contains(".nrm")) {
+				if (line.hasOption("m") && m1.contains(".nrm")) {
 					if (c1.contains(".elm"))
 						factory = new NrmElmFactory();
 					else
 						factory = new NrmClusteringFactory();
 				}
 				else {
-					if (c1.contains(".elm"))
+					if (line.hasOption("m") && c1.contains(".elm"))
 						factory = new MatrixElmFactory();
 				}
-
 				View v = new View();
 				Controller c;
+				
 				if (line.hasOption("lsn")) {
 					FixedNumberOfLabelStrategy lss = new FixedNumberOfLabelStrategy();
 					lss.setNumberOfLabels(Integer.parseInt(line.getOptionValues("lsn")[0]));

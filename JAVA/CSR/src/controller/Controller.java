@@ -13,6 +13,7 @@ import model.diachronism.LabelDiachronism;
 import model.featureselection.labellingstategies.FeatureSelectionStrategy;
 import model.featureselection.labellingstategies.ILabelSelectionStrategy;
 import model.util.factory.AFactory;
+import model.util.factory.MatrixElmFactory;
 import view.View;
 
 //TODO - ADD File Labels Diachronism
@@ -31,7 +32,11 @@ public class Controller {
 	private ILabelSelectionStrategy lss = new FeatureSelectionStrategy();
 	
 	
-	
+	public Controller(View v) {
+		super();
+		this.adf=new MatrixElmFactory();
+		this.v = v;
+	}
 	public Controller(View v, AFactory f) {
 		super();
 		this.v = v;
@@ -126,7 +131,7 @@ public class Controller {
 		}
 		for (int t = 0; t < targets.length; t++) {
 			if (!targets[t]) {
-				json+="{\"Cluster target\":\"G-"+ld.getLabelOfClusterTarget(t)+"\", \"state\" : \"appeared\"},";
+				json+="{\"Cluster target\":\""+ld.getLabelOfClusterTarget(t)+"\", \"state\" : \"appeared\"},";
 			}
 		}
 		if (json.length() > 0 && json.charAt(json.length()-1)==',') {
