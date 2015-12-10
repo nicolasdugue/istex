@@ -53,7 +53,7 @@ public class LabelDiachronism {
 		p_t_knowing_s = new float[ls_s.getNbCluster()][ls_t.getNbCluster()];
 		pA_s=new float[ls_s.getNbCluster()];
 		
-		p_s_knowing_t = new float[ls_t.getNbCluster()][ls_s.getNbCluster()];
+		p_s_knowing_t = new float[ls_s.getNbCluster()][ls_t.getNbCluster()];
 		pA_t=new float[ls_t.getNbCluster()];
 		computeProbabilities();
 	}
@@ -95,30 +95,33 @@ public class LabelDiachronism {
 					numerateur2=0;
 					for (String label : labels_s_and_t) {
 						numerateur+=ls_t.getFeatureValue(ls_t.getIndexOfColLabel(label),t);
-						logger.debug("Labels " + label + " in Cluster " + t+ ": "+ ls_t.getFeatureValue(ls_t.getIndexOfColLabel(label),t));
 						numerateur2+=ls_s.getFeatureValue(ls_s.getIndexOfColLabel(label),s);
 					}
-					logger.debug("Denominateur "+ denominateur +",Numerateur "+ numerateur );
-					logger.debug("n/d =" + numerateur/denominateur );
 					
 					if (denominateur == 0.0f)
 						p_t_knowing_s[s][t]=0.0f;
 					else 
 						p_t_knowing_s[s][t]=numerateur/denominateur;
 					if (denominateur2 == 0.0f)
-						p_s_knowing_t[t][s]=0.0f;
+						p_s_knowing_t[s][t]=0.0f;
 					else
-						p_s_knowing_t[t][s]=numerateur2/denominateur2;
+						p_s_knowing_t[s][t]=numerateur2/denominateur2;
 					p_t_knowing_s_sum+=p_t_knowing_s[s][t];
-					logger.debug("p_t_knowing_s["+s+"]["+t+"]="+ p_t_knowing_s[s][t]);
-					logger.debug("p_s_knowing_t["+t+"]["+s+"]="+ p_s_knowing_t[t][s]);
+					logger.debug(numerateur + " / "+ denominateur +" ; p_t_knowing_s["+s+"]["+t+"]="+ p_t_knowing_s[s][t] + " ; s= "+this.getLabelOfClusterSource(s)+", t=" +this.getLabelOfClusterTarget(t));
+					logger.debug(numerateur2 + " / "+ denominateur2 +" ; p_s_knowing_t["+s+"]["+t+"]="+ p_s_knowing_t[s][t]);
 				}
 			}
 			//env cannot be used to process pA_t since we have to know which cluster from S the source t activates.
-			pA_s[s]=p_t_knowing_s_sum/env;
-			a_s_tmp=pA_s[s];
+			if (env > 0)
+				pA_s[s]=p_t_knowing_s_sum/env;
+			else
+				pA_s[s]=0.0f;
+			logger.debug("pA_s["+s+"]=" +p_t_knowing_s_sum+"/"+env+"="+pA_s[s]);
+			a_s_tmp+=pA_s[s];
 		}
+		
 		a_s=a_s_tmp/pA_s.length;
+		logger.debug("a_s="+a_s_tmp+"/"+pA_s.length+"="+a_s);
 		
 		float std_tmp=0;
 		for (int i=0; i < pA_s.length; i++) {
@@ -140,11 +143,15 @@ public class LabelDiachronism {
 				labels_s_and_t=intersection(labels_s, labels_t);
 				if (labels_s_and_t.size() > 0) {
 					env++;
-					p_s_knowing_t_sum+=p_s_knowing_t[t][s];
+					p_s_knowing_t_sum+=p_s_knowing_t[s][t];
 				}
 			}
-			pA_t[t]=p_s_knowing_t_sum/env;
-			a_t_tmp=pA_t[t];
+			if (env > 0)
+				pA_t[t]=p_s_knowing_t_sum/env;
+			else
+				pA_t[t]=0.0f;
+			logger.debug("pA_t["+t+"]="+ p_s_knowing_t_sum+"/"+env+"="+pA_t[t]);
+			a_t_tmp+=pA_t[t];
 		}
 		a_t=a_t_tmp/pA_t.length;
 		
@@ -173,6 +180,13 @@ public class LabelDiachronism {
 		return p_t_knowing_s;
 	}
 	
+	public float getP_s_knowing_t(int s, int t) {
+		return p_s_knowing_t[s][t];
+	}
+	public float getP_t_knowing_s(int s, int t) {
+		return p_t_knowing_s[s][t];
+	}
+	
 	/**
 	 * @return the pA_s
 	 */
@@ -180,11 +194,29 @@ public class LabelDiachronism {
 		return pA_s;
 	}
 	
+	public float getPa_s(int s) {
+		return pA_s[s];
+	}
+	
+	public float[] getpA_t() {
+		return pA_t;
+	}
+	
+	public float getPa_t(int t) {
+		return pA_t[t];
+	}
+	
+	
+	
 	/**
 	 * @return the a_s
 	 */
 	public float getA_s() {
 		return a_s;
+	}
+	
+	public float getA_t() {
+		return a_t;
 	}
 	
 	/**
@@ -226,7 +258,7 @@ public class LabelDiachronism {
 	public ArrayList<Integer> getTargetClusterMatching(int source) {
 		ArrayList<Integer> clusterMatching = new ArrayList<Integer>();
 		for (int t=0; t < p_t_knowing_s[source].length; t++) {
-			if ((p_t_knowing_s[source][t] >= pA_s[source]) && (p_t_knowing_s[source][t] >= (a_s+std_s)) && (p_s_knowing_t[t][source] >= pA_t[t]) && (p_s_knowing_t[t][source] >= (a_t+std_t))) {
+			if ((p_t_knowing_s[source][t] >= pA_s[source]) && (p_t_knowing_s[source][t] >= (a_s+std_s)) && (p_s_knowing_t[source][t] >= pA_t[t]) && (p_s_knowing_t[source][t] >= (a_t+std_t))) {
 				clusterMatching.add(t);
 			}
 		}
@@ -275,7 +307,7 @@ public class LabelDiachronism {
 			lc.addTarget(triplet);
 		}
 		
-		lc.setP_s_t(p_s_knowing_t[t][s]);
+		lc.setP_s_t(p_s_knowing_t[s][t]);
 		lc.setP_t_s(p_t_knowing_s[s][t]);
 		return lc;
 	}

@@ -1,0 +1,51 @@
+Classe 0
+
+6 patient
+4 dementia
+4 disorder
+4 depression
+3 percnt
+3 test
+2 impairment
+2 treatment
+2 score
+2 symptom
+2 scale
+2 adult
+
+Classe 1  (~Classe 0-P2, ~Classe 3-P1)
+
+3 brain
+3 alzheimer
+3 insulin
+3 mutation
+3 disease
+3 tissue
+2 process
+2 oxidative
+2 enzyme
+2 protein
+2 gene
+1 score
+
+Classe 3 (~Classe 1-P3, ~Classe 4-P2)
+
+5 health
+4 program
+4 care
+3 home
+3 family
+2 nursing
+2 person
+2 status
+2 usepackage
+2 population
+2 relationship
+2 behavior
+1 adult
+1 resident
+1 score
+1 scale
+1 life
+1 caregiver
+1 disability

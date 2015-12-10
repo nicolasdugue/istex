@@ -12,6 +12,11 @@
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>exemples</directory>
+			</resource>
+		</resources>
 		<testSourceDirectory>test</testSourceDirectory>
 
 		<plugins>
@@ -23,103 +28,101 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-
-
+			
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
+				<artifactId>maven-shade-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>copy-dependencies</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/lib</outputDirectory>
-							<overWriteReleases>false</overWriteReleases>
-							<overWriteSnapshots>false</overWriteSnapshots>
-							<overWriteIfNewer>true</overWriteIfNewer>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-
-			<!-- Make this jar executable -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>Diachronism</id>
+						<id>shade-featureselection</id>
 						<phase>package</phase>
 						<goals>
-							<goal>jar</goal>
+							<goal>shade</goal>
 						</goals>
 						<configuration>
-							<skipTests>true</skipTests>
-							<classifier>Diachronism</classifier>
-							<descriptorRefs>
-								<descriptorRef>Diachronism</descriptorRef>
-							</descriptorRefs>
-							<archive>
-								<manifest>
-									<!-- Jar file entry point -->
-									<addClasspath>true</addClasspath>
-									<classpathPrefix>lib/</classpathPrefix>
-									<mainClass>controller.MainDiachronic</mainClass>
-								</manifest>
-							</archive>
+							<outputFile>target/${project.artifactId}-${project.version}-FeatureSelection.jar</outputFile>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+										<exclude>src/test/*</exclude>
+										<exclude>bin/*</exclude>
+									</excludes>
+								</filter>
+							</filters>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>controller.MainFeatureSelection</mainClass>
+								</transformer>
+							</transformers>
 						</configuration>
 					</execution>
 					
 					<execution>
-						<id>FeatureSelection</id>
+						<id>shade-diachronism</id>
 						<phase>package</phase>
 						<goals>
-							<goal>jar</goal>
+							<goal>shade</goal>
 						</goals>
 						<configuration>
-							<skipTests>true</skipTests>
-							<classifier>FeatureSelection</classifier>
-							<descriptorRefs>
-								<descriptorRef>FeatureProperties</descriptorRef>
-							</descriptorRefs>
-							<archive>
-								<manifest>
-									<!-- Jar file entry point -->
-									<addClasspath>true</addClasspath>
-									<classpathPrefix>lib/</classpathPrefix>
-									<mainClass>controller.MainFeatureSelection</mainClass>
-								</manifest>
-							</archive>
+							<outputFile>target/${project.artifactId}-${project.version}-Diachronism.jar</outputFile>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+							</filters>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>controller.MainDiachronic</mainClass>
+								</transformer>
+							</transformers>
 						</configuration>
 					</execution>
+					
 					<execution>
-						<id>CommunityRoles</id>
+						<id>shade-communityroles</id>
 						<phase>package</phase>
 						<goals>
-							<goal>jar</goal>
+							<goal>shade</goal>
 						</goals>
 						<configuration>
-							<skipTests>true</skipTests>
-							<classifier>CommunityRoles</classifier>
-							<descriptorRefs>
-								<descriptorRef>CommunityRoles</descriptorRef>
-							</descriptorRefs>
-							<archive>
-								<manifest>
-									<!-- Jar file entry point -->
-									<addClasspath>true</addClasspath>
-									<classpathPrefix>lib/</classpathPrefix>
+							<outputFile>target/${project.artifactId}-${project.version}-CommunityRoles.jar</outputFile>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+							</filters>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<mainClass>controller.MainGraphMeasures</mainClass>
-								</manifest>
-							</archive>
+								</transformer>
+							</transformers>
 						</configuration>
 					</execution>
+					
+
 				</executions>
 			</plugin>
+			
+
+
 		</plugins>
 
 
@@ -140,6 +143,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>

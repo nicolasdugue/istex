@@ -84,13 +84,4 @@ public class TestLabelSelectionFromFile {
 		assertEquals(2, ls.getIndexOfColLabel("Electroluminescent device"));
 	}
 
-	@Test
-	public void testGetFeatureFMeanValue() {
-		assertEquals(0.041732, ls.getFeatureFMeanValue(79),0.0001);
-		assertEquals(0.313356, ls.getFeatureFMeanValue(48),0.0001);
-		assertEquals(0.071402, ls.getFeatureFMeanValue(12),0.0001);
-		assertEquals(0.025664, ls.getFeatureFMeanValue(8),0.0001);
-		assertEquals(0.181381, ls.getFeatureFMeanValue(2),0.0001);
-	}
-
 }
