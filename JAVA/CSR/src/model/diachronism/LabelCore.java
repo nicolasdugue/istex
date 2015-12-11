@@ -26,9 +26,9 @@ public class LabelCore{
 	@SerializedName("Target Labels")
 	private transient TreeSet<TripletLabel> targetLabels = new TreeSet<TripletLabel>(comparator);
 	
-	@SerializedName("Activity probability : s to t")
+	@SerializedName("Probability of activating s knowing t")
 	private float p_s_t;
-	@SerializedName("Activity probability : t to s")
+	@SerializedName("Probability of activating t knowing s")
 	private float p_t_s;
 	
 	
