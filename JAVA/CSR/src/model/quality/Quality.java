@@ -1,8 +1,12 @@
 package model.quality;
 
 import java.util.AbstractList;
+
 import org.apache.log4j.Logger;
 
+
+
+import controller.Exp_test;
 import util.SGLogger;
 import model.featureselection.FeaturesSelection;
 import model.matrix.CsrMatrixClustered;
@@ -16,11 +20,7 @@ public class Quality {
 	// ---------------
 	public static float getContrast(FeaturesSelection fs, int column,
 			int cluster) {
-		// *TODO : case of division by 0 ? for now it returns 0 without warning.
-		// Exp_test.pl(fs.getFeatureValue(column,cluster) + "/"+
-		// fs.getFeatureFMeanValue(column) +"="
-		// +fs.getFeatureValue(column,cluster)/fs.getFeatureFMeanValue(column)
-		// );
+
 		return fs.getFeatureFMeanValue(column) == 0 ? 0 : fs.getFeatureValue(
 				column, cluster) / fs.getFeatureFMeanValue(column);
 	}
@@ -185,20 +185,27 @@ public class Quality {
 
 		// Sums over the lines in the cluster
 		Float[] centroid = new Float[rowSize];
+		
+		// Reset vector value
+		for (int col = 0; col < rowSize; col++) {
+			centroid[col] = 0f;
+		}
+		
 		for (int line : mc.getObjectsInCk(k)) {
 			for (int col = 0; col < rowSize; col++) {
 				centroid[col] += mc.getMatrix().getRow(line)[col].getRight();
 			}
 		}
-
+		
 		// Normalize the vector
 		for (int col = 0; col < rowSize; col++) {
 			centroid[col] = centroid[col] / colSize;
 		}
 
 		float sumDiam = 0f;
+		
 
-		for (int i = 0; i < colSize; i++) {
+		for (int i : mc.getObjectsInCk(k)) {
 			sumDiam += getDistanceSquare(mc.getMatrix().getRow(i), centroid);
 		}
 		float nbDataAssociatedCk = (float) mc.getSizeCk(k);
@@ -212,9 +219,9 @@ public class Quality {
 
 	// For Intra and Inter inertia index
 	public static float getDiameterSquared(int k, CsrMatrixClustered mc) {
-
-		int rowSize = mc.getMatrix().getRow(0).length; // same for the other
-														// rows
+		//!\\squared and multiplied by the number of elements
+		
+		int rowSize = mc.getMatrix().getRow(0).length; // same for the other row							
 		int colSize = mc.getObjectsInCk(k).size();
 		Float[] centroid = new Float[rowSize];
 
@@ -230,14 +237,14 @@ public class Quality {
 			}
 		}
 
-		// Normalize the vector
+		// Normalize the vector (divide by size)
 		for (int col = 0; col < rowSize; col++) {
 			centroid[col] = centroid[col] / colSize;
 		}
 
 		float sumDiam = 0f;
 
-		for (int i = 0; i < colSize; i++) {
+		for (int i : mc.getObjectsInCk(k)) {
 			sumDiam += getDistanceSquare(mc.getMatrix().getRow(i), centroid);
 		}
 
@@ -255,9 +262,7 @@ public class Quality {
 		float temp_distance = distance;
 		for (int indexVectorCI : mc.getObjectsInCk(i)) {
 			for (int indexVectorCJ : mc.getObjectsInCk(j)) {
-				temp_distance = getDistanceSquare(
-						mc.getMatrix().getRow(indexVectorCI), mc.getMatrix()
-								.getRow(indexVectorCJ));
+				temp_distance = getDistanceSquare(mc.getMatrix().getRow(indexVectorCI), mc.getMatrix().getRow(indexVectorCJ));
 				if (distance > temp_distance) {
 					distance = temp_distance;
 				}
@@ -302,6 +307,81 @@ public class Quality {
 
 		}
 		return (DB_Sum / nbClusters);
+
+	}
+	
+	// Diameter of a cluster : DU definition of diam
+	// ---------------------------------------------
+	//N.OPT
+	public static float getDiameterDU(int k, CsrMatrixClustered mc) {
+
+		int colSize = mc.getObjectsInCk(k).size();
+
+		float temp_max = getDistanceSquare(mc.getMatrix().getRow(mc.getObjectsInCk(k).get(0)), mc.getMatrix().getRow(mc.getObjectsInCk(k).get(1)));
+		float final_max= temp_max;
+		//Compare distances only once
+		for (int i=0; i < colSize; i++) {
+			for(int j=i+1 ; j<colSize; j++ )
+			{
+				temp_max = getDistanceSquare(mc.getMatrix().getRow(mc.getObjectsInCk(k).get(i)), mc.getMatrix().getRow(mc.getObjectsInCk(k).get(j)));
+				if (temp_max > final_max) 
+					final_max= temp_max;
+			}
+			
+		}
+		return (float) (Math.sqrt(final_max));
+
+	}
+		
+	// Distance between two clusters : DU definition of distance
+	// -------------------------------------------------
+	//OPT
+	public static float getDistanceDU(int k,int l, CsrMatrixClustered mc) {
+
+		float temp_min = getDistanceSquare(mc.getMatrix().getRow(mc.getObjectsInCk(k).get(0)), mc.getMatrix().getRow(mc.getObjectsInCk(l).get(0)));
+		float final_min= temp_min;
+		//Compare distances only once
+		for (int i : mc.getObjectsInCk(k) ) {
+			for(int j : mc.getObjectsInCk(l) )
+			{
+				temp_min = getDistanceSquare(mc.getMatrix().getRow(i), mc.getMatrix().getRow(j));
+				if (temp_min < final_min) 
+					final_min= temp_min;
+			}
+			
+		}
+		return (float) (Math.sqrt(final_min));
+
+	}
+	
+	public static float getDU(CsrMatrixClustered mc) {
+
+		int nbClusters = mc.getNbCluster(); //k
+		if (nbClusters < 2)
+			return 0; 
+		
+		float final_max= getDiameterDU(0, mc);
+		float temp_max;
+		float final_min= getDistanceDU(0,1, mc);
+		float temp_min;
+		
+		for (int i=0; i < nbClusters; i++) {
+			temp_max = getDiameterDU(i, mc);
+			if(temp_max > final_max)
+				final_max = temp_max;
+			
+			for(int j=i+1 ; j<nbClusters; j++ )
+			{
+				temp_min = getDistanceDU(i, j, mc);
+				if (temp_min < final_min) 
+					final_min = temp_min;
+			}
+			
+		}
+
+		
+		
+		return (final_min/final_max);
 
 	}
 
@@ -412,9 +492,9 @@ public class Quality {
 		return ((float) cs / (2 * ms + cs));
 	}
 	
-		// Cut Ratio
-		// ---------------------
-		public static float getCutRatio(int clusterIndex, CsrMatrixClustered amc) {
+	// Cut Ratio
+	// ---------------------
+	public static float getCutRatio(int clusterIndex, CsrMatrixClustered amc) {
 			int nbClusters = amc.getNbCluster();
 			int nbNodes = 0;
 			int ms = 0;
@@ -445,4 +525,6 @@ public class Quality {
 			
 			return ((float)cs / ((nbNodes-amc.getObjectsInCk(clusterIndex).size()))*(float) amc.getObjectsInCk(clusterIndex).size() );
 		}
+		
+		
 }
