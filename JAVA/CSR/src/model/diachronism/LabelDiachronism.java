@@ -154,6 +154,7 @@ public class LabelDiachronism {
 			a_t_tmp+=pA_t[t];
 		}
 		a_t=a_t_tmp/pA_t.length;
+		logger.debug("a_t="+a_t_tmp+"/"+pA_t.length+"="+a_t);
 		
 		std_tmp=0;
 		for (int i=0; i < pA_t.length; i++) {
@@ -259,6 +260,44 @@ public class LabelDiachronism {
 		ArrayList<Integer> clusterMatching = new ArrayList<Integer>();
 		for (int t=0; t < p_t_knowing_s[source].length; t++) {
 			if ((p_t_knowing_s[source][t] >= pA_s[source]) && (p_t_knowing_s[source][t] >= (a_s+std_s)) && (p_s_knowing_t[source][t] >= pA_t[t]) && (p_s_knowing_t[source][t] >= (a_t+std_t))) {
+				clusterMatching.add(t);
+			}
+		}
+		return clusterMatching;
+	}
+	
+	/**
+	 * Gets an ArrayList of int designating the cluster index from the target list of cluster which matches with the cluster source in only one direction : s activates t
+	 * 
+	 * @param source
+	 * @return
+	 */
+	public ArrayList<Integer> getTargetClusterSpecialization(int source) {
+		ArrayList<Integer> clusterMatching = new ArrayList<Integer>();
+		for (int t=0; t < p_t_knowing_s[source].length; t++) {
+			if ((p_t_knowing_s[source][t] >= pA_s[source]) && (p_t_knowing_s[source][t] >= (a_s+std_s)) && (!(p_s_knowing_t[source][t] >= pA_t[t]) || !(p_s_knowing_t[source][t] >= (a_t+std_t)))) {
+				clusterMatching.add(t);
+			}
+		}
+		return clusterMatching;
+	}
+	
+	/**
+	 * Gets an ArrayList of int designating the cluster index from the target list of cluster which matches with the cluster source in only one direction : t activates s
+	 * 
+	 * @param source
+	 * @return
+	 */
+	public ArrayList<Integer> getTargetClusterGeneralization(int source) {
+		ArrayList<Integer> clusterMatching = new ArrayList<Integer>();
+		for (int t=0; t < p_t_knowing_s[source].length; t++) {
+			if (source == 1 && t == 4) {
+				logger.debug("p_t_knowing_s[source][t]="+p_t_knowing_s[source][t] +" >= pA_s[source]=" +pA_s[source]+" ? ");
+				logger.debug("p_t_knowing_s[source][t]="+p_t_knowing_s[source][t] +" >= a_s+std_s=" +a_s+std_s+" ? ");
+				logger.debug("p_s_knowing_t[source][t]="+p_s_knowing_t[source][t]+" >=  pA_t[t]="+pA_t[t]+" ?");
+				logger.debug("p_s_knowing_t[source][t]="+p_s_knowing_t[source][t]+" >=  a_t+std_t="+a_t+std_t+" ?");
+			}
+			if ((!(p_t_knowing_s[source][t] >= pA_s[source]) || !(p_t_knowing_s[source][t] >= (a_s+std_s))) && (p_s_knowing_t[source][t] >= pA_t[t]) && (p_s_knowing_t[source][t] >= (a_t+std_t))) {
 				clusterMatching.add(t);
 			}
 		}

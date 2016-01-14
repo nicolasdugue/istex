@@ -30,7 +30,6 @@ public class LabelSelectionFromFile implements ILabelSelection {
 		featuresWeights = new ArrayList<ArrayList<Float>>();
 		labels = new ArrayList<ArrayList<Integer>>();
 		ls = new LabelStore(this.clusterLabels.getSize());
-		logger.debug("blabl");
 		readAndFill();
 		/*int i =0;
 		String log="";
@@ -125,9 +124,7 @@ public class LabelSelectionFromFile implements ILabelSelection {
 					tabLine=line.split(" ");
 					if (tabLine.length > 1) {
 						if (ls.containsKey(tabLine[1])) {
-							logger.debug("ici");
 							labelRead.add(ls.getIndexOfLabel(tabLine[1]));
-							logger.debug("la");
 							weights.add(Float.parseFloat(tabLine[0]));
 						}
 						else {

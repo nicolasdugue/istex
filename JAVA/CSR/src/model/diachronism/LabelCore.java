@@ -9,11 +9,17 @@ import model.util.nuplet.comparator.TripletComparatorTarget;
 
 public class LabelCore{
 	
+	public enum Matching {
+	    specialization, generalization, both
+	};
+	
 	@SerializedName("Cluster Source")
 	private String s;
 	@SerializedName("Cluster Target")
 	private String t;
 	private transient TripletComparatorTarget comparator = new TripletComparatorTarget();
+	
+	private Matching matchingType;
 	
 	@SerializedName("Kernel Labels")
 	private TreeSet<TripletLabel> kernelLabels = new TreeSet<TripletLabel>();
@@ -81,6 +87,13 @@ public class LabelCore{
 	}
 	public void setP_t_s(float p_t_s) {
 		this.p_t_s = p_t_s;
+	}
+	
+	public Matching getMatchingType() {
+		return matchingType;
+	}
+	public void setMatchingType(Matching matchingType) {
+		this.matchingType = matchingType;
 	}
 	
 }

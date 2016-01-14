@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import model.diachronism.LabelCore;
+import model.diachronism.LabelCore.Matching;
 import model.diachronism.LabelCoreComparator;
 import model.diachronism.LabelDiachronism;
 import model.featureselection.labellingstategies.FeatureSelectionStrategy;
@@ -101,27 +102,47 @@ public class Controller {
 	 * @return
 	 */
 	public String getJson() {
-		Iterator<Integer> itClusters;
+		Iterator<Integer> itClustersMatching;
+		Iterator<Integer> itClustersSpecialization;
+		Iterator<Integer> itClustersGeneralization;
 		final GsonBuilder builder = new GsonBuilder();
 	    final Gson gson = builder.create();
 	    int target;
 	    String json="[";
 	    boolean[] targets=new boolean[ld.getNbClusterTarget()];
+	    LabelCore lc;
 	    
 	    //Pour ordonner les Matching, d'abord les plus forts
 	    TreeSet<LabelCore> set = new TreeSet<LabelCore>(new LabelCoreComparator());
 	    
 		for (int s =0; s < ld.getNbClusterSource(); s++) {
-			itClusters=ld.getTargetClusterMatching(s).iterator();
-			if (!itClusters.hasNext()) {
+			itClustersMatching=ld.getTargetClusterMatching(s).iterator();
+			itClustersSpecialization=ld.getTargetClusterSpecialization(s).iterator();
+			itClustersGeneralization=ld.getTargetClusterGeneralization(s).iterator();
+			if ((!itClustersMatching.hasNext()) && (!itClustersGeneralization.hasNext()) && (!itClustersSpecialization.hasNext())) {
 				json+="{\"Cluster source\":\""+ld.getLabelOfClusterSource(s)+"\", \"state\" : \"vanished\"},";
 			}
 			else {
-				while (itClusters.hasNext()) {
-					target=itClusters.next();
+				while (itClustersMatching.hasNext()) {
+					target=itClustersMatching.next();
 					targets[target] = true;
-					
-					set.add(ld.getLabelCore(s, target));
+					lc=ld.getLabelCore(s, target);
+					lc.setMatchingType(Matching.both);
+					set.add(lc);
+				}
+				while (itClustersSpecialization.hasNext()) {
+					target=itClustersSpecialization.next();
+					targets[target] = true;
+					lc=ld.getLabelCore(s, target);
+					lc.setMatchingType(Matching.specialization);
+					set.add(lc);
+				}
+				while (itClustersGeneralization.hasNext()) {
+					target=itClustersGeneralization.next();
+					targets[target] = true;
+					lc=ld.getLabelCore(s, target);
+					lc.setMatchingType(Matching.generalization);
+					set.add(lc);
 				}
 			}
 		}
