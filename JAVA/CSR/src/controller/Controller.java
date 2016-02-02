@@ -120,7 +120,7 @@ public class Controller {
 			itClustersSpecialization=ld.getTargetClusterSpecialization(s).iterator();
 			itClustersGeneralization=ld.getTargetClusterGeneralization(s).iterator();
 			if ((!itClustersMatching.hasNext()) && (!itClustersGeneralization.hasNext()) && (!itClustersSpecialization.hasNext())) {
-				json+="{\"Cluster source\":\""+ld.getLabelOfClusterSource(s)+"\", \"state\" : \"vanished\"},";
+				json+="{\"Cluster source\":\""+ld.getLabelOfClusterSource(s)+"\", \"state\" : \"vanished\", \"name\" : \""+ ld.getNameOfClusterSource(s)+ "\"},";
 			}
 			else {
 				while (itClustersMatching.hasNext()) {
@@ -152,7 +152,7 @@ public class Controller {
 		}
 		for (int t = 0; t < targets.length; t++) {
 			if (!targets[t]) {
-				json+="{\"Cluster target\":\""+ld.getLabelOfClusterTarget(t)+"\", \"state\" : \"appeared\"},";
+				json+="{\"Cluster target\":\""+ld.getLabelOfClusterTarget(t)+"\", \"state\" : \"appeared\", \"name\" : \""+ ld.getNameOfClusterTarget(t)+ "\"},";
 			}
 		}
 		if (json.length() > 0 && json.charAt(json.length()-1)==',') {
