@@ -45,6 +45,10 @@ public class LabelDiachronism {
 	
 	private float std_s;
 	private float std_t;
+	
+	//private float[] sum_ff_s;
+	//private float[] sum_ff_t;
+	
 	private Logger logger = SGLogger.getInstance();
 
 	public LabelDiachronism(ILabelSelection ls_t0, ILabelSelection ls_t1) {
@@ -55,6 +59,10 @@ public class LabelDiachronism {
 		
 		p_s_knowing_t = new float[ls_s.getNbCluster()][ls_t.getNbCluster()];
 		pA_t=new float[ls_t.getNbCluster()];
+		
+		//sum_ff_s = new float[ls_s.getNbCluster()];
+		//sum_ff_t= new float[ls_t.getNbCluster()];
+		
 		computeProbabilities();
 	}
 	private void computeProbabilities() {
@@ -69,6 +77,7 @@ public class LabelDiachronism {
 		float numerateur2;
 		float denominateur;
 		float denominateur2;
+		
 		
 		//Knowing s
 		for (int s=0; s < ls_s.getNbCluster(); s++) {
@@ -87,10 +96,12 @@ public class LabelDiachronism {
 					for (String label : labels_t) {
 						denominateur+=ls_t.getFeatureValue(ls_t.getIndexOfColLabel(label),t);
 					}
+					//sum_ff_t[t]=denominateur;
 					//To compute p(s|t), use this denominator calculated with the source label F measures
 					for (String label : labels_s) {
 						denominateur2+=ls_s.getFeatureValue(ls_s.getIndexOfColLabel(label),s);
 					}
+					//sum_ff_s[s]=denominateur2;
 					numerateur=0;
 					numerateur2=0;
 					for (String label : labels_s_and_t) {
@@ -260,6 +271,7 @@ public class LabelDiachronism {
 		ArrayList<Integer> clusterMatching = new ArrayList<Integer>();
 		for (int t=0; t < p_t_knowing_s[source].length; t++) {
 			if ((p_t_knowing_s[source][t] >= pA_s[source]) && (p_t_knowing_s[source][t] >= (a_s+std_s)) && (p_s_knowing_t[source][t] >= pA_t[t]) && (p_s_knowing_t[source][t] >= (a_t+std_t))) {
+				
 				clusterMatching.add(t);
 			}
 		}
@@ -276,7 +288,9 @@ public class LabelDiachronism {
 		ArrayList<Integer> clusterMatching = new ArrayList<Integer>();
 		for (int t=0; t < p_t_knowing_s[source].length; t++) {
 			if ((p_t_knowing_s[source][t] >= pA_s[source]) && (p_t_knowing_s[source][t] >= (a_s+std_s)) && (!(p_s_knowing_t[source][t] >= pA_t[t]) || !(p_s_knowing_t[source][t] >= (a_t+std_t)))) {
-				clusterMatching.add(t);
+				if (p_t_knowing_s[source][t] >= (0.66) ) {
+					clusterMatching.add(t);
+				}
 			}
 		}
 		return clusterMatching;
@@ -292,7 +306,9 @@ public class LabelDiachronism {
 		ArrayList<Integer> clusterMatching = new ArrayList<Integer>();
 		for (int t=0; t < p_t_knowing_s[source].length; t++) {
 			if ((!(p_t_knowing_s[source][t] >= pA_s[source]) || !(p_t_knowing_s[source][t] >= (a_s+std_s))) && (p_s_knowing_t[source][t] >= pA_t[t]) && (p_s_knowing_t[source][t] >= (a_t+std_t))) {
-				clusterMatching.add(t);
+				if (p_s_knowing_t[source][t] >= (0.66) ) {
+					clusterMatching.add(t);
+				}
 			}
 		}
 		return clusterMatching;
@@ -301,7 +317,9 @@ public class LabelDiachronism {
 	public LabelCore getLabelCore(int s, int t) {
 		LabelCore lc = new LabelCore();
 		lc.setS(this.getLabelOfClusterSource(s));
+		lc.setNs(this.getNameOfClusterSource(s));
 		lc.setT(this.getLabelOfClusterTarget(t));
+		lc.setNt(this.getNameOfClusterTarget(t));
 		float value_s, value_t;
 		ArrayList<String> labels_s=ls_s.getLabelSet(s);
 		ArrayList<String> labels_t=ls_t.getLabelSet(t);
@@ -355,6 +373,13 @@ public class LabelDiachronism {
 	}
 	public int getClusterTargetOfLabel(String s) {
 		return ls_t.getClusterOfLabel(s);
+	}
+	
+	public String getNameOfClusterSource(int cluster) {
+		return ls_s.getAutomaticNameForCluster(cluster);
+	}
+	public String getNameOfClusterTarget(int cluster) {
+		return ls_t.getAutomaticNameForCluster(cluster);
 	}
 
 	

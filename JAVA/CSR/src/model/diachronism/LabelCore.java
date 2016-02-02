@@ -15,8 +15,12 @@ public class LabelCore{
 	
 	@SerializedName("Cluster Source")
 	private String s;
+	@SerializedName("Source Name")
+	private String ns;
 	@SerializedName("Cluster Target")
 	private String t;
+	@SerializedName("Target Name")
+	private String nt;
 	private transient TripletComparatorTarget comparator = new TripletComparatorTarget();
 	
 	private Matching matchingType;
@@ -95,5 +99,19 @@ public class LabelCore{
 	public void setMatchingType(Matching matchingType) {
 		this.matchingType = matchingType;
 	}
+	public String getNs() {
+		return ns;
+	}
+	public void setNs(String ns) {
+		this.ns = ns;
+	}
+	public String getNt() {
+		return nt;
+	}
+	public void setNt(String nt) {
+		this.nt = nt;
+	}
+	
+	
 	
 }

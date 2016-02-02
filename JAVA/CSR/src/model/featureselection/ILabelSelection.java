@@ -31,5 +31,6 @@ public interface ILabelSelection {
 
 	public float getFeatureValue(int f, int cluster);
 	
+	public String getAutomaticNameForCluster(int cluster);
 	
 }

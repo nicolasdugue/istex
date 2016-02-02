@@ -212,5 +212,27 @@ public class LabelSelectionFromFile implements ILabelSelection {
 			return 0.0f;
 		}
 	}
+	@Override
+	public String getAutomaticNameForCluster(int cluster) {
+		ArrayList<Float> weights = this.featuresWeights.get(cluster);
+		ArrayList<String> features = this.getLabelSet(cluster);
+		float max1=-1, max2=-1;
+		String f1="", f2="";
+		float w;
+		for (int i = 0; i < weights.size(); i++) {
+			w=weights.get(i);
+			if (w > max1) {
+				max2=max1;
+				f2=f1;
+				f1=features.get(i);
+				max1=w;
+			}
+			else if (w > max2) {
+				max2=w;
+				f2=features.get(i);
+			}
+		}
+		return f1 + " " +f2;
+	}
 
 }

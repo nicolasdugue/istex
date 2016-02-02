@@ -127,6 +127,23 @@ public class LabelSelection implements ILabelSelection {
 		return fs.getFeatureValue(f, cluster);
 	}
 	
+	public String getAutomaticNameForCluster(int cluster) {
+		ArrayList<String> features = this.getLabelSet(cluster);
+		float max1=-1, max2=-1;
+		String f1="", f2="";
+		float w;
+		for (int i = 0; i < features.size(); i++) {
+			w=this.getFeatureValue(this.getIndexOfColLabel(features.get(i)), cluster);
+			if (w > max1) {
+				max2=max1;
+				f2=f1;
+				f1=features.get(i);
+				max1=w;
+			}
+		}
+		return f1 + " " +f2;
+	}
+	
 	
 	
 	
