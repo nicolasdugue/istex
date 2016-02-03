@@ -108,7 +108,7 @@ public class LabelSelectionFromFile implements ILabelSelection {
 			while (sc.hasNextLine()) {
 				line = sc.nextLine();
 				//If this, then the line describes a new cluster
-				if (line.startsWith("Classe")) {
+				if (line.startsWith("Classe") || (line.contains("C") && line.contains("-")) || line.startsWith("Cluster")) {
 					clusterLabels.addLabel(line);
 					if (first) {
 						first=false;
