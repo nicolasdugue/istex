@@ -271,9 +271,11 @@ public class LabelDiachronism {
 		ArrayList<Integer> clusterMatching = new ArrayList<Integer>();
 		for (int t=0; t < p_t_knowing_s[source].length; t++) {
 			if ((p_t_knowing_s[source][t] >= pA_s[source]) && (p_t_knowing_s[source][t] >= (a_s+std_s)) && (p_s_knowing_t[source][t] >= pA_t[t]) && (p_s_knowing_t[source][t] >= (a_t+std_t))) {
-				
-				clusterMatching.add(t);
+				if (((p_t_knowing_s[source][t] * 0.666666) <= p_s_knowing_t[source][t]) && (p_t_knowing_s[source][t] >= (p_s_knowing_t[source][t]* 0.666666))) {
+					clusterMatching.add(t);
+				}
 			}
+				
 		}
 		return clusterMatching;
 	}
@@ -287,8 +289,16 @@ public class LabelDiachronism {
 	public ArrayList<Integer> getTargetClusterSpecialization(int source) {
 		ArrayList<Integer> clusterMatching = new ArrayList<Integer>();
 		for (int t=0; t < p_t_knowing_s[source].length; t++) {
-			if ((p_t_knowing_s[source][t] >= pA_s[source]) && (p_t_knowing_s[source][t] >= (a_s+std_s)) && (!(p_s_knowing_t[source][t] >= pA_t[t]) || !(p_s_knowing_t[source][t] >= (a_t+std_t)))) {
+			if ((p_t_knowing_s[source][t] >= pA_s[source]) && (p_t_knowing_s[source][t] >= (a_s+std_s)) && (p_s_knowing_t[source][t] >= pA_t[t]) && (p_s_knowing_t[source][t] >= (a_t+std_t))) {
+				if (((p_t_knowing_s[source][t] * 0.666666) > p_s_knowing_t[source][t])) {
+					logger.debug("Specialization of cluster" + source + " to cluster " + t + ", target is 3/2 more activated");
+					clusterMatching.add(t);
+				}
+			}
+			
+			else if ((p_t_knowing_s[source][t] >= pA_s[source]) && (p_t_knowing_s[source][t] >= (a_s+std_s)) && (!(p_s_knowing_t[source][t] >= pA_t[t]) || !(p_s_knowing_t[source][t] >= (a_t+std_t)))) {
 				if (p_t_knowing_s[source][t] >= (0.66) ) {
+					logger.debug("Specialization of cluster" + source + " to cluster " + t + "");
 					clusterMatching.add(t);
 				}
 			}
@@ -305,8 +315,15 @@ public class LabelDiachronism {
 	public ArrayList<Integer> getTargetClusterGeneralization(int source) {
 		ArrayList<Integer> clusterMatching = new ArrayList<Integer>();
 		for (int t=0; t < p_t_knowing_s[source].length; t++) {
-			if ((!(p_t_knowing_s[source][t] >= pA_s[source]) || !(p_t_knowing_s[source][t] >= (a_s+std_s))) && (p_s_knowing_t[source][t] >= pA_t[t]) && (p_s_knowing_t[source][t] >= (a_t+std_t))) {
+			if ((p_t_knowing_s[source][t] >= pA_s[source]) && (p_t_knowing_s[source][t] >= (a_s+std_s)) && (p_s_knowing_t[source][t] >= pA_t[t]) && (p_s_knowing_t[source][t] >= (a_t+std_t))) {
+				if ((p_t_knowing_s[source][t] < (p_s_knowing_t[source][t]* 0.666666))) {
+					logger.debug("Generalization of cluster" + source + " to cluster " + t + ", source is 3/2 more activated");
+					clusterMatching.add(t);
+				}
+			}
+			else if ((!(p_t_knowing_s[source][t] >= pA_s[source]) || !(p_t_knowing_s[source][t] >= (a_s+std_s))) && (p_s_knowing_t[source][t] >= pA_t[t]) && (p_s_knowing_t[source][t] >= (a_t+std_t))) {
 				if (p_s_knowing_t[source][t] >= (0.66) ) {
+					logger.debug("Generalization of cluster" + source + " to cluster " + t + "");
 					clusterMatching.add(t);
 				}
 			}

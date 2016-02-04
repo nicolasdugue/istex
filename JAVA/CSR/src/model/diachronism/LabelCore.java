@@ -10,7 +10,7 @@ import model.util.nuplet.comparator.TripletComparatorTarget;
 public class LabelCore{
 	
 	public enum Matching {
-	    specialization, generalization, both
+	    specialization, generalization, both//, bothwithspec, bothwithgen
 	};
 	
 	@SerializedName("Cluster Source")
