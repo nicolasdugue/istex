@@ -1,5 +1,5 @@
 # Diachronic'Explorer
-##### Java module for Diachrony, feature selection and cluster labeling
+###### Java module for Diachrony, feature selection and cluster labeling
 
 ## Presentation
 Diachronic'Explorer is a project which aims to deal with documents corpora such as the [ISTEX](http://www.istex.fr/) one. This module is a Java driven library used for diachronic analysis, feature selection and cluster labeling. Another module of Diachronic'Explorer is used for [Visualization of diachronic analysis](https://github.com/nicolasdugue/istex-demonstrateur).
