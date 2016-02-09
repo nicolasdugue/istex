@@ -1,11 +1,12 @@
-# ISTEX JAVA LIBRARY
+# Diachronic'Explorer - Java module for Diachrony and feature selection
 
 ## Presentation
-This project is a JAVA driven library used to deal with documents corpora such as the [ISTEX](http://www.istex.fr/) one.
+Diachronic'Explorer is a project which aims to deal with documents corpora such as the [ISTEX](http://www.istex.fr/) one. This module is a Java driven library used for diachronic analysis, feature selection and cluster labeling. Another module of Diachronic'Explorer is used for [Visualization of diachronic analysis](https://github.com/nicolasdugue/istex-demonstrateur).
 
 This library allows to handle large sparse matrices by using CSR and CSC formats.
 It allows to analyse diachronically two different clustering of a same corpora (**[2]**) but at different time steps using several methods (**[1]**) : Clustering, label extraction (**[6]**) and diachronic analysis.
 Furthermore, this tool is also adapted to deal with large weighted graphs to study the collaboration networks of authors of the corpus (**[3,5]**).
+Finally, the software can also be used for Feature selection or cluster labeling.
 
 ## Installation
 * The Java project may be imported into all IDE (Eclipse, IntelliJ or Netbeans) ;
