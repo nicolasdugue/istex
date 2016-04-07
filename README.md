@@ -10,6 +10,9 @@ Furthermore, this tool is also adapted to deal with large weighted graphs to stu
 Finally, the software can also be used for Feature selection or cluster labeling.
 
 ## Installation
+
+It needs JRE7 at least to be executed.
+
 #####Without Maven (easiest install)
 
  [Releases](https://github.com/nicolasdugue/istex/releases) can be downloaded : 
@@ -18,7 +21,7 @@ Finally, the software can also be used for Feature selection or cluster labeling
 
 ####Maven (for developpers)
 * The Java project may be imported into all IDE (Eclipse, IntelliJ or Netbeans) ;
-* It need JRE7 at least ;
+
 * The projet should be built using Maven and running the command *mvn install* at the root of the projet ;
 
 
