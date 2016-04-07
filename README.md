@@ -10,10 +10,18 @@ Furthermore, this tool is also adapted to deal with large weighted graphs to stu
 Finally, the software can also be used for Feature selection or cluster labeling.
 
 ## Installation
+#####Without Maven (easiest install)
+
+ [Releases](https://github.com/nicolasdugue/istex/releases) can be downloaded : 
+* Diachronism.jar allows to run the whole diachronic process
+* FeatureSelection.jar allows to deal with feature selection when supervised, or cluster labeling when unsupervised
+
+####Maven (for developpers)
 * The Java project may be imported into all IDE (Eclipse, IntelliJ or Netbeans) ;
 * It need JRE7 at least ;
 * The projet should be built using Maven and running the command *mvn install* at the root of the projet ;
-* Releases can be downloaded **if one does not want to install maven**.
+
+
 
 #### Using the jar as linux commands
 
@@ -59,7 +67,7 @@ Finally, the output lst0_015.json is in json. To visualize it like an HTML repor
 		                                           String per line
 		                                           indicated the
 		                                           corresponding label of
-		                                           each feature.
+		                                           each feature. **Optional.**
 	 -g,--graph                                        read a list of arcs
 		                                           instead of a matrix
 	 -h,--help                                         print this message
@@ -69,20 +77,20 @@ Finally, the output lst0_015.json is in json. To visualize it like an HTML repor
 		                                           algorithm
 	 -lsf                                              Select label with
 		                                           feature selection.
-		                                           Automatic.
+		                                           Automatic.**Optional.**
 	 -lsn <number>                                     Select a fixed number
-		                                           of labels per cluster.
+		                                           of labels per cluster.**Optional.**
 	 -lst <threshold>                                  Select label with a
 		                                           threshold on feature
-		                                           selection.
+		                                           selection.**Optional.**
 	 -m <matrixSource> <matrixTarget>                  Source and target
 		                                           matrices. Fomat : One
 		                                           row per line, element
 		                                           separated with spaces
 		                                           or tabs. NRM files also
 		                                           allowed.
-	 -q,--quiet                                        be extra quiet
-	 -v,--verbose                                      be extra verbose
+	 -q,--quiet                                        be extra quiet, **Optional.**
+	 -v,--verbose                                      be extra verbose, **Optional.**
 
 #### Feature Selection
 
