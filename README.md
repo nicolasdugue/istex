@@ -19,7 +19,7 @@ It needs JRE7 at least to be executed.
 * Diachronism.jar allows to run the whole diachronic process
 * FeatureSelection.jar allows to deal with feature selection when supervised, or cluster labeling when unsupervised
 
-####Maven (for developpers)
+#####Maven (for developpers)
 * The Java project may be imported into all IDE (Eclipse, IntelliJ or Netbeans) ;
 
 * The projet should be built using Maven and running the command *mvn install* at the root of the projet ;
