@@ -15,16 +15,19 @@ Finally, the software can also be used for Feature selection or cluster labeling
 
 It needs JRE7 at least to be executed.
 
-#####Without Maven (easiest install)
+##### Without Maven (easiest install)
 
  [Releases](https://github.com/nicolasdugue/istex/releases) can be downloaded : 
 * Diachronism.jar allows to run the whole diachronic process
 * FeatureSelection.jar allows to deal with feature selection when supervised, or cluster labeling when unsupervised
 
-#####Maven (for developpers)
-* The Java project may be imported into all IDE (Eclipse, IntelliJ or Netbeans) ;
+##### Maven (for developpers)
+Install Maven
+* The Java project may be imported into an IDE (Eclipse, IntelliJ or Netbeans) that can run maven ;
 
-* The projet should be built using Maven and running the command *mvn install* at the root of the projet ;
+**OR**
+
+* The projet may be built using Maven and running the command *mvn install* at the root of the projet ;
 
 
 
