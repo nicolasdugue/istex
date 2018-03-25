@@ -95,9 +95,12 @@ public class FunctionalCartography {
 	 */
 	public ArrayList<Integer> getAllComunityInternalDegree(int com) {
 		ArrayList<Integer> community = this.getObjectsInCommunity(com);
+		log.debug("Community : "+ community);
 		ArrayList<Integer> degrees = new ArrayList<Integer>(community.size());
 		for (Iterator<Integer> it=community.iterator(); it.hasNext();) {
-			degrees.add(this.getInternalDegree(it.next()));
+			int i = it.next();
+			log.debug("-> "+i);
+			degrees.add(this.getInternalDegree(i));
 		}
 		return degrees;
 	}
@@ -158,6 +161,7 @@ public class FunctionalCartography {
 				z_score[node]=(this.getInternalDegree(node)-mean)/std;
 		}
 	}
+
 	/**
 	 * 
 	 * Process the z_score of the internal degree of all the graph nodes.

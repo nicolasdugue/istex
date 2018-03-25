@@ -22,8 +22,20 @@ import org.apache.log4j.Logger;
 
 import model.matrix.CsrMatrixClustered;
 import model.roles.FunctionalCartography;
+import model.featureselection.FeaturesSelection;
+import model.featureselection.LabelSelection;
+import model.featureselection.labellingstategies.FeatureSelectionStrategy;
+import model.featureselection.labellingstategies.FeatureThresholdStrategy;
+import model.featureselection.labellingstategies.FixedNumberOfLabelStrategy;
 import model.util.factory.AFactory;
+import model.util.factory.GraphElmFactory;
+import model.util.factory.GraphFactory;
+import model.util.factory.MatrixElmFactory;
 import model.util.factory.MatrixFactory;
+import model.util.factory.NrmClusteringFactory;
+import model.util.factory.NrmElmFactory;
+import model.util.nuplet.PairSFWeighted;
+import model.util.nuplet.collection.SortedLabelSet;
 import util.SGLogger;
 
 public class MainGraphMeasures {
@@ -114,6 +126,26 @@ public class MainGraphMeasures {
 						c1 = line.getOptionValues("c")[0];
 						if (line.hasOption("l")) {
 							l1 = line.getOptionValues("l")[0];
+						}
+						
+						if (line.hasOption("g")) {
+							if (c1.contains(".elm"))
+								factory = new GraphElmFactory();
+							else
+								factory = new GraphFactory();
+						}
+						if (m1.contains(".nrm")) {
+							log.debug("Matrice nrm");
+							if (c1.contains(".elm"))  {
+								log.debug("Clustering elm");
+								factory = new NrmElmFactory();
+							}
+							else
+								factory = new NrmClusteringFactory();
+						}
+						else {
+							if (c1.contains(".elm"))
+								factory = new MatrixElmFactory();
 						}
 						
 					}
