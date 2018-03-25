@@ -190,7 +190,7 @@ public class MainFeatureSelection {
 				
 				
 				FileWriter fw = new FileWriter(new File(output+".fs"));
-				fw.write("#cluster object ff\n");
+				fw.write("#cluster object ff fr fp\n");
 				SortedLabelSet s = new SortedLabelSet();
 				int feature;
 				log.info("Writing Feature selection results");
@@ -199,7 +199,7 @@ public class MainFeatureSelection {
 						 s.add(new PairSFWeighted(fs.getLabelOfCol(j), fs.getFeatureValue(j, cls)));
 					 }
 					 for (PairSFWeighted pair : s) {
-						 fw.write(cls +" "+pair.getLeft()+" "+ pair.getRight()+"\n");
+						 fw.write(cls +" "+pair.getLeft()+" "+ pair.getRight()+ " " + fs.fr(Integer.parseInt(pair.getLeft()),cls)+ " "+ fs.fp(Integer.parseInt(pair.getLeft()),cls) +"\n");
 					 }
 					 s.clear();
 				}

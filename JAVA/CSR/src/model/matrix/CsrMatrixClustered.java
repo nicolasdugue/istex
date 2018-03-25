@@ -49,6 +49,7 @@ public class CsrMatrixClustered {
 			start=matrix.getCumulativeColumns(i-1);
 		}
 		end =matrix.getCumulativeColumns(i);
+		log.debug("Start : "+start+", end : "+end);
 		float sum=0f;
 		PairF val;
 		for (int j=start; j < end; j++) {
