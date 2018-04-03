@@ -177,7 +177,7 @@ public class FunctionalCartography {
 				z_score[com][node] = 0;
 			else
 				//Remplacer this.getInternalDegree(node) par this.getInternalDegree(node,com)
-				z_score[com][node]=(this.getInternalDegree(node)-mean)/std;
+				z_score[com][node]=(this.getDegreeInCom(node, com)-mean)/std;
 		}
 	}
 
