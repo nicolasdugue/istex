@@ -78,7 +78,7 @@ public class MainGraphMeasures {
 
 		//args = new String[] { "-c", "t", "test" };
 
-		
+
 
 		AFactory factory = new MatrixFactory();
 		String m1=null;
@@ -127,7 +127,7 @@ public class MainGraphMeasures {
 						if (line.hasOption("l")) {
 							l1 = line.getOptionValues("l")[0];
 						}
-						
+
 						if (line.hasOption("g")) {
 							if (c1.contains(".elm"))
 								factory = new GraphElmFactory();
@@ -147,9 +147,9 @@ public class MainGraphMeasures {
 							if (c1.contains(".elm"))
 								factory = new MatrixElmFactory();
 						}
-						
+
 					}
-					
+
 				}
 				//View v = new View();
 
@@ -160,20 +160,22 @@ public class MainGraphMeasures {
 				else
 					matrix = factory.getMatrixClustered(m1,c1,l1);
 				String output =line.getOptionValues("o")[0];
-				
-				
+
+
 				//TODO - Make a proper controller
 				//if (line.hasOption("r")) {
 				FileWriter fwr = new FileWriter(new File(output+".rl"));
 				FunctionalCartography fc = new FunctionalCartography(matrix);
 				fc.doZScore();
-				fwr.write("#node zscore coefp sizecom degree\n");
-				for (int i = 0; i < matrix.getNbRows(); i++) {
-					fwr.write(i + " " + fc.getZScore(i) + " "+fc.getParticipationCoefficient(i)+ " "+fc.getSizeCommunity(fc.getCommunity(i))+ " "+fc.getDegree(i)+"\n");
+				fwr.write("#node com zscore coefp sizecom degree\n");
+				for (int com=0; com < matrix.getNbCluster(); com++){
+					for (int i = 0; i < matrix.getNbRows(); i++) {
+						fwr.write(i + " " +com+" "+ fc.getZScore(com,i) + " "+fc.getParticipationCoefficient(i)+ " "+fc.getSizeCommunity(fc.getCommunity(i))+ " "+fc.getDegree(i)+"\n");
+					}
 				}
 				fwr.close();
 				//}
-				
+
 			}
 
 		} catch (ParseException exp) {
@@ -185,11 +187,11 @@ public class MainGraphMeasures {
 			log.fatal(e);
 		}
 	}
-	
+
 	public static String createTempExemple(String s) {
 		File file=null;
 		 try {
-			 	
+
 			 	MainDiachronic m = new MainDiachronic();
 	            InputStream input = m.getClass().getClassLoader().getResourceAsStream(s);
 	            file= new File(s+".exemple");
@@ -201,14 +203,14 @@ public class MainGraphMeasures {
 	                out.write(bytes, 0, read);
 	            }
 	            out.close();
-	            
+
 	            log.info(s+ ".exemple created");
 	        } catch (IOException ex) {
 	            log.fatal(ex);
 	        }
 		 return file.getAbsolutePath();
 	}
-	
+
 	//TODO Responsability chain to make it cleaner and more modular
 		public static boolean check(CommandLine line, Options options) {
 			boolean okay=true;
@@ -253,7 +255,7 @@ public class MainGraphMeasures {
 			return okay;
 
 		}
-		
+
 		public static void printHelp() {
 			formatter.printHelp("Compute community roles ", options);
 		}
