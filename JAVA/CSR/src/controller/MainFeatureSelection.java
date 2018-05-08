@@ -30,6 +30,7 @@ import model.featureselection.labellingstategies.FixedNumberOfLabelStrategy;
 import model.util.factory.AFactory;
 import model.util.factory.GraphElmFactory;
 import model.util.factory.GraphFactory;
+import model.util.factory.GraphOverlappingFactory;
 import model.util.factory.MatrixElmFactory;
 import model.util.factory.MatrixFactory;
 import model.util.factory.NrmClusteringFactory;
@@ -89,6 +90,12 @@ public class MainFeatureSelection {
 		OptionBuilder.withArgName("number");
 		OptionBuilder.withDescription("Select a fixed number of labels per cluster.");
 		opt = OptionBuilder.create("lsn");
+		options.addOption(opt);
+		OptionBuilder.hasArgs(0);
+		OptionBuilder.withArgName("overlapping");
+		OptionBuilder.withDescription(
+				"Tells if clustering is overlapping.");
+		opt = OptionBuilder.create("ov");
 		options.addOption(opt);
 		
 
@@ -167,6 +174,9 @@ public class MainFeatureSelection {
 						else {
 							if (c1.contains(".elm"))
 								factory = new MatrixElmFactory();
+						}
+						if (line.hasOption("ov")) {
+							factory = new GraphOverlappingFactory();
 						}
 						
 						
