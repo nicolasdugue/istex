@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.cluster.Clustering;
+import model.cluster.OverlappingClustering;
+import model.cluster.decorator.IClustering;
 
 public class TestClusteringModel {
 
@@ -15,18 +17,18 @@ public class TestClusteringModel {
 
 	@Test
 	public void testAdd() {
-		Clustering c = new Clustering(11);
-		c.add(0);
-		c.add(4);
-		c.add(1);
-		c.add(0);
-		c.add(0);
-		c.add(0);
-		c.add(4);
-		c.add(1);
-		c.add(2);
-		c.add(3);
-		c.add(1);
+		IClustering c = new OverlappingClustering(11);
+		c.add(0,0);
+		c.add(1,4);
+		c.add(2,1);
+		c.add(3,0);
+		c.add(4,0);
+		c.add(5,0);
+		c.add(6,4);
+		c.add(7,1);
+		c.add(8,2);
+		c.add(9,3);
+		c.add(10,1);
 		
 		assertTrue(c.getObjectsInCk(2).contains(8));
 		assertTrue(c.getObjectsInCk(3).contains(9));
