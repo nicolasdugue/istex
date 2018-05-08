@@ -234,8 +234,10 @@ public class FeaturesSelection implements IFeaturesSelection {
 	public int getNbRows() {
 		return matrix.getNbRows();
 	}
-	public Integer getClusterOfObjectI(int index) {
-		return matrix.getClusterOfObjectI(index);
+	
+	
+	public boolean isIntAClusterOfObject(int index, int k) {
+		return matrix.isIntAClusterOfObject(index, k);
 	}
 	public String getLabelOfCluster(int cluster) {
 		return matrix.getLabelOfCluster(cluster);

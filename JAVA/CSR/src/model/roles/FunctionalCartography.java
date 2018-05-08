@@ -31,16 +31,6 @@ public class FunctionalCartography {
 	}
 
 	/**
-	 * Returns the internal degree of node in its community
-	 * @param node
-	 * @return
-	 */
-	public int getInternalDegree(int node) {
-		int com = this.getCommunity(node);
-		return (int)getDegreeInCom(node, com);
-	}
-
-	/**
 	 * Returns the degree of node in com
 	 * @param node
 	 * @return
@@ -73,14 +63,15 @@ public class FunctionalCartography {
 		return getInDegree(node)+getOutDegree(node);
 	}
 
-	/**
+	/*
+	
 	 * Returns the community that node belongs to
 	 * @param node
 	 * @return
-	 */
+	 
 	public int getCommunity(int node) {
 		return matrix.getClusterOfObjectI(node);
-	}
+	}*/
 	/**
 	 * Returns all the nodes belonging to the community com
 	 * @param com - an integer id of the community
@@ -103,7 +94,7 @@ public class FunctionalCartography {
 		for (Iterator<Integer> it=community.iterator(); it.hasNext();) {
 			int i = it.next();
 			log.debug("-> "+i);
-			degrees.add(this.getInternalDegree(i));
+			degrees.add(this.getDegreeInCom(i, com));
 		}
 		return degrees;
 	}
@@ -220,9 +211,9 @@ public class FunctionalCartography {
 		return z_score[com][node];
 	}
 
-	public float getZScore(int node) {
+	/*public float getZScore(int node) {
 		return z_score[this.getCommunity(node)][node];
-	}
+	}*/
 
 	public int getSizeCommunity(int com) {
 		return matrix.getSizeCk(com);

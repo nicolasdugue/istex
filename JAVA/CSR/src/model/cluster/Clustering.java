@@ -8,9 +8,9 @@ import model.cluster.decorator.IClustering;
 
 /**
  * Allows to represent a Clustering.
- * 
+ *
  * @author dugue
- * 
+ *
  *
  */
 public class Clustering implements IClustering{
@@ -29,7 +29,7 @@ public class Clustering implements IClustering{
 	 */
 	private ArrayList<ArrayList<Integer>> clustersList = new ArrayList<ArrayList<Integer>>();
 
-	
+
 	public Clustering(int size) {
 		clusters=new int[size];
 	}
@@ -44,11 +44,11 @@ public class Clustering implements IClustering{
 		return clusters[index];
 	}
 
-	
+
 	/**
 	 * Allows to configure a clustering object, by stating that Object (matrix row) clusters.size() belongs to cluster e in parameter
 	 * This updates {@link #clusters} and {@link #clustersList}.
-	 * 
+	 *
 	 * @param e Cluster to which the object clusters.size() belongs
 	 * @return whether the object could be added or not to clusters
 	 */
@@ -69,7 +69,7 @@ public class Clustering implements IClustering{
 	public ArrayList<Integer> getObjectsInCk(int cluster) {
 		return clustersList.get(cluster);
 	}
-	
+
 	public int getSizeCk(int cluster) {
 		return clustersList.get(cluster).size();
 	}
@@ -83,7 +83,7 @@ public class Clustering implements IClustering{
 	public int getClusterOfLabel(String s) {
 		return Integer.parseInt(s);
 	}
-	
+
 	/**
 	 * Allows to avoid overhead due to the resizement method of arraylist
 	 * Reisze all the arraylist to the real size
@@ -93,5 +93,18 @@ public class Clustering implements IClustering{
 			l.trimToSize();
 		clustersList.trimToSize();
 	}
-	
+
+
+	@Override
+	public boolean isIntAClusterOfObject(int index, int k) {
+		return (this.getClusterOfObjectI(index) == k);
+	}
+
+
+	@Override
+	public void add(Integer e, int k) {
+		this.clusters[k]=e;
+		
+	}
+
 }

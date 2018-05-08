@@ -9,9 +9,6 @@ public class ClusteringLabelled implements IClustering {
 	private IClustering clustering;
 	private LabelStore ls;
 	
-	public Integer getClusterOfObjectI(int index) {
-		return clustering.getClusterOfObjectI(index);
-	}
 
 	public void add(Integer e) {
 		clustering.add(e);
@@ -37,5 +34,16 @@ public class ClusteringLabelled implements IClustering {
 	@Override
 	public int getClusterOfLabel(String s) {
 		return ls.getIndexOfLabel(s);
+	}
+
+	@Override
+	public boolean isIntAClusterOfObject(int index, int k) {
+		return clustering.isIntAClusterOfObject(index, k);
+	}
+
+	@Override
+	public void add(Integer e, int k) {
+		this.clustering.add(e,k);
+		
 	}
 }

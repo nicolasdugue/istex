@@ -52,9 +52,11 @@ public class CsrMatrixClustered {
 		log.debug("Start : "+start+", end : "+end);
 		float sum=0f;
 		PairF val;
+		//System.out.println("COL - "+ i + " cluster "+ k);
 		for (int j=start; j < end; j++) {
 			val=matrix.getIinColumns(j);
-			if (clusters.getClusterOfObjectI(val.getLeft()) == k)
+			//System.out.println(val.getLeft()+" - "+ clusters.isIntAClusterOfObject(val.getLeft(), k));
+			if (clusters.isIntAClusterOfObject(val.getLeft(), k))
 				sum +=val.getRight();
 		}
 		return sum;
@@ -79,7 +81,7 @@ public class CsrMatrixClustered {
 		PairF val;
 		for (int j=start; j < end; j++) {
 			val=matrix.getIinRows(j);
-			if (clusters.getClusterOfObjectI(val.getLeft()) == k)
+			if (clusters.isIntAClusterOfObject(val.getLeft(), k))
 				sum +=val.getRight();
 		}
 		return sum;
@@ -162,8 +164,9 @@ public class CsrMatrixClustered {
 		return matrix.getIndexOfColLabel(label);
 	}
 
-	public Integer getClusterOfObjectI(int index) {
-		return clusters.getClusterOfObjectI(index);
+	
+	public boolean isIntAClusterOfObject(int index, int k) {
+		return clusters.isIntAClusterOfObject(index, k);
 	}
 
 	public ArrayList<Integer> getObjectsInCk(int cluster) {
