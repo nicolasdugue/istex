@@ -30,6 +30,7 @@ import model.featureselection.labellingstategies.FixedNumberOfLabelStrategy;
 import model.util.factory.AFactory;
 import model.util.factory.GraphElmFactory;
 import model.util.factory.GraphFactory;
+import model.util.factory.GraphOverlappingFactory;
 import model.util.factory.MatrixElmFactory;
 import model.util.factory.MatrixFactory;
 import model.util.factory.NrmClusteringFactory;
@@ -45,6 +46,7 @@ public class MainGraphMeasures {
 	private static Options options = new Options();
 	private static Logger log=SGLogger.getInstance();
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
 		options.addOption("h", "help", false, "print this message");
@@ -74,6 +76,12 @@ public class MainGraphMeasures {
 		OptionBuilder.withArgName("output");
 		OptionBuilder.withDescription("Output file without ext");
 		opt = OptionBuilder.create("o");
+		options.addOption(opt);
+		OptionBuilder.hasArgs(0);
+		OptionBuilder.withArgName("overlapping");
+		OptionBuilder.withDescription(
+				"Tells if clustering is overlapping.");
+		opt = OptionBuilder.create("ov");
 		options.addOption(opt);
 
 		//args = new String[] { "-c", "t", "test" };
@@ -147,6 +155,10 @@ public class MainGraphMeasures {
 							if (c1.contains(".elm"))
 								factory = new MatrixElmFactory();
 						}
+						if (line.hasOption("ov")) {
+							factory = new GraphOverlappingFactory();
+						}
+						
 
 					}
 
@@ -170,7 +182,7 @@ public class MainGraphMeasures {
 				fwr.write("#node com zscore coefp sizecom degree\n");
 				for (int com=0; com < matrix.getNbCluster(); com++){
 					for (int i = 0; i < matrix.getNbRows(); i++) {
-						fwr.write(i + " " +com+" "+ fc.getZScore(com,i) + " "+fc.getParticipationCoefficient(i)+ " "+fc.getSizeCommunity(fc.getCommunity(i))+ " "+fc.getDegree(i)+"\n");
+						fwr.write(i + " " +com+" "+ fc.getZScore(com,i) + " "+fc.getParticipationCoefficient(i)+ " "+fc.getSizeCommunity(com)+ " "+fc.getDegree(i)+"\n");
 					}
 				}
 				fwr.close();
