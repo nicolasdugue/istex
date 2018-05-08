@@ -1,7 +1,7 @@
 package io.reader.interfaces;
 
-import model.cluster.Clustering;
+import model.cluster.decorator.IClustering;
 
 public interface IClusteringReader {
-	public Clustering getClusters();
+	public IClustering getClusters();
 }

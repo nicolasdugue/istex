@@ -1,6 +1,5 @@
 package io.reader.factory;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import io.reader.ElmReader;
