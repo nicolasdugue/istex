@@ -120,6 +120,45 @@ Finally, the output lst0_015.json is in json. To visualize it like an HTML repor
 	 -v,--verbose       debug or verbose mode
 
 
+## File formats
+
+To see how the input should be formatted, take a look at the exemple files coming from Page 6/7/8 of this paper : (https://hal.archives-ouvertes.fr/hal-01340846/file/bdas2016.pdf)
+
+	$ java -jar csr-0.0.1-FeatureSelection.jar -e
+	$ ls
+	clustering_lamirel_iskomaghreb.exemple  label_lamirel_iskomaghreb.exemple
+	exemple_resultat.fs                     matrix_lamirel_iskomaghreb.exemple
+	exemple_resultat.ls
+The document matrix looks like as follows. Documents are line vectors, features are columns.
+
+	$ cat matrixg_lamirel_iskomaghreb.exemple 
+	9	5	5
+	9	10	5
+	9	20	6
+	5	15	5
+	6	25	6
+	5	25	5
+
+Each column of the matrix can be identified by a label to lead to clearer results. This file is organised with one label per line, the line number corresponding to the column number of the feature in the matrix : 
+
+	$ cat label_lamirel_iskomaghreb.exemple 
+	Taille pieds
+	Longueur cheveux
+	Taille nez
+
+Finally, the file describing clusters is organized with one cluster per line, the line number corresponding to the document line number in the matrix : 
+	
+	$ cat clustering_lamirel_iskomaghreb.exemple 
+	0
+	0	
+	0
+	1
+	1
+
+The results of feature selection are given in :
+- ".fs" file providing for each feature its values according to the feature selection process
+- " .ls" file providing for each cluster its label set.
+
 ## Organization
 The project is composed of the following folders:
 * `CSR`: contains the main JAVA project
