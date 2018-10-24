@@ -209,7 +209,7 @@ public class MainFeatureSelection {
 						 s.add(new PairSFWeighted(fs.getLabelOfCol(j), fs.getFeatureValue(j, cls)));
 					 }
 					 for (PairSFWeighted pair : s) {
-						 fw.write(cls +" "+pair.getLeft()+" "+ pair.getRight()+ " " + fs.fr(Integer.parseInt(pair.getLeft()),cls)+ " "+ fs.fp(Integer.parseInt(pair.getLeft()),cls) +"\n");
+						 fw.write(cls +" "+pair.getLeft()+" "+ pair.getRight()+ " " + fs.fr(fs.getIndexOfColLabel(pair.getLeft()),cls)+ " "+ fs.fp(fs.getIndexOfColLabel(pair.getLeft()),cls) +"\n");
 					 }
 					 s.clear();
 				}
