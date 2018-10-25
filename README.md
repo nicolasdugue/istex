@@ -57,6 +57,15 @@ This command runs the diachronic analysis on matrices m1 et m2 respectively asso
 
 If you want an automatic threshold, use the "-lsf" option.
 
+**Exemple :**
+You can also use the exemples files in (JAVA/Expe_Scientometrics) : 
+00-0350gnge-tn-DD-ENL.fmgs
+96-99-F43gnge-tn-DD-ENL.fmgs
+These files are results from labeling of the clustering results of two distinct periods such as in **[1]**.
+diachronism -fl 00-0350gnge-tn-DD-ENL.fmgs 96-99-F43gnge-tn-DD-ENL.fmgs > result.json
+runs the diachronism by using the labels extracted for each cluster for each time period.
+
+
 Finally, the output lst0_015.json is in json. To visualize it like an HTML report, open "JAVA/Visu/json2html-master/index.htm" with your browser, copy the json into the textarea and click on "json 2  html".
 
 
