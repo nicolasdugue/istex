@@ -50,19 +50,21 @@ Unlog then log to a terminal, you sould be able to run *cmdname* as a command.
 #### Diachronism
 
 **Exemple :**
+	
 	diachronism -m m1.nrm m2.nrm -c c1.elm c2.elm -l l1.idd l2.idd -lst 0.015 > lst0_015.json
-
-
 This command runs the diachronic analysis on matrices m1 et m2 respectively associated to clusterings and labels c1,l1 et c2,l2. Furthermore, clusters labeling is made using a thresdholf of 0.015 on Feature F-Mesure.
 
 If you want an automatic threshold, use the "-lsf" option.
 
 **Exemple :**
-You can also use the exemples files in (JAVA/Expe_Scientometrics) : 
-00-0350gnge-tn-DD-ENL.fmgs
-96-99-F43gnge-tn-DD-ENL.fmgs
+
+You can also use the exemples files in [JAVA/Expe_Scientometrics](JAVA/Expe_Scientometrics) : 
+- 00-0350gnge-tn-DD-ENL.fmgs
+- 96-99-F43gnge-tn-DD-ENL.fmgs
+
 These files are results from labeling of the clustering results of two distinct periods such as in **[1]**.
-diachronism -fl 00-0350gnge-tn-DD-ENL.fmgs 96-99-F43gnge-tn-DD-ENL.fmgs > result.json
+
+	diachronism -fl 00-0350gnge-tn-DD-ENL.fmgs 96-99-F43gnge-tn-DD-ENL.fmgs > result.json
 runs the diachronism by using the labels extracted for each cluster for each time period.
 
 
